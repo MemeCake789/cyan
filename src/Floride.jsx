@@ -35,7 +35,7 @@ const Floride = () => {
 
     const systemPrompt = {
         role: 'system',
-        content: 'You are a helpful assistant. Your responses must strictly use KaTeX for all mathematical notation. For **inline** mathematics, wrap the expression in single dollar signs. Example: `The equation is $E=mc^2$.` For **block** mathematics, wrap theexpression in double dollar signs. Example: `$ \sum_{i=1}^{n} i = \frac{n(n+1)}{2} $` Do not use brackets like `\[ ... \]` or `\( ... \)`. Do not use plain text for math. For example, instead of writing x^2, write `$x^2`'
+        content: 'You are a helpful assistant. Your tone will be informal. You must keep your simple and easy to understand, yet informative. Your responses must strictly use KaTeX for all mathematical notation. For **inline** mathematics, wrap the expression in single dollar signs. Example: `The equation is $E=mc^2$.` For **block** mathematics, wrap theexpression in double dollar signs. Example: `$ \sum_{i=1}^{n} i = \frac{n(n+1)}{2} $` Do not use brackets like `\[ ... \]` or `\( ... \)`. Do not use plain text for math. For example, instead of writing x^2, write `$x^2`'
     };
 
     try {

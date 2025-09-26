@@ -2,10 +2,10 @@
   "games": [
     {
       "title": "2048",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/2048/2048.png",
+      "imageSrc": "public/cyan-assets/HTML/2048/2048.png",
       "genre": "Puzzle",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/2048/2048.html",
+      "link": "public/cyan-assets/HTML/2048/2048.html",
       "description": "",
       "status": [
        "Working",
@@ -14,10 +14,10 @@
     },
     {
       "title": "10 Minutes Till Dawn",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/10minutestilldawn/10minutestilldawn.jpg",
+      "imageSrc": "public/cyan-assets/HTML/10minutestilldawn/10minutestilldawn.jpg",
       "genre": "Action-Adventure",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/10minutestilldawn/index.html",
+      "link": "public/cyan-assets/HTML/10minutestilldawn/index.html",
       "description": "",
       "status": [
         "Broken",
@@ -27,7 +27,7 @@
     {
       "title": "Advance Wars",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/advancewars.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/advancewars.jpg",
       "genre": "Action-Adventure",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Advance%20Wars%20(USA)%20(Rev%201).zip",
@@ -39,10 +39,10 @@
     },
     {
       "title": "Derek 1",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek1/derek1.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek1/derek1.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek1/derek1.html",
+      "link": "public/cyan-assets/HTML/derek1/derek1.html",
       "description": "",
       "status": [
         "Working",
@@ -51,10 +51,10 @@
     },
     {
       "title": "Derek 2",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek2/derek2.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek2/derek2.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek2/derek2.html",
+      "link": "public/cyan-assets/HTML/derek2/derek2.html",
       "description": "",
       "status": [
          "Working",
@@ -63,10 +63,10 @@
     },
     {
       "title": "Derek 3",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek3/derek3.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek3/derek3.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek3/derek3.html",
+      "link": "public/cyan-assets/HTML/derek3/derek3.html",
       "description": "",
       "status": [
         "Working",
@@ -75,10 +75,10 @@
     },
     {
       "title": "Derek 4",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek4/derek4.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek4/derek4.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek4/derek4.html",
+      "link": "public/cyan-assets/HTML/derek4/derek4.html",
       "description": "",
       "status": [
         "Working",
@@ -87,10 +87,10 @@
     },
     {
       "title": "Derek 5",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek5/derek5.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek5/derek5.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek5/derek5.html",
+      "link": "public/cyan-assets/HTML/derek5/derek5.html",
       "description": "",
       "status": [
        "Working",
@@ -99,10 +99,10 @@
     },
     {
       "title": "Derek 6",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek6/derek6.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek6/derek6.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek6/derek6.html",
+      "link": "public/cyan-assets/HTML/derek6/derek6.html",
       "description": "",
       "status": [
        "Working",
@@ -111,10 +111,10 @@
     },
     {
       "title": "Derek 7",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek7/derek7.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek7/derek7.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek7/derek7.html",
+      "link": "public/cyan-assets/HTML/derek7/derek7.html",
       "description": "",
       "status": [
          "Working",
@@ -123,10 +123,10 @@
     },
     {
       "title": "Derek 8",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/derek8/derek8.jpg",
+      "imageSrc": "public/cyan-assets/HTML/derek8/derek8.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/derek8/derek8.html",
+      "link": "public/cyan-assets/HTML/derek8/derek8.html",
       "description": "",
       "status": [
         "Working",
@@ -135,10 +135,10 @@
     },
     {
       "title": "Minecraft",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/minecraft/minecraft.jpg",
+      "imageSrc": "public/cyan-assets/HTML/minecraft/minecraft.jpg",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/minecraft/minecraft.html",
+      "link": "public/cyan-assets/HTML/minecraft/minecraft.html",
       "description": "",
       "status": [
        "Working",
@@ -148,7 +148,7 @@
     {
       "title": "Pokemon Emerald",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/pokemonemerald.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/pokemonemerald.jpg",
       "genre": "Action-RPG",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Pokemon%20Emerald%20%2B.zip",
@@ -161,7 +161,7 @@
     {
       "title": "Pokemon Fire Red",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/pokemon-fire-red.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/pokemon-fire-red.jpg",
       "genre": "Action-RPG",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Pokemon%20Firered%20251.zip",
@@ -174,7 +174,7 @@
     {
       "title": "Pokemon Crystal",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/pokemoncrystal.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/pokemoncrystal.jpg",
       "genre": "Action-RPG",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/mehransab101/GBC_ROMS@master/Pokemon%20-%20Crystal%20Version%20(UE)%20(V1.1)%20%5BC%5D%5B!%5D.gbc",
@@ -200,7 +200,7 @@
     {
       "title": "Pokemon Blue",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/pokemonblue.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/pokemonblue.jpg",
       "genre": "Action-RPG",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/mehransab101/GBC_ROMS@master/pokemon-blue.gb",
@@ -239,7 +239,7 @@
     {
       "title": "Castlevania - Harmony of Dissonance",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/harmonyofdissonance.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/harmonyofdissonance.jpg",
       "genre": "Action-RPG",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Castlevania%20-%20Harmony%20of%20Dissonance%20(USA).zip",
@@ -252,7 +252,7 @@
     {
       "title": "Jimmy Neutron Boy Genius",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/jimmyneutronboygenius.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/jimmyneutronboygenius.jpg",
       "genre": "temp",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Adventures%20of%20Jimmy%20Neutron%20Boy%20Genius%20vs.%20Jimmy%20Negatron%2C%20The%20(USA%2C%20Europe).zip",
@@ -265,7 +265,7 @@
     {
       "title": "Earthbound",
       "core": "snes",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/earthbound.jpg",
+      "imageSrc": "public/cyan-assets/EMULATORS/images/earthbound.jpg",
       "genre": "temp",
       "type": "EMULATOR",
       "link": "EMULATORS/Earthbound/Earthbound.smc",
@@ -277,10 +277,10 @@
     },
     {
       "title": "Papa's Burgeria",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Papa'sBurgeria/papasburgeria_300x300.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/Papa'sBurgeria/papasburgeria_300x300.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Papa'sBurgeria/papasburgeria.swf",
+      "link": "public/cyan-assets/FLASH/Papa'sBurgeria/papasburgeria.swf",
       "description": "",
       "status": [
          "Working",
@@ -289,10 +289,10 @@
     },
     {
       "title": "Papa's Freezeria",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Papa'sFreezeria/papasfreezeria_300x300.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/Papa'sFreezeria/papasfreezeria_300x300.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Papa'sFreezeria/papasfreezeria.swf",
+      "link": "public/cyan-assets/FLASH/Papa'sFreezeria/papasfreezeria.swf",
       "description": "",
       "status": [
                        "Working",
@@ -301,10 +301,10 @@
     },
     {
       "title": "Papa's Pizzeria",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Papa'sPizzeria/papaspizzeria_100x100.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/Papa'sPizzeria/papaspizzeria_100x100.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Papa'sPizzeria/papaspizzeria_v2.swf",
+      "link": "public/cyan-assets/FLASH/Papa'sPizzeria/papaspizzeria_v2.swf",
       "description": "",
       "status": [
                        "Working",
@@ -313,10 +313,10 @@
     },
     {
       "title": "Papa's Sushiria",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Papa'sSushiria/icon_300x300_papassushiria.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/Papa'sSushiria/icon_300x300_papassushiria.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Papa'sSushiria/papassushiria.swf",
+      "link": "public/cyan-assets/FLASH/Papa'sSushiria/papassushiria.swf",
       "description": "",
       "status": [
                          "Working",
@@ -325,10 +325,10 @@
     },
     {
       "title": "Duck Life",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Duck%20Life/ducklife.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/Duck%20Life/ducklife.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Duck%20Life/ducklife.swf",
+      "link": "public/cyan-assets/FLASH/Duck%20Life/ducklife.swf",
       "description": "",
       "status": [
                         "Working",
@@ -337,10 +337,10 @@
     },
     {
       "title": "Duck Life 2",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Duck%20Life%202/ducklife2.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/Duck%20Life%202/ducklife2.jpg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Duck%20Life%202/Duck%20Life%202%20-%20World%20Champion.swf",
+      "link": "public/cyan-assets/FLASH/Duck%20Life%202/Duck%20Life%202%20-%20World%20Champion.swf",
       "description": "",
       "status": [
                         "Working",
@@ -349,10 +349,10 @@
     },
     {
       "title": "Duck Life 3",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Duck%20Life%203/ducklife3.jfif",
+      "imageSrc": "public/cyan-assets/FLASH/Duck%20Life%203/ducklife3.jfif",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Duck%20Life%203/Duck%20Life%203%20-%20Evolution.swf",
+      "link": "public/cyan-assets/FLASH/Duck%20Life%203/Duck%20Life%203%20-%20Evolution.swf",
       "description": "",
       "status": [
                          "Working",
@@ -361,10 +361,10 @@
     },
     {
       "title": "Duck Life 4",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Duck%20Life%204/ducklife4.png",
+      "imageSrc": "public/cyan-assets/FLASH/Duck%20Life%204/ducklife4.png",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Duck%20Life%204/Duck%20Life%204.swf",
+      "link": "public/cyan-assets/FLASH/Duck%20Life%204/Duck%20Life%204.swf",
       "description": "",
       "status": [
                       "Working",
@@ -373,10 +373,10 @@
     },
     {
       "title": "Learn To Fly",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Learn%20to%20Fly/learntofly.jfif",
+      "imageSrc": "public/cyan-assets/FLASH/Learn%20to%20Fly/learntofly.jfif",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Learn%20to%20Fly/learn-to-fly.swf",
+      "link": "public/cyan-assets/FLASH/Learn%20to%20Fly/learn-to-fly.swf",
       "description": "",
       "status": [
                        "Working",
@@ -385,10 +385,10 @@
     },
     {
       "title": "Learn to Fly 2",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Learn%202%20Fly/learn2fly.png",
+      "imageSrc": "public/cyan-assets/FLASH/Learn%202%20Fly/learn2fly.png",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Learn%202%20Fly/learn-to-fly-2-11967.swf",
+      "link": "public/cyan-assets/FLASH/Learn%202%20Fly/learn-to-fly-2-11967.swf",
       "description": "",
       "status": [
                          "Working",
@@ -397,10 +397,10 @@
     },
     {
       "title": "Learn To Fly 3",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Learn%20to%20Fly%203/learn-to-fly3.jfif",
+      "imageSrc": "public/cyan-assets/FLASH/Learn%20to%20Fly%203/learn-to-fly3.jfif",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Learn%20to%20Fly%203/learntofly3.swf",
+      "link": "public/cyan-assets/FLASH/Learn%20to%20Fly%203/learntofly3.swf",
       "description": "",
       "status": [
         "Bugged",
@@ -409,10 +409,10 @@
     },
     {
       "title": "Escaping The Prison",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Escaping%20The%20Prison/etp.png",
+      "imageSrc": "public/cyan-assets/FLASH/Escaping%20The%20Prison/etp.png",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Escaping%20The%20Prison/533001_PrisonNG.swf",
+      "link": "public/cyan-assets/FLASH/Escaping%20The%20Prison/533001_PrisonNG.swf",
       "description": "",
       "status": [
                       "Working",
@@ -421,10 +421,10 @@
     },
     {
       "title": "Happy Wheels",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Happy%20Wheels/hw.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/Happy%20Wheels/hw.jpeg",
       "genre": "Platformer",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Happy%20Wheels/547504_hw_demo.swf",
+      "link": "public/cyan-assets/FLASH/Happy%20Wheels/547504_hw_demo.swf",
       "description": "",
       "status": [
                         "Working",
@@ -433,10 +433,10 @@
     },
     {
       "title": "Mutilate A Doll 2",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Mutilate%20A%20Doll%202/mad2.png",
+      "imageSrc": "public/cyan-assets/FLASH/Mutilate%20A%20Doll%202/mad2.png",
       "genre": "Sandbox",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Mutilate%20A%20Doll%202/164481_mutilate-a-doll-2_v4.swf",
+      "link": "public/cyan-assets/FLASH/Mutilate%20A%20Doll%202/164481_mutilate-a-doll-2_v4.swf",
       "description": "",
       "status": [
                       "Working",
@@ -445,10 +445,10 @@
     },
     {
       "title": "One Chance",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/One%20Chance/oc.webp",
+      "imageSrc": "public/cyan-assets/FLASH/One%20Chance/oc.webp",
       "genre": "Story",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/One%20Chance/One%20Chance.swf",
+      "link": "public/cyan-assets/FLASH/One%20Chance/One%20Chance.swf",
       "description": "",
       "status": [
                         "Working",
@@ -457,10 +457,10 @@
     },
     {
       "title": "QWOP",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/QWOP/qwop.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/QWOP/qwop.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/QWOP/qwop.swf",
+      "link": "public/cyan-assets/FLASH/QWOP/qwop.swf",
       "description": "",
       "status": [
                        "Working",
@@ -469,10 +469,10 @@
     },
     {
       "title": "Run 2",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Run%202/r2.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/Run%202/r2.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Run%202/run_2.swf",
+      "link": "public/cyan-assets/FLASH/Run%202/run_2.swf",
       "description": "",
       "status": [
                  "Working",
@@ -481,10 +481,10 @@
     },
     {
       "title": "Simpsons Home",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Simpsons%20Home/sh.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/Simpsons%20Home/sh.jpeg",
       "genre": "Sandbox",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Simpsons%20Home/simphome.swf",
+      "link": "public/cyan-assets/FLASH/Simpsons%20Home/simphome.swf",
       "description": "",
       "status": [
                 "Working",
@@ -493,10 +493,10 @@
     },
     {
       "title": "Stealing The Diamond",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/Stealing%20The%20Diamond/std.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/Stealing%20The%20Diamond/std.jpeg",
       "genre": "Story",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/Stealing%20The%20Diamond/Stealing_the_Diamond.swf",
+      "link": "public/cyan-assets/FLASH/Stealing%20The%20Diamond/Stealing_the_Diamond.swf",
       "description": "",
       "status": [
                  "Working",
@@ -505,10 +505,10 @@
     },
     {
       "title": "Bloons Tower Defense 5",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/BTD5/btd5.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/BTD5/btd5.jpeg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/BTD5/Bloons%20Tower%20Defense%205%20(BTD5).swf",
+      "link": "public/cyan-assets/FLASH/BTD5/Bloons%20Tower%20Defense%205%20(BTD5).swf",
       "description": "",
       "status": [
                "Working",
@@ -517,10 +517,10 @@
     },
     {
       "title": "Dig To China",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/DIgToChina/dtc.png",
+      "imageSrc": "public/cyan-assets/FLASH/DIgToChina/dtc.png",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/DIgToChina/Dig%20to%20China%20-%20Unblocked%20Adventures.swf",
+      "link": "public/cyan-assets/FLASH/DIgToChina/Dig%20to%20China%20-%20Unblocked%20Adventures.swf",
       "description": "",
       "status": [
         "Bugged",
@@ -529,7 +529,7 @@
     },
     {
       "title": "Fireboy and Watergirl",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/FireBoyandWaterGirl/Fireboywatergirl.png",
+      "imageSrc": "public/cyan-assets/FLASH/FireBoyandWaterGirl/Fireboywatergirl.png",
       "genre": "Co-Op",
       "type": "FLASH",
       "link": "https://cdn.jsdelivr.net/gh/gameproxy/swf_storage_1@master/Fireboy%20and%20Watergirl.swf",
@@ -541,10 +541,10 @@
     },
     {
       "title": "CSGO Clicker",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/csgo-clicker/230x0w.webp",
+      "imageSrc": "public/cyan-assets/HTML/csgo-clicker/230x0w.webp",
       "genre": "Clicker",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/csgo-clicker/index.html",
+      "link": "public/cyan-assets/HTML/csgo-clicker/index.html",
       "description": "",
       "status": [
             "Working",
@@ -553,10 +553,10 @@
     },
     {
       "title": "Cell Machine",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/cell-machine/cm_icon.png",
+      "imageSrc": "public/cyan-assets/HTML/cell-machine/cm_icon.png",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/cell-machine/index.html",
+      "link": "public/cyan-assets/HTML/cell-machine/index.html",
       "description": "",
       "status": [
              "Working",
@@ -565,10 +565,10 @@
     },
     {
       "title": "Achievement Unlocked",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/achievementunlocked/achievementunlocked.png",
+      "imageSrc": "public/cyan-assets/HTML/achievementunlocked/achievementunlocked.png",
       "genre": "Platformer",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=HTML/achievementunlocked/achievementunlocked.swf",
+      "link": "public/cyan-assets/HTML/achievementunlocked/achievementunlocked.swf",
       "description": "there are more achivements in this game than there are games in this site",
       "status": [
              "Working",
@@ -577,10 +577,10 @@
     },
     {
       "title": "Doodle Jump",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/doodle-jump/doodle.png",
+      "imageSrc": "public/cyan-assets/HTML/doodle-jump/doodle.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/doodle-jump/index.html",
+      "link": "public/cyan-assets/HTML/doodle-jump/index.html",
       "description": "",
       "status": [
             "Working",
@@ -589,7 +589,7 @@
     },
     {
       "title": "Gimme the Airpod",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/gimme-the-airpod/img/logo.png",
+      "imageSrc": "public/cyan-assets/HTML/gimme-the-airpod/img/logo.png",
       "genre": "Two-Player",
       "type": "HTML",
       "link": "https://github.com/Cyanide-App/cyan-assets/blob/main/HTML/gimme-the-airpod/index.html",
@@ -601,10 +601,10 @@
     },
     {
       "title": "Rooftop Snipers",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/rooftop-snipers/img/thumb.png",
+      "imageSrc": "public/cyan-assets/HTML/rooftop-snipers/img/thumb.png",
       "genre": "Two-Player",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/rooftop-snipers/index.html",
+      "link": "public/cyan-assets/HTML/rooftop-snipers/index.html",
       "description": "360 no scope mlg water bucket hell yeah we are going back to 2010 baby",
       "status": [
                 "Working",
@@ -613,10 +613,10 @@
     },
     {
       "title": "circloO",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/circlo/img/download.png",
+      "imageSrc": "public/cyan-assets/HTML/circlo/img/download.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/circlo/index.html",
+      "link": "public/cyan-assets/HTML/circlo/index.html",
       "description": "circle, thats it.",
       "status": [
         "Broken",
@@ -625,10 +625,10 @@
     },
     {
       "title": "The Heist",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/theheist/theheist.jpg",
+      "imageSrc": "public/cyan-assets/HTML/theheist/theheist.jpg",
       "genre": "Action",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/theheist/index.html",
+      "link": "public/cyan-assets/HTML/theheist/index.html",
       "description": "u drive car and get away from ops, simple.",
       "status": [
                  "Working",
@@ -638,10 +638,10 @@
     {
       "title": "Pokemon Unbound",
       "core": "mgba",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/Pokemon%20Unbound/Unbound.png",
+      "imageSrc": "public/cyan-assets/EMULATORS/Pokemon%20Unbound/Unbound.png",
       "genre": "Action-Adventure",
       "type": "EMULATOR",
-      "link": "/api/github-proxy?assetPath=EMULATORS/Pokemon%20Unbound/POKEMON_UNBOUND.gba",
+      "link": "public/cyan-assets/EMULATORS/Pokemon%20Unbound/POKEMON_UNBOUND.gba",
       "description": "",
       "status": [
               "Working",
@@ -650,10 +650,10 @@
     },
     {
       "title": "Crazy Cattle 3D",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/CC3D/crazy-cattle-3d-1.jpg",
+      "imageSrc": "public/cyan-assets/HTML/CC3D/crazy-cattle-3d-1.jpg",
       "genre": "Racing",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/CC3D/Crazy%20Cattle%203D.html",
+      "link": "public/cyan-assets/HTML/CC3D/Crazy%20Cattle%203D.html",
       "description": "this game got a game of the year award 3 times in a row, it be stupid to not incude this game.",
       "status": [
                  "Working",
@@ -662,10 +662,10 @@
     },
     {
       "title": "Buckshot Roulette",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Buckshot%20Roulette/buckshot-roulette-feature-image.jpg",
+      "imageSrc": "public/cyan-assets/HTML/Buckshot%20Roulette/buckshot-roulette-feature-image.jpg",
       "genre": "Strategy",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Buckshot%20Roulette/Buckshot%20Roulette.html",
+      "link": "public/cyan-assets/HTML/Buckshot%20Roulette/Buckshot%20Roulette.html",
       "description": "suicide but cooler ( jk pls love urself :) )",
       "status": [
         "Bugged",
@@ -674,10 +674,10 @@
     },
     {
       "title": "Deltarune",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Deltarune/delta.png",
+      "imageSrc": "public/cyan-assets/HTML/Deltarune/delta.png",
       "genre": "RPG",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Deltarune/Deltarune.html",
+      "link": "public/cyan-assets/HTML/Deltarune/Deltarune.html",
       "description": "",
       "status": [
         "Working",
@@ -686,10 +686,10 @@
     },
     {
       "title": "Endoparasitic",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Endoparasitic/endo.png",
+      "imageSrc": "public/cyan-assets/HTML/Endoparasitic/endo.png",
       "genre": "Horror",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Endoparasitic/Endoparasitic.html",
+      "link": "public/cyan-assets/HTML/Endoparasitic/Endoparasitic.html",
       "description": "dawg ur a amputee with one arm, id call it quits bro.",
       "status": [
         "Working",
@@ -698,10 +698,10 @@
     },
     {
       "title": "Half Life",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Half%20Life/half.jpg",
+      "imageSrc": "public/cyan-assets/HTML/Half%20Life/half.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Half%20Life/Half%20Life.html",
+      "link": "public/cyan-assets/HTML/Half%20Life/Half%20Life.html",
       "description": "gooordon freeemannnn....",
       "status": [
         "Broken",
@@ -710,10 +710,10 @@
     },
     {
       "title": "Hotline Miami",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Hotline%20Miami/hotline.jpg",
+      "imageSrc": "public/cyan-assets/HTML/Hotline%20Miami/hotline.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Hotline%20Miami/Hotline%20Miami.html",
+      "link": "public/cyan-assets/HTML/Hotline%20Miami/Hotline%20Miami.html",
       "description": "",
       "status": [
         "Broken",
@@ -722,10 +722,10 @@
     },
     {
       "title": "People Playground",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/People%20Playground/pp.jpg",
+      "imageSrc": "public/cyan-assets/HTML/People%20Playground/pp.jpg",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/People%20Playground/People%20Playground.html",
+      "link": "public/cyan-assets/HTML/People%20Playground/People%20Playground.html",
       "description": "human torture game :P",
       "status": [
          "Working",
@@ -734,10 +734,10 @@
     },
     {
       "title": "Ultrakill",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Ultrakill/ultrakill-l6f-logo.png",
+      "imageSrc": "public/cyan-assets/HTML/Ultrakill/ultrakill-l6f-logo.png",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Ultrakill/ULTRAKILL.html",
+      "link": "public/cyan-assets/HTML/Ultrakill/ULTRAKILL.html",
       "description": "Humanity is ded and hell is real D:",
       "status": [
         "Bugged",
@@ -746,10 +746,10 @@
     },
     {
       "title": "Undertale",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Undertale/Untitled.png",
+      "imageSrc": "public/cyan-assets/HTML/Undertale/Untitled.png",
       "genre": "RPG",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Undertale/Undertale.html",
+      "link": "public/cyan-assets/HTML/Undertale/Undertale.html",
       "description": "Game where u dont have to kill people (yawn)",
       "status": [
          "Working",
@@ -758,10 +758,10 @@
     },
     {
       "title": "Balatro",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Balatro/bala.png",
+      "imageSrc": "public/cyan-assets/HTML/Balatro/bala.png",
       "genre": "Rougelike",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Balatro/index.html",
+      "link": "public/cyan-assets/HTML/Balatro/index.html",
       "description": "joker poker balala",
       "status": [
          "Bugged",
@@ -770,10 +770,10 @@
     },
     {
       "title": "Hollow Night",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Hollow_Night/hn.webp",
+      "imageSrc": "public/cyan-assets/HTML/Hollow_Night/hn.webp",
       "genre": "Metroidvania",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Hollow_Night/index.html",
+      "link": "public/cyan-assets/HTML/Hollow_Night/index.html",
       "description": "",
       "status": [
          "Bugged",
@@ -782,10 +782,10 @@
     },
     {
       "title": "PokeRouge",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Poke_Rouge/pr.png",
+      "imageSrc": "public/cyan-assets/HTML/Poke_Rouge/pr.png",
       "genre": "Rougelike",
       "type": "HTML",
-      "link": "/api/github-proxy?assetPath=HTML/Poke_Rouge/index.html",
+      "link": "public/cyan-assets/HTML/Poke_Rouge/index.html",
       "description": "",
       "status": [
          "Bugged",
@@ -794,10 +794,10 @@
     },
     {
       "title": "Riddle School 1",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/RiddleSchool/riddleschool1.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/RiddleSchool/riddleschool1.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/RiddleSchool/flash.swf",
+      "link": "public/cyan-assets/FLASH/RiddleSchool/flash.swf",
       "description": "",
       "status": [
                        "Working",
@@ -806,10 +806,10 @@
     },
     {
       "title": "Riddle School 2",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/RiddleSchool2/riddleschool2.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/RiddleSchool2/riddleschool2.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/RiddleSchool2/flash.swf",
+      "link": "public/cyan-assets/FLASH/RiddleSchool2/flash.swf",
       "description": "",
       "status": [
                        "Working",
@@ -818,10 +818,10 @@
     },
     {
       "title": "Riddle School 3",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/RiddleSchool3/riddleschool3.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/RiddleSchool3/riddleschool3.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/RiddleSchool3/flash.swf",
+      "link": "public/cyan-assets/FLASH/RiddleSchool3/flash.swf",
       "description": "",
       "status": [
                        "Working",
@@ -830,10 +830,10 @@
     },
     {
       "title": "Riddle School 4",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/FLASH/RiddleSchool4/riddleschool4.jpg",
+      "imageSrc": "public/cyan-assets/FLASH/RiddleSchool4/riddleschool4.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/RiddleSchool4/flash.swf",
+      "link": "public/cyan-assets/FLASH/RiddleSchool4/flash.swf",
       "description": "",
       "status": [
                        "Working",
@@ -845,7 +845,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@tree/main/FLASH/RiddleSchool5",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "/api/github-proxy?assetPath=FLASH/RiddleSchool5/flash.swf",
+      "link": "public/cyan-assets/FLASH/RiddleSchool5/flash.swf",
       "description": "",
       "status": [
                        "Working",
@@ -854,7 +854,7 @@
     },
     {
       "title": "Banana Saber",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/BTTS/btts.png",
+      "imageSrc": "public/cyan-assets/HTML/BTTS/btts.png",
       "genre": "Platformer",
       "type": "HTML",
       "link": "public/cyan-assets/HTML/BananaSaber/index.html",

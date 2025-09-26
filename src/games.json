@@ -325,10 +325,10 @@
     },
     {
       "title": "Duck Life",
-      "imageSrc": "public/cyan-assets/FLASH/Duck%20Life/ducklife.jpeg",
+      "imageSrc": "public/cyan-assets/FLASH/DuckLife/ducklife.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/Duck%20Life/ducklife.swf",
+      "link": "public/cyan-assets/FLASH/DuckLife/ducklife.swf",
       "description": "",
       "status": [
                         "Working",

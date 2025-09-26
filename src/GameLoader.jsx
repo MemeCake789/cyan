@@ -45,6 +45,7 @@ const createGameHtml = (game) => {
         <!DOCTYPE html>
         <html>
         <head>
+          <base href="/">
           <title>${title}</title>
           <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
           <style>
@@ -66,7 +67,7 @@ const createGameHtml = (game) => {
             player.style.width = "100%";
             player.style.height = "100%";
             document.getElementById("ruffle-player").appendChild(player);
-            player.load("${game.link}");
+            player.load("${game.link.startsWith('public/') ? game.link.substring('public'.length) : game.link}");
           </script>
         </body>
         </html>`;

@@ -14,7 +14,7 @@
         return originalDeleteDatabase.call(this, prefixedName);
     };
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Balatro/love.min.js"></script>
+    <script src="love.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <title>Love.js</title>
     <style>
@@ -42,7 +42,7 @@
     <script>
     (async () => {
         async function loadModule() {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Balatro/module.js.zip');
+            const response = await fetch('module.js.zip');
             const zipBlob = await response.blob();
             // Use window.JSZip as the library is loaded from CDN
             const jszip = new window.JSZip();

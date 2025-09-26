@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>10 Minutes Till Dawn</title>
-    <script src="https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/10minutestilldawn/Build/UnityLoader.js"></script>
+    <script src="Build/UnityLoader.js"></script>
     <link rel="icon" href="icon.png">
-    <script src="/js/main.js"></script>
+    <!-- <script src="/js/main.js"></script> -->
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/10minutestilldawn/Build/10MinutesTillDawnWebGL.json");
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/10MinutesTillDawnWebGL.json");
       var scaleToFit;
       try {
         scaleToFit = !!JSON.parse("");

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export default async function (req, res) {
+export default async function(req, res) {
   const { assetPath } = req.query;
 
   if (!assetPath) {
@@ -40,7 +40,7 @@ export default async function (req, res) {
       res.setHeader('Content-Type', 'image/svg+xml');
     } else if (assetPath.endsWith('.swf')) {
       res.setHeader('Content-Type', 'application/x-shockwave-flash');
-    } else if (assetPath.endsWith('.love')) { // Added for .love files
+    } else if (assetPath.endsWith('.love')) {
       res.setHeader('Content-Type', 'application/x-love-game'); // Or application/octet-stream
     }
     else {

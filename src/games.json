@@ -854,10 +854,10 @@
     },
     {
       "title": "Banana Saber",
-      "imageSrc": "/public/cyan-assets/HTML/BTTS/btts.png",
+      "imageSrc": "/cyan-assets/HTML/BTTS/btts.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/public/cyan-assets/HTML/BananaSaber/index.html",
+      "link": "/cyan-assets/HTML/BananaSaber/index.html",
       "description": "",
       "status": [
         "Unkown",

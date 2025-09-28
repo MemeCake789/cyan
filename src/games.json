@@ -8,7 +8,7 @@
       "link": "cyan-assets/HTML/2048/2048.html",
       "description": "",
       "status": [
-       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -33,7 +33,7 @@
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Advance%20Wars%20(USA)%20(Rev%201).zip",
       "description": "",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -57,7 +57,7 @@
       "link": "cyan-assets/HTML/derek2/derek2.html",
       "description": "",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -93,7 +93,7 @@
       "link": "cyan-assets/HTML/derek5/derek5.html",
       "description": "",
       "status": [
-       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -105,7 +105,7 @@
       "link": "cyan-assets/HTML/derek6/derek6.html",
       "description": "",
       "status": [
-       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -117,7 +117,7 @@
       "link": "cyan-assets/HTML/derek7/derek7.html",
       "description": "",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -141,7 +141,7 @@
       "link": "cyan-assets/HTML/minecraft/minecraft.html",
       "description": "",
       "status": [
-       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -193,7 +193,7 @@
       "link": "https://cdn.jsdelivr.net/gh/mehransab101/GBC_ROMS@master/Pokemon%20-%20Red%20Version%20(UE)%5B!%5D.zip",
       "description": "",
       "status": [
-       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -206,7 +206,7 @@
       "link": "https://cdn.jsdelivr.net/gh/mehransab101/GBC_ROMS@master/pokemon-blue.gb",
       "description": "",
       "status": [
-       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -258,7 +258,7 @@
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Adventures%20of%20Jimmy%20Neutron%20Boy%20Genius%20vs.%20Jimmy%20Negatron%2C%20The%20(USA%2C%20Europe).zip",
       "description": "",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -271,7 +271,7 @@
       "link": "EMULATORS/Earthbound/Earthbound.smc",
       "description": "",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -283,7 +283,7 @@
       "link": "cyan-assets/FLASH/Papa'sBurgeria/papasburgeria.swf",
       "description": "",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -295,7 +295,7 @@
       "link": "cyan-assets/FLASH/Papa'sFreezeria/papasfreezeria.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -307,7 +307,7 @@
       "link": "cyan-assets/FLASH/Papa'sPizzeria/papaspizzeria_v2.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -319,19 +319,19 @@
       "link": "cyan-assets/FLASH/Papa'sSushiria/papassushiria.swf",
       "description": "",
       "status": [
-                         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
     {
       "title": "Duck Life",
-      "imageSrc": "cyan-assets/FLASH/DuckLife/ducklife.jpeg",
+      "imageSrc": "cyan-assets/FLASH/Duck Life/ducklife.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/DuckLife/ducklife.swf",
+      "link": "cyan-assets/FLASH/Duck Life/ducklife.swf",
       "description": "",
       "status": [
-                        "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -343,7 +343,7 @@
       "link": "cyan-assets/FLASH/Duck%20Life%202/Duck%20Life%202%20-%20World%20Champion.swf",
       "description": "",
       "status": [
-                        "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -355,7 +355,7 @@
       "link": "cyan-assets/FLASH/Duck%20Life%203/Duck%20Life%203%20-%20Evolution.swf",
       "description": "",
       "status": [
-                         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -367,7 +367,7 @@
       "link": "cyan-assets/FLASH/Duck%20Life%204/Duck%20Life%204.swf",
       "description": "",
       "status": [
-                      "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -379,7 +379,7 @@
       "link": "cyan-assets/FLASH/Learn%20to%20Fly/learn-to-fly.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -391,7 +391,7 @@
       "link": "cyan-assets/FLASH/Learn%202%20Fly/learn-to-fly-2-11967.swf",
       "description": "",
       "status": [
-                         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -415,7 +415,7 @@
       "link": "cyan-assets/FLASH/Escaping%20The%20Prison/533001_PrisonNG.swf",
       "description": "",
       "status": [
-                      "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -427,7 +427,7 @@
       "link": "cyan-assets/FLASH/Happy%20Wheels/547504_hw_demo.swf",
       "description": "",
       "status": [
-                        "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -439,7 +439,7 @@
       "link": "cyan-assets/FLASH/Mutilate%20A%20Doll%202/164481_mutilate-a-doll-2_v4.swf",
       "description": "",
       "status": [
-                      "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -451,7 +451,7 @@
       "link": "cyan-assets/FLASH/One%20Chance/One%20Chance.swf",
       "description": "",
       "status": [
-                        "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -463,7 +463,7 @@
       "link": "cyan-assets/FLASH/QWOP/qwop.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -475,7 +475,7 @@
       "link": "cyan-assets/FLASH/Run%202/run_2.swf",
       "description": "",
       "status": [
-                 "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -487,7 +487,7 @@
       "link": "cyan-assets/FLASH/Simpsons%20Home/simphome.swf",
       "description": "",
       "status": [
-                "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -499,7 +499,7 @@
       "link": "cyan-assets/FLASH/Stealing%20The%20Diamond/Stealing_the_Diamond.swf",
       "description": "",
       "status": [
-                 "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -511,7 +511,7 @@
       "link": "cyan-assets/FLASH/BTD5/Bloons%20Tower%20Defense%205%20(BTD5).swf",
       "description": "",
       "status": [
-               "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -535,7 +535,7 @@
       "link": "https://cdn.jsdelivr.net/gh/gameproxy/swf_storage_1@master/Fireboy%20and%20Watergirl.swf",
       "description": "",
       "status": [
-                "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -547,7 +547,7 @@
       "link": "cyan-assets/HTML/csgo-clicker/index.html",
       "description": "",
       "status": [
-            "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -559,7 +559,7 @@
       "link": "cyan-assets/HTML/cell-machine/index.html",
       "description": "",
       "status": [
-             "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -571,7 +571,7 @@
       "link": "cyan-assets/HTML/achievementunlocked/achievementunlocked.swf",
       "description": "there are more achivements in this game than there are games in this site",
       "status": [
-             "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -583,7 +583,7 @@
       "link": "cyan-assets/HTML/doodle-jump/index.html",
       "description": "",
       "status": [
-            "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -607,7 +607,7 @@
       "link": "cyan-assets/HTML/rooftop-snipers/index.html",
       "description": "360 no scope mlg water bucket hell yeah we are going back to 2010 baby",
       "status": [
-                "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -631,7 +631,7 @@
       "link": "cyan-assets/HTML/theheist/index.html",
       "description": "u drive car and get away from ops, simple.",
       "status": [
-                 "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -644,7 +644,7 @@
       "link": "cyan-assets/EMULATORS/Pokemon%20Unbound/POKEMON_UNBOUND.gba",
       "description": "",
       "status": [
-              "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -656,7 +656,7 @@
       "link": "cyan-assets/HTML/CC3D/Crazy%20Cattle%203D.html",
       "description": "this game got a game of the year award 3 times in a row, it be stupid to not incude this game.",
       "status": [
-                 "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -728,7 +728,7 @@
       "link": "cyan-assets/HTML/People%20Playground/People%20Playground.html",
       "description": "human torture game :P",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -752,7 +752,7 @@
       "link": "cyan-assets/HTML/Undertale/Undertale.html",
       "description": "Game where u dont have to kill people (yawn)",
       "status": [
-         "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -764,7 +764,7 @@
       "link": "cyan-assets/HTML/Balatro/index.html",
       "description": "joker poker balala",
       "status": [
-         "Bugged",
+        "Bugged",
         "Game saving does not work, but you can just unlock everything in the profile menu."
       ]
     },
@@ -776,7 +776,7 @@
       "link": "cyan-assets/HTML/Hollow_Night/index.html",
       "description": "",
       "status": [
-         "Bugged",
+        "Bugged",
         "game crashes randomly "
       ]
     },
@@ -788,7 +788,7 @@
       "link": "cyan-assets/HTML/Poke_Rouge/index.html",
       "description": "",
       "status": [
-         "Bugged",
+        "Bugged",
         "game can sometimes freeze when loading"
       ]
     },
@@ -800,7 +800,7 @@
       "link": "cyan-assets/FLASH/RiddleSchool/flash.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -812,7 +812,7 @@
       "link": "cyan-assets/FLASH/RiddleSchool2/flash.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -824,7 +824,7 @@
       "link": "cyan-assets/FLASH/RiddleSchool3/flash.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -836,7 +836,7 @@
       "link": "cyan-assets/FLASH/RiddleSchool4/flash.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },
@@ -848,7 +848,7 @@
       "link": "cyan-assets/FLASH/RiddleSchool5/flash.swf",
       "description": "",
       "status": [
-                       "Working",
+        "Working",
         "This game has no issues :D"
       ]
     },

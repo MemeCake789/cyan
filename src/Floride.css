@@ -45,12 +45,31 @@
   /* background-color: #000000; */
 }
 
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.message-name {
+  font-weight: bold;
+  color: #ccc;
+  font-size: 0.85em;
+}
+
+.message-timestamp {
+  color: #888;
+  font-size: 0.75em;
+}
+
 .message-content-wrapper {
   display: inline; 
 }
 
 .message.user {
   align-self: flex-end;
+  min-width: 200px;
 }
 
 .message.assistant {

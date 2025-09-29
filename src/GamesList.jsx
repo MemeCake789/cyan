@@ -98,7 +98,7 @@ const GamesList = () => {
                         Title: {sortOrder === 'asc' ? <FaSortUp /> : <FaSortDown />}
                       </th>
                       <th>Genre:</th>
-                      <th>Type:</th>
+                      <th>Status:</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -117,7 +117,7 @@ const GamesList = () => {
                           {game.title}
                         </td>
                         <td className="game-genre">{game.genre}</td>
-                        <td className="game-type">{game.type}</td>
+                        <td className={`game-status-text ${game.status[0].toLowerCase()}`}>{game.status[0]}</td>
                       </tr>
                     ))}
                   </tbody>

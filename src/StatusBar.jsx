@@ -28,7 +28,7 @@ const StatusBar = () => {
       cyλn 2.0 BETA | {formattedDate} | {formattedTime}
       </div>
       <div className="status-right">
-        v2.3d.a (FIXED LOADING OF ALL GAMES :D)
+        v2.3d.b (Swap game type w/ status)
       </div>
     </div>
   );

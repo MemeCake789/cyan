@@ -1,11 +1,10 @@
 
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function ASCII() {
   const bgRef = useRef(null);
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -13,7 +12,7 @@ export default function ASCII() {
     window.params = {};
     window.params.seed = params.get('seed') || Math.random().toString(10).substring(2, 10);
 
-  }, []);
+  }, [location.search]);
     !(function () {
     "use strict";
     function t(t, e, o, i, A, n, s) {
@@ -200,11 +199,6 @@ export default function ASCII() {
         _a6() {
             let t = 0;
             return this.data.forEach((e) => (t = Math.max(e, t))), t;
-        }
-        _91(t) {
-            if (t.width != this.width || t.height != this.height) return !1;
-            for (let e = 0; e < this.data.length; e++) if (this.data[e] !== t.data[e]) return !1;
-            return !0;
         }
         get(t, e) {
             return t < 0 || e < 0 || t >= this.width || e >= this.height ? null : this.data[t + e * this.width];
@@ -1062,8 +1056,8 @@ export default function ASCII() {
                     };
                 })(Z.seed);
                 let tt;
-                (window._8 = new d([q(), q(), q(), q()])),
-                    (window._9 = ((t = 0) => {
+                window._8 = new d([q(), q(), q(), q()]);
+                window._9 = ((t = 0) => {
                         function e(e, o, i) {
                             return (e = 50 * x(0.3283079 * e + 0.7091)), (o = 50 * x(0.3283079 * o + 0.1131)), (i = 50 * x(0.3283079 * i + 0.3291)), 2 * x(1.36959861 * t + e * o * i * (e + o + i)) - 1;
                         }

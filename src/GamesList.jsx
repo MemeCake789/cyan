@@ -4,7 +4,7 @@ import './GamesList.css';
 import gamesData from './games.json';
 import StatusBar from './StatusBar';
 import Nav from './Nav'
-import ASCII from './ASCII';
+// import ASCII from './ASCII';
 import Floride from './Floride';
 import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
 

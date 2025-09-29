@@ -4,7 +4,7 @@ import './GamesList.css';
 import gamesData from './games.json';
 import StatusBar from './StatusBar';
 import Nav from './Nav'
-// import ASCII from './ASCII';
+
 import Floride from './Floride';
 import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
 
@@ -16,8 +16,8 @@ const GamesList = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const location = useLocation();
-  const [asciiKey, setAsciiKey] = useState(0);
-  const asciiBackgroundRef = useRef(null);
+  
+  
   const [activeView, setActiveView] = useState('floride'); 
 
   useEffect(() => {
@@ -30,11 +30,7 @@ const GamesList = () => {
 
 
 
-  useEffect(() => {
-    if (location.pathname === '/') {
-      setAsciiKey(prevKey => prevKey + 1);
-    }
-  }, [location.pathname]);
+  
 
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
@@ -74,9 +70,7 @@ const GamesList = () => {
   return (
     <>
       <div className="btop-container" onMouseMove={handleMouseMove}>
-        <div ref={asciiBackgroundRef} className="ascii-background">
-{/*           <ASCII key={asciiKey} mousePosition={mousePosition} /> */}
-        </div>
+        
         <Nav 
           activeView={activeView}
           onCyanideClick={() => handleNavClick('games')}

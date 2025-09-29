@@ -39,10 +39,10 @@
     },
     {
       "title": "Derek 1",
-      "imageSrc": "/cyan-assets/HTML/derek1/derek1.jpg",
+      "imageSrc": "cyan-assets/HTML/derek1/derek1.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/cyan-assets/HTML/derek1/derek1.html",
+      "link": "cyan-assets/HTML/derek1/derek1.html",
       "description": "",
       "status": [
         "Working",
@@ -268,7 +268,7 @@
       "imageSrc": "cyan-assets/EMULATORS/images/earthbound.jpg",
       "genre": "temp",
       "type": "EMULATOR",
-      "link": "EMULATORS/Earthbound/Earthbound.smc",
+      "link": "cyan-assets/EMULATORS/Earthbound/Earthbound.smc",
       "description": "",
       "status": [
         "Working",
@@ -842,7 +842,7 @@
     },
     {
       "title": "Riddle School 5",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@tree/main/FLASH/RiddleSchool5",
+      "imageSrc": "cyan-assets/FLASH/RiddleSchool5/riddleschool5.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
       "link": "cyan-assets/FLASH/RiddleSchool5/flash.swf",
@@ -854,10 +854,10 @@
     },
     {
       "title": "Banana Saber",
-      "imageSrc": "/cyan-assets/HTML/BTTS/btts.png",
+      "imageSrc": "cyan-assets/HTML/BTTS/btts.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "/cyan-assets/HTML/BananaSaber/index.html",
+      "link": "cyan-assets/HTML/BananaSaber/index.html",
       "description": "",
       "status": [
         "Unkown",

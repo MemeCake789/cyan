@@ -21,7 +21,7 @@ const Floride = () => {
     return `${mm}:${dd}:${hh}:${min}:${ss}:${ms}`;
   };
 
-  const [messages, setMessages] = useState([{ role: 'assistant', name: 'Floride', content: `Wazzup :D`, timestamp: generateTimestamp() }]);
+  const [messages, setMessages] = useState([{ role: 'assistant', name: 'Floride', content: `Hi :D`, timestamp: generateTimestamp() }]);
   const [input, setInput] = useState('');
   const [isReplying, setIsReplying] = useState(false);
   const messagesEndRef = useRef(null);
@@ -33,6 +33,10 @@ const Floride = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const handleClearChat = () => {
+    setMessages([{ role: 'assistant', name: 'Floride', content: `Hi :D`, timestamp: generateTimestamp() }]);
+  };
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -47,9 +51,9 @@ const Floride = () => {
     const systemPrompt = {
         role: 'system',
         content: `You're a helpful assistant. 
-                  Your tone should be super casual, like you're texting a friend. Keep it simple, easy to understand, and informative.
+                  Your tone should be casual, like you're texting a friend. Keep it simple, easy to understand, and informative.
                   
-                  Avoid using heavy slang (like "lowkey," "fr," "totally," or "bet"), as it sounds weird coming from an AI, but definitely use casual phrasing and text shortcuts (like "u", "bc", "alr", "wazzup" etc.). Basically, explain things like you're talking, not like you're a textbook.
+                  Avoid using heavy slang (like "lowkey," "fr," "totally," "tbh," or "bet"), as it sounds weird coming from an AI. Basically, explain things like you're talking, not like you're a textbook.
           
                   ---
                   **Chat Examples:**
@@ -115,6 +119,7 @@ const Floride = () => {
 
   return (
     <div className="floride-container">
+      <button className="clear-chat-button" onClick={handleClearChat}>Clear</button>
       <div className="chat-messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.role}`}>

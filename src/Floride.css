@@ -1,4 +1,5 @@
 .floride-container {
+  position: relative;
   outline: 2px solid rgb(128, 106, 55);
   padding: 0;
   outline-offset: -6px;
@@ -6,7 +7,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   background-color: #00000057;
   backdrop-filter: blur(10px);
   background-image: url("data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='0.5' fill-opacity='0.3' fill='%23ffedc7'/%3E%3C/svg%3E");
@@ -31,8 +32,10 @@
 }
 
 .message {
+  position: relative;
+  margin-top: 15px;
   margin-bottom: 15px;
-  padding: 10px 15px;
+  padding: 20px 15px;
   border-radius: 14px;
   line-height: 1.4;
   max-width: 80%;
@@ -40,27 +43,42 @@
   font-weight: 500;
   backdrop-filter: blur(10px);
   background-color: #00000053;
+  outline: 1px solid #2d2d2d;
 
 
   /* background-color: #000000; */
 }
 
 .message-header {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  right: 15px;
+  transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 5px;
+  /* padding: 2px 8px; */
+  /* border-radius: 5px; */
 }
 
 .message-name {
   font-weight: bold;
   color: #ccc;
   font-size: 0.85em;
+  background-color: #000000;
+  padding: 0px 5px;
+
+
 }
 
 .message-timestamp {
   color: #888;
   font-size: 0.75em;
+  background-color: #000000;
+  padding: 0px 5px;
+
+
 }
 
 .message-content-wrapper {
@@ -69,11 +87,14 @@
 
 .message.user {
   align-self: flex-end;
-  min-width: 200px;
+  min-width: 250px;
 }
 
 .message.assistant {
+  
   align-self: flex-start;
+  min-width: 250px;
+
 }
 
 .chat-input-container {
@@ -130,7 +151,7 @@
 }
 
 .message ul li::before {
-  content: "\2013"; 
+  content: "3"; 
   position: absolute;
   left: 0; 
   color: #d1caaa; 
@@ -176,4 +197,24 @@
 .message hr{
   border: 1px dashed #ffcc41; 
 
+}
+
+.clear-chat-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #000000;
+  color: #ffcc41;
+  border: 1px solid #ffcc4168;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.clear-chat-button:hover {
+  color: #000000;
+  background-color: #ffcc41;
 }

@@ -55,9 +55,9 @@ const GamesList = () => {
   const isNew = (gameDate) => {
     if (!gameDate) return false;
     const gameAddedDate = new Date(gameDate);
-    const fiveDaysInMs = 5 * 24 * 60 * 60 * 1000;
+    const time = 13 * 24 * 60 * 60 * 1000;
     const now = new Date();
-    return (now - gameAddedDate) < fiveDaysInMs;
+    return (now - gameAddedDate) < time;
   };
 
   const sortedAndFilteredGames = games

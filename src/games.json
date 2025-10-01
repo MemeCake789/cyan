@@ -921,14 +921,105 @@
 
     },
     {
-      "title": "REPO",
-      "imageSrc": "",
-      "genre": "Frendslop",
+      "title": "Big Tower Tiny Square",
+      "imageSrc": "public/cyan-assets/HTML/BTTS/images.png",
+      "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/REPO/index.html",
+      "link": "cyan-assets/HTML/BTTS/index.html",
       "description": "",
       "status": [
         "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Retro Bowl",
+      "imageSrc": "public/cyan-assets/HTML/RetroBowl/img/icon.jpg",
+      "genre": "Simulation",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/RetroBowl/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Retro Bowl",
+      "imageSrc": "public/cyan-assets/HTML/RetroBowl/img/icon.jpg",
+      "genre": "Simulation",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/RetroBowl/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "COD Zombies",
+      "imageSrc": "public/cyan-assets/HTML/PixelGunSurvival/image.avif",
+      "genre": "Shooter",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/PixelGunSurvival/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Just One Boss",
+      "imageSrc": "cyan-assets/HTML/JustOneBoss/pv1Gr5.png",
+      "genre": "Action",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/JustOneBoss/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Bitlife",
+      "imageSrc": "cyan-assets/HTML/Bitlife/logo.png",
+      "genre": "Simulation",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/Bitlife/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Basket Random",
+      "imageSrc": "cyan-assets/HTML/BasketRandom/image.png",
+      "genre": "Two-Player",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/BasketRandom/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Basket Random",
+      "imageSrc": "cyan-assets/HTML/BasketRandom/image.png",
+      "genre": "Two-Player",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/BasketRandom/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
         "This game has no issues :D"
       ],
       "date": "2025-10-01"

@@ -947,19 +947,6 @@
       "date": "2025-10-01"
     },
     {
-      "title": "Retro Bowl",
-      "imageSrc": "public/cyan-assets/HTML/RetroBowl/img/icon.jpg",
-      "genre": "Simulation",
-      "type": "HTML",
-      "link": "public/cyan-assets/HTML/RetroBowl/index.html",
-      "description": "",
-      "status": [
-        "Working",
-        "This game has no issues :D"
-      ],
-      "date": "2025-10-01"
-    },
-    {
       "title": "COD Zombies",
       "imageSrc": "public/cyan-assets/HTML/PixelGunSurvival/image.avif",
       "genre": "Shooter",
@@ -967,7 +954,7 @@
       "link": "cyan-assets/HTML/PixelGunSurvival/index.html",
       "description": "",
       "status": [
-        "Unknown",
+        "Working",
         "This game has no issues :D"
       ],
       "date": "2025-10-01"
@@ -980,7 +967,7 @@
       "link": "cyan-assets/HTML/JustOneBoss/index.html",
       "description": "",
       "status": [
-        "Unknown",
+        "Working",
         "This game has no issues :D"
       ],
       "date": "2025-10-01"
@@ -993,7 +980,7 @@
       "link": "cyan-assets/HTML/Bitlife/index.html",
       "description": "",
       "status": [
-        "Unknown",
+        "Working",
         "This game has no issues :D"
       ],
       "date": "2025-10-01"
@@ -1006,20 +993,46 @@
       "link": "cyan-assets/HTML/BasketRandom/index.html",
       "description": "",
       "status": [
-        "Unknown",
+        "Working",
         "This game has no issues :D"
       ],
       "date": "2025-10-01"
     },
     {
-      "title": "Basket Random",
-      "imageSrc": "cyan-assets/HTML/BasketRandom/image.png",
+      "title": "Getaway Shootout",
+      "imageSrc": "public/cyan-assets/HTML/getaway-shootout/img/index.jpg",
       "genre": "Two-Player",
       "type": "HTML",
-      "link": "cyan-assets/HTML/BasketRandom/index.html",
+      "link": "public/cyan-assets/HTML/getaway-shootout/index.html",
       "description": "",
       "status": [
-        "Unknown",
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Vex 3",
+      "imageSrc": "public/cyan-assets/HTML/vex3/assets/images/vex-logo.png",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/vex3/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+    },
+    {
+      "title": "Vex 4",
+      "imageSrc": "public/cyan-assets/HTML/vex4/vex4.png",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/vex4/index.html",
+      "description": "",
+      "status": [
+        "Working",
         "This game has no issues :D"
       ],
       "date": "2025-10-01"

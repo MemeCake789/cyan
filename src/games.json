@@ -650,7 +650,7 @@
     },
     {
       "title": "Crazy Cattle 3D",
-      "imageSrc": "cyan-assets/HTML/CC3D/crazy-cattle-3d-1.jpg",
+      "imageSrc": "",
       "genre": "Racing",
       "type": "HTML",
       "link": "cyan-assets/HTML/CC3D/Crazy%20Cattle%203D.html",
@@ -863,6 +863,75 @@
         "Working",
         "This game has no issues :D"
       ]
+    },
+    {
+      "title": "Pizza Tower",
+      "imageSrc": "cyan-assets/HTML/pizza-tower/favicon.png",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/pizza-tower/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+
+    },
+    {
+      "title": "Raft",
+      "imageSrc": "",
+      "genre": "Survival",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/Raft/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+
+    },
+    {
+      "title": "Baldi's Basics",
+      "imageSrc": "cyan-assets/HTML/Baldi/unnamed.png",
+      "genre": "Horror",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/Baldi/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
+
+    },
+    {
+      "title": "Webfishing",
+      "imageSrc": "",
+      "genre": "Social",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/WebFishing/index.html",
+      "description": "",
+      "status": [
+        "Bugged",
+        "Online does not work, but offline does."
+      ],
+      "date": "2025-10-01"
+
+    },
+    {
+      "title": "REPO",
+      "imageSrc": "",
+      "genre": "Frendslop",
+      "type": "HTML",
+      "link": "cyan-assets/HTML/REPO/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-01"
     }
   ]
 }

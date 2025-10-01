@@ -28,7 +28,7 @@ const StatusBar = () => {
       cyλn 2.0 BETA | {formattedDate} | {formattedTime}
       </div>
       <div className="status-right">
-        v2.3e (Floride UI update and prompt enhancements)
+        v2.3f (New game status)
       </div>
     </div>
   );

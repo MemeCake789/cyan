@@ -52,6 +52,14 @@ const GamesList = () => {
     setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
+  const isNew = (gameDate) => {
+    if (!gameDate) return false;
+    const gameAddedDate = new Date(gameDate);
+    const fiveDaysInMs = 5 * 24 * 60 * 60 * 1000;
+    const now = new Date();
+    return (now - gameAddedDate) < fiveDaysInMs;
+  };
+
   const sortedAndFilteredGames = games
     .filter(game => game.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .sort((a, b) => {
@@ -114,6 +122,7 @@ const GamesList = () => {
                           onMouseLeave={() => setPreviewData(null)}
                           className="game-title"
                         >
+                          {isNew(game.date) && <span style={{ color: 'white', marginRight: '5px' }}>[NEW]</span>}
                           {game.title}
                         </td>
                         <td className="game-genre">{game.genre}</td>

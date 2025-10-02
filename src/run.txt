@@ -1,0 +1,3 @@
+npm install -- run once
+
+npm run dev -- run to start server

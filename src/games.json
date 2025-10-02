@@ -1036,6 +1036,32 @@
         "This game has no issues :D"
       ],
       "date": "2025-10-01"
+    },
+    {
+      "title": "Antimatter Dimensions",
+      "imageSrc": "public/cyan-assets/HTML/Antimatter Dimensions/public/icon.png",
+      "genre": "Incremental",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/Antimatter Dimensions/public/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "Untested for bugs"
+      ],
+      "date": "2025-10-02"
+    },
+    {
+      "title": "Amazing Strange Rope Police",
+      "imageSrc": "public/cyan-assets/HTML/ropepolice/amazing-strange-rope-police-vice-spider-vegas.jpg",
+      "genre": "Open-World",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/ropepolice/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "Untested for bugs"
+      ],
+      "date": "2025-10-02"
     }
   ]
 }

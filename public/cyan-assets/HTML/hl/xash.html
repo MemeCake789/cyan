@@ -245,9 +245,9 @@
 			outline: none;
 		}
 
-		if (document.createElement("detect").style.textShadow==="") {
+		/* if (document.createElement("detect").style.textShadow==="") {
 			document.getElementsByTagName("html")[0].className+=" textshadow";
-		}
+		} */
 	</style>
 </head>
 
@@ -282,8 +282,8 @@
 		</div>
 	</a>
 	<form style=display:none id=fSettings>Select filesystem for settings and save and restore:<br><br>
-		<div id=idbHider style=display:none><label><input name=a type=radio id=rIndexedDB checked=true />IndexedDB (Need exit correctly to save changes)</label><br></div>
-		<label><input name=a type=radio id=rLocalStorage />LocalStorage (Sometimes not enough space)</label><br>
+		<div id=idbHider style=display:none><label><input name=a type=radio id=rIndexedDB />IndexedDB (Need exit correctly to save changes)</label><br></div>
+		<label><input name=a type=radio id=rLocalStorage checked=true />LocalStorage (Sometimes not enough space)</label><br>
 		<label><input name=a type=radio id=rNone />None(in RAM)</label><br><br>
 		<hr>
 		Select game data source:<br><br>
@@ -408,6 +408,27 @@
 							pashalka_count = 100;
 							a.pause();
 							document.getElementById('canvas').style.display = "block";
+
+							// Apply full-screen styles after game loads
+							document.documentElement.style.width = '100%';
+							document.documentElement.style.height = '100%';
+							document.documentElement.style.overflow = 'hidden';
+
+							document.body.style.width = '100%';
+							document.body.style.height = '100%';
+							document.body.style.padding = '0'; // Ensure padding is 0
+
+							var emscriptenBorder = document.querySelector('.emscripten_border');
+							if (emscriptenBorder) {
+								emscriptenBorder.style.width = '100%';
+								emscriptenBorder.style.height = '100%';
+							}
+
+							var canvasElement = document.getElementById('canvas');
+							if (canvasElement) {
+								canvasElement.style.width = '100%';
+								canvasElement.style.height = '100%';
+							}
 						} else {
 						}
 					}
@@ -740,6 +761,9 @@
 
 		ga('create', 'UA-68666752-4', 'auto');
 		ga('send', 'pageview');*/
+	</script>
+	<script>
+		window.addEventListener('load', startXash);
 	</script>
 </body>
 

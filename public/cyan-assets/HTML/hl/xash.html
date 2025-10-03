@@ -410,25 +410,7 @@
 							document.getElementById('canvas').style.display = "block";
 
 							// Apply full-screen styles after game loads
-							document.documentElement.style.width = '100%';
-							document.documentElement.style.height = '100%';
-							document.documentElement.style.overflow = 'hidden';
 
-							document.body.style.width = '100%';
-							document.body.style.height = '100%';
-							document.body.style.padding = '0'; // Ensure padding is 0
-
-							var emscriptenBorder = document.querySelector('.emscripten_border');
-							if (emscriptenBorder) {
-								emscriptenBorder.style.width = '100%';
-								emscriptenBorder.style.height = '100%';
-							}
-
-							var canvasElement = document.getElementById('canvas');
-							if (canvasElement) {
-								canvasElement.style.width = '100%';
-								canvasElement.style.height = '100%';
-							}
 						} else {
 						}
 					}

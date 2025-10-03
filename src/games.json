@@ -253,7 +253,7 @@
       "title": "Jimmy Neutron Boy Genius",
       "core": "mgba",
       "imageSrc": "cyan-assets/EMULATORS/images/jimmyneutronboygenius.jpg",
-      "genre": "temp",
+      "genre": "Adventure",
       "type": "EMULATOR",
       "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Adventures%20of%20Jimmy%20Neutron%20Boy%20Genius%20vs.%20Jimmy%20Negatron%2C%20The%20(USA%2C%20Europe).zip",
       "description": "",
@@ -266,7 +266,7 @@
       "title": "Earthbound",
       "core": "snes",
       "imageSrc": "cyan-assets/EMULATORS/images/earthbound.jpg",
-      "genre": "temp",
+      "genre": "Action-RPG",
       "type": "EMULATOR",
       "link": "cyan-assets/EMULATORS/Earthbound/Earthbound.smc",
       "description": "",
@@ -705,7 +705,7 @@
       "description": "gooordon freeemannnn....",
       "status": [
         "Unknown",
-        "movement does not work"
+        "This game has no issues :D"
       ],
       "date": "2025-10-03"
 

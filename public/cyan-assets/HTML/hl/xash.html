@@ -282,8 +282,8 @@
 		</div>
 	</a>
 	<form style=display:none id=fSettings>Select filesystem for settings and save and restore:<br><br>
-		<div id=idbHider style=display:none><label><input name=a type=radio id=rIndexedDB />IndexedDB (Need exit correctly to save changes)</label><br></div>
-		<label><input name=a type=radio id=rLocalStorage checked=true />LocalStorage (Sometimes not enough space)</label><br>
+		<div id=idbHider style=display:none><label><input name=a type=radio id=rIndexedDB checked=true />IndexedDB (Need exit correctly to save changes)</label><br></div>
+		<label><input name=a type=radio id=rLocalStorage />LocalStorage (Sometimes not enough space)</label><br>
 		<label><input name=a type=radio id=rNone />None(in RAM)</label><br><br>
 		<hr>
 		Select game data source:<br><br>
@@ -409,8 +409,29 @@
 							a.pause();
 							document.getElementById('canvas').style.display = "block";
 
-							// Apply full-screen styles after game loads
-
+							                            document.documentElement.style.width = '100%'; // html should be 100% to center body
+														document.documentElement.style.height = '100%'; // html should be 100% to center body
+														document.documentElement.style.overflow = 'hidden';
+														document.documentElement.style.display = 'flex';
+														document.documentElement.style.justifyContent = 'center';
+														document.documentElement.style.alignItems = 'center';
+							
+														document.body.style.width = '100%';
+														document.body.style.height = '100%';
+														document.body.style.padding = '0'; // Ensure padding is 0
+														document.body.style.margin = 'auto'; // Center the body within html
+							
+														var emscriptenBorder = document.querySelector('.emscripten_border');
+														if (emscriptenBorder) {
+															emscriptenBorder.style.width = '95%';
+															emscriptenBorder.style.height = '95%';
+														}
+							
+														var canvasElement = document.getElementById('canvas');
+														if (canvasElement) {
+															canvasElement.style.width = '95%';
+															canvasElement.style.height = '95%';
+														}
 						} else {
 						}
 					}

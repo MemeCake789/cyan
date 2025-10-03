@@ -701,12 +701,14 @@
       "imageSrc": "cyan-assets/HTML/Half%20Life/half.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/Web-Life/index.html",
+      "link": "public/cyan-assets/HTML/hl/xash.html",
       "description": "gooordon freeemannnn....",
       "status": [
-        "Broken",
+        "Unknown",
         "movement does not work"
-      ]
+      ],
+      "date": "2025-10-03"
+
     },
     {
       "title": "Hotline Miami",

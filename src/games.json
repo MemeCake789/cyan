@@ -271,8 +271,8 @@
       "link": "cyan-assets/EMULATORS/Earthbound/Earthbound.smc",
       "description": "",
       "status": [
-        "Working",
-        "This game has no issues :D"
+        "Broken",
+        "This game has a network issue"
       ]
     },
     {
@@ -644,8 +644,8 @@
       "link": "cyan-assets/EMULATORS/Pokemon%20Unbound/POKEMON_UNBOUND.gba",
       "description": "",
       "status": [
-        "Working",
-        "This game has no issues :D"
+        "Broken",
+        "This game has a network issue"
       ]
     },
     {
@@ -1064,6 +1064,19 @@
         "This game has no issues :D"
       ],
       "date": "2025-10-02"
+    },
+    {
+      "title": "Cookie Clicker",
+      "imageSrc": "public/cyan-assets/HTML/cookieclicker/img/icon.png",
+      "genre": "Clicker",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/cookieclicker/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "This game is untested"
+      ],
+      "date": "2025-10-03"
     }
   ]
 }

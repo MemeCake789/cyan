@@ -1,3 +1,14 @@
 npm install -- run once
 
 npm run dev -- run to start server
+
+git clone
+
+ls -- lists files
+ls -a --show hidden files
+
+sudo rm -rf .git --remove folder
+
+git add .  --sync git changes
+
+cd [folder]

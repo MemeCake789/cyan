@@ -1073,21 +1073,73 @@
       "link": "public/cyan-assets/HTML/cookieclicker/index.html",
       "description": "",
       "status": [
-        "Broken",
-        "This game is not working"
+        "Working",
+        "This game  has no issues :D"
       ],
       "date": "2025-10-03"
     },
     {
       "title": "Superhot",
       "imageSrc": "public/cyan-assets/HTML/superhot/hot.jpg",
-      "genre": "Clicker",
+      "genre": "Shooter",
       "type": "HTML",
       "link": "public/cyan-assets/HTML/superhot/index.html",
       "description": "",
       "status": [
-        "Unknown",
-        "This game is untested"
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-03"
+    },
+    {
+      "title": "Idle Breakout",
+      "imageSrc": "public/cyan-assets/HTML/idle-breakout/img/thumbnail.png",
+      "genre": "Incremental",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/idle-breakout/index.html",
+      "description": "",
+      "status": [
+        "Bugged",
+        "This game has iframe issues"
+      ],
+      "date": "2025-10-03"
+    },
+    {
+      "title": "World's Hardest Game",
+      "imageSrc": "public/cyan-assets/HTML/worlds-hardest-game/images/splash.jpg",
+      "genre": "Adventure",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/worlds-hardest-game/index.html",
+      "description": "",
+      "status": [
+        "Bugged",
+        "This game has iframe issues"
+      ],
+      "date": "2025-10-03"
+    },
+    {
+      "title": "World's Hardest Game 2",
+      "imageSrc": "public/cyan-assets/HTML/worlds-hardest-game-2/the-worlds-hardest-game-2.jpg",
+      "genre": "Adventure",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/worlds-hardest-game-2/index.html",
+      "description": "",
+      "status": [
+        "Bugged",
+        "This game has iframe issues"
+      ],
+      "date": "2025-10-03"
+    },
+    {
+      "title": "Ages of Conflict",
+      "imageSrc": "public/cyan-assets/HTML/ages-of-conflict/splash.jpg",
+      "genre": "Sandbox",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/ages-of-conflict/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
       ],
       "date": "2025-10-03"
     }

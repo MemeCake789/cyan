@@ -245,9 +245,9 @@
 			outline: none;
 		}
 
-		/* if (document.createElement("detect").style.textShadow==="") {
+		if (document.createElement("detect").style.textShadow==="") {
 			document.getElementsByTagName("html")[0].className+=" textshadow";
-		} */
+		}
 	</style>
 </head>
 
@@ -408,30 +408,6 @@
 							pashalka_count = 100;
 							a.pause();
 							document.getElementById('canvas').style.display = "block";
-
-							                            document.documentElement.style.width = '100%'; // html should be 100% to center body
-														document.documentElement.style.height = '100%'; // html should be 100% to center body
-														document.documentElement.style.overflow = 'hidden';
-														document.documentElement.style.display = 'flex';
-														document.documentElement.style.justifyContent = 'center';
-														document.documentElement.style.alignItems = 'center';
-							
-														document.body.style.width = '100%';
-														document.body.style.height = '100%';
-														document.body.style.padding = '0'; // Ensure padding is 0
-														document.body.style.margin = 'auto'; // Center the body within html
-							
-														var emscriptenBorder = document.querySelector('.emscripten_border');
-														if (emscriptenBorder) {
-															emscriptenBorder.style.width = '95%';
-															emscriptenBorder.style.height = '95%';
-														}
-							
-														var canvasElement = document.getElementById('canvas');
-														if (canvasElement) {
-															canvasElement.style.width = '95%';
-															canvasElement.style.height = '95%';
-														}
 						} else {
 						}
 					}
@@ -764,9 +740,6 @@
 
 		ga('create', 'UA-68666752-4', 'auto');
 		ga('send', 'pageview');*/
-	</script>
-	<script>
-		window.addEventListener('load', startXash);
 	</script>
 </body>
 

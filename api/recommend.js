@@ -1,5 +1,5 @@
 
-import { kv } from '@vercel/kv';
+import { put } from '@vercel/blob';
 
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
@@ -13,8 +13,8 @@ export default async function handler(request, response) {
   }
 
   try {
-    await kv.lpush('game_recommendations', gameName);
-    return response.status(200).json({ message: 'Recommendation received!' });
+    const { url } = await put(`recommendations/${gameName}.txt`, gameName, { access: 'public' });
+    return response.status(200).json({ message: 'Recommendation received!', url });
   } catch (error) {
     console.error(error);
     return response.status(500).json({ message: 'Error saving recommendation' });

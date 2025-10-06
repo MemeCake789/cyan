@@ -705,6 +705,8 @@
 			loadModule("server");
 			loadModule("client");
 			loadModule("menu");
+
+			setTimeout(startXash, 1000);
 		};
 
 		Module.preInit = [skipRun];

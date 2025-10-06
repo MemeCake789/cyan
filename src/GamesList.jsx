@@ -48,6 +48,26 @@ const GamesList = () => {
     setActiveView(view);
   };
 
+  const handleRecommendClick = async () => {
+    const gameName = prompt('What game would you like to recommend?');
+    if (gameName) {
+      try {
+        const response = await fetch('/api/recommend', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ gameName }),
+        });
+        const result = await response.json();
+        alert(result.message);
+      } catch (error) {
+        console.error('Error recommending game:', error);
+        alert('Failed to recommend game.');
+      }
+    }
+  };
+
   const handleSort = () => {
     setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
@@ -110,6 +130,14 @@ const GamesList = () => {
                     </tr>
                   </thead>
                   <tbody>
+                    <tr onClick={handleRecommendClick} className="recommend-row">
+                      <td className="game-title recommend-title">
+                        <span style={{ color: 'white', marginRight: '5px' }}>[+]</span>
+                        Recommend a game
+                      </td>
+                      <td className="game-genre"></td>
+                      <td className="game-status-text unknown"></td>
+                    </tr>
                     {sortedAndFilteredGames.map((game, index) => (
                       <tr key={index} onClick={() => handleGameClick(game)}>
                         <td

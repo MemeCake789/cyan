@@ -15,6 +15,7 @@
     "@gpt4free/g4f.dev": "^1.0.5",
     "@mui/material": "^7.3.1",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/kv": "^3.0.0",
     "adm-zip": "^0.5.16",
     "katex": "^0.16.22",
     "mui-color-input": "^7.0.0",

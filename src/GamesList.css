@@ -274,3 +274,15 @@ canvas{
 .btop-table tbody tr:hover .game-status-text {
   color: #ffffff !important;
 }
+
+.recommend-row {
+  cursor: pointer;
+}
+
+.recommend-row:hover {
+  background-color: #771136;
+}
+
+.recommend-row .recommend-title {
+  text-shadow: none;
+}

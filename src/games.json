@@ -1136,8 +1136,138 @@
       "link": "public/cyan-assets/HTML/crime-city-2-3d/index.html",
       "description": "",
       "status": [
-        "Unknown",
-        "Not tested"
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Fireboy and Watergirl 2",
+      "imageSrc": "https://th.bing.com/th/id/OIP.Jdl4dtzllf1xiZ-RALjAIAHaHa?w=164&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Co-Op",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/fireboywatergirl2/flash.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Fireboy and Watergirl 3",
+      "imageSrc": "https://th.bing.com/th/id/OIP.C5m1MhpAKpWXmo0qyUQq0QHaFj?w=193&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Co-Op",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/fireboywatergirl3/flash.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/wheely.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely 2",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/Wheely2.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely 3",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/Wheely3.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely 4",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/Wheely4.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely 5",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/Wheely5.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely 6",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/Wheely6.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely 7",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/Wheely7.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-06"
+    },
+    {
+      "title": "Wheely 8",
+      "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Puzzle",
+      "type": "FLASH",
+      "link": "public/cyan-assets/FLASH/wheely/Wheely8.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
       ],
       "date": "2025-10-06"
     }

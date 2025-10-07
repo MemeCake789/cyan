@@ -802,6 +802,7 @@
       "genre": "Rougelike",
       "type": "ZIP",
       "link": "cyan-assets/HTML/pokerouge/pokerouge.zip",
+      "htmlFile": "index.html",
       "description": "Pokemon, but as a roguelike. Loaded from a zip file.",
       "status": [
         "Working",

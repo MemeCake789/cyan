@@ -13,7 +13,7 @@ export default async function (req, res) {
     return res.status(200).end();
   }
 
-  const { zipPath, assetPath } = req.query;
+  const { zipPath, assetPath, htmlFile } = req.query;
 
   if (!zipPath) {
     return res.status(400).json({ message: 'zipPath query parameter is required' });
@@ -60,7 +60,15 @@ export default async function (req, res) {
         res.status(404).send('Asset not found in zip');
       }
     } else {
-      let htmlEntry = zip.getEntry('index.html');
+      let htmlEntry;
+      if (htmlFile) {
+        htmlEntry = zip.getEntry(htmlFile);
+      }
+
+      if (!htmlEntry) {
+        htmlEntry = zip.getEntry('index.html');
+      }
+
       if (!htmlEntry) {
         const htmlEntries = zipEntries.filter(entry => entry.entryName.endsWith('.html'));
         if (htmlEntries.length > 0) {

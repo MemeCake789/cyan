@@ -691,6 +691,7 @@
       "genre": "Horror",
       "type": "HTML",
       "link": "cyan-assets/HTML/Endoparasitic/Endoparasitic.html",
+.
       "description": "dawg ur a amputee with one arm, id call it quits bro.",
       "status": [
         "Working",
@@ -793,6 +794,18 @@
       "status": [
         "Bugged",
         "game can sometimes freeze when loading"
+      ]
+    },
+    {
+      "title": "PokeRouge (ZIP)",
+      "imageSrc": "cyan-assets/HTML/Poke_Rouge/pr.png",
+      "genre": "Rougelike",
+      "type": "ZIP",
+      "link": "cyan-assets/HTML/pokerouge/pokerouge.zip",
+      "description": "Pokemon, but as a roguelike. Loaded from a zip file.",
+      "status": [
+        "Working",
+        "This game is loaded from a zip file."
       ]
     },
     {

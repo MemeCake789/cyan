@@ -102,7 +102,7 @@ const GamePage = () => {
           game.type === 'HTML' ? (
             <iframe ref={iframeRef} src={`/${game.link.startsWith('public/') ? game.link.substring('public/'.length) : game.link}`} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
           ) : game.type === 'ZIP' ? (
-            <iframe ref={iframeRef} src={`/api/zip-proxy?zipPath=${game.url}`} title={game.title} className="game-iframe" allowFullScreen />
+            <iframe ref={iframeRef} src={`/api/zip-proxy?zipPath=${game.link}`} title={game.title} className="game-iframe" allowFullScreen />
           ) : (
             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen />
           )
@@ -115,7 +115,7 @@ const GamePage = () => {
               <p className="cdn-loaded-text">
                 Game:{game.title} <br></br>
                 Type: {game.type} <br></br>
-                CDN: {game.type === 'ZIP' ? game.url : game.link}
+                CDN: {game.link}
               </p>
             </div>
           </div>

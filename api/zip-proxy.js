@@ -1,8 +1,36 @@
 import fs from 'fs';
 import path from 'path';
-import unzipper from 'unzipper';
+import yauzl from 'yauzl';
 import mime from 'mime-types';
-import stream from 'stream';
+
+// Helper to buffer a stream
+function bufferStream(stream) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    stream.on('data', (chunk) => chunks.push(chunk));
+    stream.on('end', () => resolve(Buffer.concat(chunks)));
+    stream.on('error', reject);
+  });
+}
+
+// Promisified yauzl functions
+function fromBuffer(buffer) {
+    return new Promise((resolve, reject) => {
+        yauzl.fromBuffer(buffer, { lazyEntries: true }, (err, zipfile) => {
+            if (err) reject(err);
+            else resolve(zipfile);
+        });
+    });
+}
+
+function openReadStream(zipfile, entry) {
+    return new Promise((resolve, reject) => {
+        zipfile.openReadStream(entry, (err, stream) => {
+            if (err) reject(err);
+            else resolve(stream);
+        });
+    });
+}
 
 export default async function (req, res) {
   // Set CORS headers
@@ -14,7 +42,13 @@ export default async function (req, res) {
     return res.status(200).end();
   }
 
-  const { zipPath, assetPath, htmlFile } = req.query;
+  const { zipPath, htmlFile } = req.query;
+  let { assetPath } = req.query;
+
+
+  if (assetPath && assetPath.startsWith('./')) {
+      assetPath = assetPath.substring(2);
+  }
 
   if (!zipPath) {
     return res.status(400).json({ message: 'zipPath query parameter is required' });
@@ -30,7 +64,7 @@ export default async function (req, res) {
     const zipParts = [];
     const files = fs.readdirSync(zipDirectory);
 
-    const zipPartRegex = new RegExp(`^${zipBaseName}\\.z(ip|[0-9]{2})$`);
+    const zipPartRegex = new RegExp(`^${zipBaseName}\.z(ip|[0-9]{2})$`);
 
     files.forEach(file => {
         if (zipPartRegex.test(file)) {
@@ -48,34 +82,46 @@ export default async function (req, res) {
         return res.status(404).json({ message: 'Zip file not found' });
     }
 
-    const zip = await unzipper.Open.buffer(zipBuffer);
+    const zipfile = await fromBuffer(zipBuffer);
+    const entries = await new Promise((resolve, reject) => {
+        const collectedEntries = [];
+        zipfile.on('entry', (entry) => {
+            collectedEntries.push(entry);
+            zipfile.readEntry();
+        });
+        zipfile.on('end', () => resolve(collectedEntries));
+        zipfile.on('error', reject);
+        zipfile.readEntry();
+    });
 
     if (assetPath) {
-      const entry = zip.files.find(e => e.path === assetPath);
+      const entry = entries.find(e => e.fileName === assetPath);
       if (entry) {
+        const readStream = await openReadStream(zipfile, entry);
         const contentType = getContentType(assetPath);
         res.setHeader('Content-Type', contentType);
-        entry.stream().pipe(res);
+        readStream.pipe(res);
       } else {
         res.status(404).send('Asset not found in zip');
       }
     } else {
       let htmlEntry;
       if (htmlFile) {
-        htmlEntry = zip.files.find(e => e.path === htmlFile);
+        htmlEntry = entries.find(e => e.fileName === htmlFile);
       }
 
       if (!htmlEntry) {
-        htmlEntry = zip.files.find(e => e.path.endsWith('index.html'));
+        htmlEntry = entries.find(e => e.fileName.endsWith('index.html'));
       }
 
       if (!htmlEntry) {
-        htmlEntry = zip.files.find(e => e.path.endsWith('.html'));
+        htmlEntry = entries.find(e => e.fileName.endsWith('.html'));
       }
 
       if (htmlEntry) {
-        const htmlContent = await htmlEntry.buffer();
-        const baseHref = `/api/zip-proxy?zipPath=${encodeURIComponent(zipPath)}&assetPath=${encodeURIComponent(path.dirname(htmlEntry.path))}/`;
+        const readStream = await openReadStream(zipfile, htmlEntry);
+        const htmlContent = await bufferStream(readStream);
+        const baseHref = `/api/zip-proxy?zipPath=${encodeURIComponent(zipPath)}&assetPath=${encodeURIComponent(path.dirname(htmlEntry.fileName))}/`;
         let content = htmlContent.toString('utf8');
         content = content.replace('<head>', `<head><base href="${baseHref}">`);
         res.setHeader('Content-Type', 'text/html');

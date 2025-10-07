@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import AdmZip from 'adm-zip';
+import unzipper from 'unzipper';
 import mime from 'mime-types';
+import stream from 'stream';
 
 export default async function (req, res) {
   // Set CORS headers
@@ -29,7 +30,7 @@ export default async function (req, res) {
     const zipParts = [];
     const files = fs.readdirSync(zipDirectory);
 
-    const zipPartRegex = new RegExp(`^${zipBaseName}\.z(ip|[0-9]{2})$`);
+    const zipPartRegex = new RegExp(`^${zipBaseName}\\.z(ip|[0-9]{2})$`);
 
     files.forEach(file => {
         if (zipPartRegex.test(file)) {
@@ -47,41 +48,38 @@ export default async function (req, res) {
         return res.status(404).json({ message: 'Zip file not found' });
     }
 
-    const zip = new AdmZip(zipBuffer);
-    const zipEntries = zip.getEntries();
+    const zip = await unzipper.Open.buffer(zipBuffer);
 
     if (assetPath) {
-      const entry = zip.getEntry(assetPath);
+      const entry = zip.files.find(e => e.path === assetPath);
       if (entry) {
         const contentType = getContentType(assetPath);
         res.setHeader('Content-Type', contentType);
-        res.send(entry.getData());
+        entry.stream().pipe(res);
       } else {
         res.status(404).send('Asset not found in zip');
       }
     } else {
       let htmlEntry;
       if (htmlFile) {
-        htmlEntry = zip.getEntry(htmlFile);
+        htmlEntry = zip.files.find(e => e.path === htmlFile);
       }
 
       if (!htmlEntry) {
-        htmlEntry = zip.getEntry('index.html');
+        htmlEntry = zip.files.find(e => e.path.endsWith('index.html'));
       }
 
       if (!htmlEntry) {
-        const htmlEntries = zipEntries.filter(entry => entry.entryName.endsWith('.html'));
-        if (htmlEntries.length > 0) {
-          htmlEntry = htmlEntries[0];
-        }
+        htmlEntry = zip.files.find(e => e.path.endsWith('.html'));
       }
 
       if (htmlEntry) {
-        let htmlContent = htmlEntry.getData().toString('utf8');
-        const baseHref = `/api/zip-proxy?zipPath=${encodeURIComponent(zipPath)}&assetPath=${encodeURIComponent(path.dirname(htmlEntry.entryName))}/`;
-        htmlContent = htmlContent.replace('<head>', `<head><base href="${baseHref}">`);
+        const htmlContent = await htmlEntry.buffer();
+        const baseHref = `/api/zip-proxy?zipPath=${encodeURIComponent(zipPath)}&assetPath=${encodeURIComponent(path.dirname(htmlEntry.path))}/`;
+        let content = htmlContent.toString('utf8');
+        content = content.replace('<head>', `<head><base href="${baseHref}">`);
         res.setHeader('Content-Type', 'text/html');
-        res.send(htmlContent);
+        res.send(content);
       } else {
         res.status(404).send('No HTML file found in zip');
       }

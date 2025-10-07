@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './GamesList.css';
-import gamesData from './games.json';
 import StatusBar from './StatusBar';
 import Nav from './Nav'
 
@@ -21,7 +20,10 @@ const GamesList = () => {
   const [activeView, setActiveView] = useState('floride'); 
 
   useEffect(() => {
-    setGames(gamesData.games);
+    fetch('/src/games.json')
+      .then(response => response.json())
+      .then(data => setGames(data.games));
+
     const timer = setTimeout(() => {
       setActiveView('games');
     }, 400);

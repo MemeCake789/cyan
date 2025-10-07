@@ -1127,6 +1127,20 @@
         "Not tested"
       ],
       "date": "2025-10-06"
+    },
+    {
+      "title": "Crime City 2 3D",
+      "imageSrc": "https://th.bing.com/th?&id=OVP.1bvbf_Eyw928bCFWgMApowHgFo&w=318&h=178&c=7&pid=2.1&rs=1",
+      "genre": "Open-World",
+      "type": "HTML",
+      "link": "public/cyan-assets/HTML/crime-city-2-3d/index.html",
+      "description": "",
+      "status": [
+        "Unknown",
+        "Not tested"
+      ],
+      "date": "2025-10-06"
     }
+    
   ]
 }

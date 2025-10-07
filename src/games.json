@@ -674,15 +674,16 @@
     },
     {
       "title": "Deltarune",
-      "imageSrc": "cyan-assets/HTML/Deltarune/delta.png",
+      "imageSrc": "public/cyan-assets/HTML/deltarune/logo.png",
       "genre": "RPG",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Deltarune/Deltarune.html",
+      "link": "public/cyan-assets/HTML/deltarune/index.html",
       "description": "",
       "status": [
         "Working",
         "This game has no issues :D"
-      ]
+      ],
+      "date": "2025-10-07"
     },
     {
       "title": "Endoparasitic",

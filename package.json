@@ -16,7 +16,6 @@
     "@mui/material": "^7.3.1",
     "@vercel/analytics": "^1.5.0",
     "@vercel/blob": "^2.0.0",
-    "@vercel/speed-insights": "^1.2.0",
     "fflate": "^0.8.2",
     "katex": "^0.16.22",
     "mui-color-input": "^7.0.0",

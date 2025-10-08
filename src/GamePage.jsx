@@ -13,6 +13,8 @@ const GamePage = () => {
   const [htmlContent, setHtmlContent] = useState('');
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [animateControls, setAnimateControls] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadedGameUrl, setDownloadedGameUrl] = useState('');
 
   useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
@@ -22,11 +24,11 @@ const GamePage = () => {
       if (game.type === 'HTML') {
         setHtmlContent('');
       } else {
-        const generatedHtml = createGameHtml(game);
+        const generatedHtml = createGameHtml(game, downloadedGameUrl);
         setHtmlContent(generatedHtml);
       }
     }
-  }, [game]);
+  }, [game, downloadedGameUrl]);
 
   useEffect(() => {
     if (gameLaunched) {
@@ -56,23 +58,43 @@ const GamePage = () => {
     return <div>Game not found</div>;
   }
 
-  const handleLaunchGame = () => {
-    setGameLaunched(true);
-  };
+  const handleLaunchGame = async () => {
+    // Check if game needs downloading (HTML, FLASH games with cyan-assets paths)
+    const needsDownload = (game.type === 'HTML' || game.type === 'FLASH') &&
+                         game.link.startsWith('cyan-assets/');
 
-  const handleDownloadHtml = () => {
-    if (htmlContent) {
-      const blob = new Blob([htmlContent], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${game.title.replace(/[^a-zA-Z0-9]/g, '_')}.html`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+    if (needsDownload) {
+      // Extract folder path from game.link (e.g., "cyan-assets/HTML/2048/2048.html" -> "HTML/2048")
+      const linkParts = game.link.split('/');
+      const folderPath = linkParts.slice(1, -1).join('/'); // Remove "cyan-assets" prefix and filename
+
+      setIsDownloading(true);
+      try {
+        const response = await fetch(`/api/download-game?gamePath=${encodeURIComponent(folderPath)}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          // Extract filename from game.link
+          const filename = linkParts[linkParts.length - 1];
+          // For local dev, data.url is the base GitHub raw URL
+          const fullGameUrl = `${data.url}/${filename}`;
+          setDownloadedGameUrl(fullGameUrl);
+          setGameLaunched(true);
+        } else {
+          alert(`Failed to download game: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Download error:', error);
+        alert(`Failed to download game: ${error.message}`);
+      } finally {
+        setIsDownloading(false);
+      }
+    } else {
+      setGameLaunched(true);
     }
   };
+
+
 
   return (
     <div className={`game-page-container ${isFullScreen ? 'fullscreen' : ''}`}>
@@ -100,7 +122,7 @@ const GamePage = () => {
       <div className="game-content-container">
         {gameLaunched ? (
           game.type === 'HTML' ? (
-            <iframe ref={iframeRef} src={`/${game.link.startsWith('public/') ? game.link.substring('public/'.length) : game.link}`} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+            <iframe ref={iframeRef} src={downloadedGameUrl || `/${game.link.startsWith('public/') ? game.link.substring('public/'.length) : game.link}`} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
           ) : game.type === 'ZIP' ? (
             <iframe ref={iframeRef} src={`/api/zip-proxy?zipPath=${game.link}${game.htmlFile ? `&htmlFile=${game.htmlFile}` : ''}`} title={game.title} className="game-iframe" allowFullScreen />
           ) : (
@@ -109,13 +131,13 @@ const GamePage = () => {
         ) : (
           <div className="launch-screen">
             <div className='launch-controls'>
-              <button className="launch-button-game" onClick={handleLaunchGame}>
-                {'>'} Launch
+              <button className="launch-button-game" onClick={handleLaunchGame} disabled={isDownloading}>
+                {isDownloading ? 'Downloading...' : '> Launch'}
               </button>
               <p className="cdn-loaded-text">
-                Game:{game.title} <br></br>
+                Game: {game.title} <br></br>
                 Type: {game.type} <br></br>
-                CDN: {game.link}
+                Status: {isDownloading ? 'Downloading from GitHub...' : game.link}
               </p>
             </div>
           </div>

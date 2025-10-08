@@ -1,4 +1,4 @@
-const createGameHtml = (game) => {
+const createGameHtml = (game, downloadedUrl = null) => {
   if (!game) return '';
 
   const title = game.title;
@@ -67,7 +67,7 @@ const createGameHtml = (game) => {
             player.style.width = "100%";
             player.style.height = "100%";
             document.getElementById("ruffle-player").appendChild(player);
-            player.load("${game.link.startsWith('public/') ? game.link.substring('public'.length) : game.link}");
+             player.load("${downloadedUrl || (game.link.startsWith('public/') ? game.link.substring('public'.length) : game.link)}");
           </script>
         </body>
         </html>`;

@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     console.log('Processing gamePath:', gamePath);
 
     // Download the HTML file directly from GitHub and return its content
-    const githubUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}.html`;
+    const githubUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
     console.log('Fetching from GitHub:', githubUrl);
 
     const response = await fetch(githubUrl);

@@ -80,17 +80,16 @@ const GamePage = () => {
   const handleLaunchGame = async () => {
     // Check if game needs downloading (HTML, FLASH games with cyan-assets paths)
     const needsDownload = (game.type === 'HTML' || game.type === 'FLASH') &&
-                         game.link.startsWith('cyan-assets/');
+                          game.link.startsWith('cyan-assets/');
 
     if (needsDownload) {
-      // Extract folder path from game.link (e.g., "cyan-assets/HTML/2048/2048.html" -> "HTML/2048")
-      const linkParts = game.link.split('/');
-      const folderPath = linkParts.slice(1, -1).join('/'); // Remove "cyan-assets" prefix and filename
+      // Extract full path from game.link (e.g., "cyan-assets/HTML/2048/2048.html" -> "HTML/2048/2048.html")
+      const fullPath = game.link.substring('cyan-assets/'.length); // Remove "cyan-assets/" prefix
 
       setIsDownloading(true);
       try {
         // The API now returns HTML content directly
-        const gameUrl = `/api/download-game?gamePath=${encodeURIComponent(folderPath)}`;
+        const gameUrl = `/api/download-game?gamePath=${encodeURIComponent(fullPath)}`;
         setDownloadedGameUrl(gameUrl);
         setGameLaunched(true);
       } catch (error) {

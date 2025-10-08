@@ -1,14 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import gamesData from './games.json';
 import './GamePage.css';
 import createGameHtml from './GameLoader';
 
 const GamePage = () => {
   const { title } = useParams();
+  const [gamesData, setGamesData] = useState({ games: [] });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/games.json')
+      .then(response => response.json())
+      .then(data => {
+        setGamesData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading games data:', error);
+        setLoading(false);
+      });
+  }, []);
+
   const game = gamesData.games.find((g) => g.title === decodeURIComponent(title));
   const iframeRef = useRef(null);
-  
+
   const [gameLaunched, setGameLaunched] = useState(false);
   const [htmlContent, setHtmlContent] = useState('');
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -19,16 +34,16 @@ const GamePage = () => {
   useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
     canvases.forEach(canvas => { canvas.remove(); });
-    
+
     if (game) {
       if (game.type === 'HTML') {
         setHtmlContent('');
       } else {
-        const generatedHtml = createGameHtml(game, downloadedGameUrl);
+        const generatedHtml = createGameHtml(game);
         setHtmlContent(generatedHtml);
       }
     }
-  }, [game, downloadedGameUrl]);
+  }, [game]);
 
   useEffect(() => {
     if (gameLaunched) {
@@ -53,6 +68,10 @@ const GamePage = () => {
       }
     };
   }, [isFullScreen]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!game) {
     return <div>Game not found</div>;

@@ -674,10 +674,10 @@
     },
     {
       "title": "Deltarune",
-      "imageSrc": "public/cyan-assets/HTML/deltarune/logo.png",
+      "imageSrc": "cyan-assets/HTML/deltarune/logo.png",
       "genre": "RPG",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/deltarune/index.html",
+      "link": "cyan-assets/HTML/deltarune/index.html",
       "description": "",
       "status": [
         "Working",
@@ -702,7 +702,7 @@
       "imageSrc": "https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/HTML/Half%20Life/half.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/hl/xash.html",
+      "link": "cyan-assets/HTML/hl/xash.html",
       "description": "gooordon freeemannnn....",
       "status": [
         "Working",
@@ -716,7 +716,7 @@
       "imageSrc": "https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/HTML/Hotline%20Miami/hotline.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/hotlineMiami/index.html",
+      "link": "cyan-assets/HTML/hotlineMiami/index.html",
       "description": "",
       "status": [
         "Broken",
@@ -899,7 +899,7 @@
       "imageSrc": "",
       "genre": "Social",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/WebFishing/index.html",
+      "link": "cyan-assets/HTML/WebFishing/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -910,7 +910,7 @@
     },
     {
       "title": "Big Tower Tiny Square",
-      "imageSrc": "public/cyan-assets/HTML/BTTS/images.png",
+      "imageSrc": "cyan-assets/HTML/BTTS/images.png",
       "genre": "Platformer",
       "type": "HTML",
       "link": "cyan-assets/HTML/BTTS/index.html",
@@ -923,10 +923,10 @@
     },
     {
       "title": "Retro Bowl",
-      "imageSrc": "public/cyan-assets/HTML/RetroBowl/img/icon.jpg",
+      "imageSrc": "cyan-assets/HTML/RetroBowl/img/icon.jpg",
       "genre": "Simulation",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/RetroBowl/index.html",
+      "link": "cyan-assets/HTML/RetroBowl/index.html",
       "description": "",
       "status": [
         "Working",
@@ -936,7 +936,7 @@
     },
     {
       "title": "COD Zombies",
-      "imageSrc": "public/cyan-assets/HTML/PixelGunSurvival/image.avif",
+      "imageSrc": "cyan-assets/HTML/PixelGunSurvival/image.avif",
       "genre": "Shooter",
       "type": "HTML",
       "link": "cyan-assets/HTML/PixelGunSurvival/index.html",
@@ -988,10 +988,10 @@
     },
     {
       "title": "Getaway Shootout",
-      "imageSrc": "public/cyan-assets/HTML/getaway-shootout/img/index.jpg",
+      "imageSrc": "cyan-assets/HTML/getaway-shootout/img/index.jpg",
       "genre": "Two-Player",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/getaway-shootout/index.html",
+      "link": "cyan-assets/HTML/getaway-shootout/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1001,10 +1001,10 @@
     },
     {
       "title": "Vex 3",
-      "imageSrc": "public/cyan-assets/HTML/vex3/assets/images/vex-logo.png",
+      "imageSrc": "cyan-assets/HTML/vex3/assets/images/vex-logo.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/vex3/index.html",
+      "link": "cyan-assets/HTML/vex3/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1014,10 +1014,10 @@
     },
     {
       "title": "Vex 4",
-      "imageSrc": "public/cyan-assets/HTML/vex4/vex4.png",
+      "imageSrc": "cyan-assets/HTML/vex4/vex4.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/vex4/index.html",
+      "link": "cyan-assets/HTML/vex4/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1027,10 +1027,10 @@
     },
     {
       "title": "Antimatter Dimensions",
-      "imageSrc": "public/cyan-assets/HTML/Antimatter Dimensions/public/icon.png",
+      "imageSrc": "cyan-assets/HTML/Antimatter Dimensions/icon.png",
       "genre": "Incremental",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/Antimatter Dimensions/public/index.html",
+      "link": "cyan-assets/HTML/Antimatter Dimensions/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1040,10 +1040,10 @@
     },
     {
       "title": "Amazing Strange Rope Police",
-      "imageSrc": "public/cyan-assets/HTML/ropepolice/amazing-strange-rope-police-vice-spider-vegas.jpg",
+      "imageSrc": "cyan-assets/HTML/ropepolice/amazing-strange-rope-police-vice-spider-vegas.jpg",
       "genre": "Open-World",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/ropepolice/index.html",
+      "link": "cyan-assets/HTML/ropepolice/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1053,10 +1053,10 @@
     },
     {
       "title": "Cookie Clicker",
-      "imageSrc": "public/cyan-assets/HTML/cookieclicker/img/icon.png",
+      "imageSrc": "cyan-assets/HTML/cookieclicker/img/icon.png",
       "genre": "Clicker",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/cookieclicker/index.html",
+      "link": "cyan-assets/HTML/cookieclicker/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1066,10 +1066,10 @@
     },
     {
       "title": "Superhot",
-      "imageSrc": "public/cyan-assets/HTML/superhot/hot.jpg",
+      "imageSrc": "cyan-assets/HTML/superhot/hot.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/superhot/index.html",
+      "link": "cyan-assets/HTML/superhot/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1079,10 +1079,10 @@
     },
     {
       "title": "Idle Breakout",
-      "imageSrc": "public/cyan-assets/HTML/idle-breakout/img/thumbnail.png",
+      "imageSrc": "cyan-assets/HTML/idle-breakout/img/thumbnail.png",
       "genre": "Incremental",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/idle-breakout/index.html",
+      "link": "cyan-assets/HTML/idle-breakout/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -1092,10 +1092,10 @@
     },
     {
       "title": "World's Hardest Game",
-      "imageSrc": "public/cyan-assets/HTML/worlds-hardest-game/images/splash.jpg",
+      "imageSrc": "cyan-assets/HTML/worlds-hardest-game/images/splash.jpg",
       "genre": "Adventure",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/worlds-hardest-game/index.html",
+      "link": "cyan-assets/HTML/worlds-hardest-game/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -1105,10 +1105,10 @@
     },
     {
       "title": "World's Hardest Game 2",
-      "imageSrc": "public/cyan-assets/HTML/worlds-hardest-game-2/the-worlds-hardest-game-2.jpg",
+      "imageSrc": "cyan-assets/HTML/worlds-hardest-game-2/the-worlds-hardest-game-2.jpg",
       "genre": "Adventure",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/worlds-hardest-game-2/index.html",
+      "link": "cyan-assets/HTML/worlds-hardest-game-2/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -1118,10 +1118,10 @@
     },
     {
       "title": "Ages of Conflict",
-      "imageSrc": "public/cyan-assets/HTML/ages-of-conflict/splash.jpg",
+      "imageSrc": "cyan-assets/HTML/ages-of-conflict/splash.jpg",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/ages-of-conflict/index.html",
+      "link": "cyan-assets/HTML/ages-of-conflict/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1131,10 +1131,10 @@
     },
     {
       "title": "Getting Over It",
-      "imageSrc": "public/cyan-assets/HTML/GettingOverIt/image.png",
+      "imageSrc": "cyan-assets/HTML/GettingOverIt/image.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/GettingOverIt/index.html",
+      "link": "cyan-assets/HTML/GettingOverIt/index.html",
       "description": "",
       "status": [
         "Unknown",
@@ -1147,7 +1147,7 @@
       "imageSrc": "https://th.bing.com/th?&id=OVP.1bvbf_Eyw928bCFWgMApowHgFo&w=318&h=178&c=7&pid=2.1&rs=1",
       "genre": "Open-World",
       "type": "HTML",
-      "link": "public/cyan-assets/HTML/crime-city-2-3d/index.html",
+      "link": "cyan-assets/HTML/crime-city-2-3d/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1160,7 +1160,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.Jdl4dtzllf1xiZ-RALjAIAHaHa?w=164&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Co-Op",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/fireboywatergirl2/flash.swf",
+      "link": "cyan-assets/FLASH/fireboywatergirl2/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -1173,7 +1173,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.C5m1MhpAKpWXmo0qyUQq0QHaFj?w=193&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Co-Op",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/fireboywatergirl3/flash.swf",
+      "link": "cyan-assets/FLASH/fireboywatergirl3/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -1186,7 +1186,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/wheely.swf",
+      "link": "cyan-assets/FLASH/wheely/wheely.swf",
       "description": "",
       "status": [
         "Working",
@@ -1199,7 +1199,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/Wheely2.swf",
+      "link": "cyan-assets/FLASH/wheely/Wheely2.swf",
       "description": "",
       "status": [
         "Working",
@@ -1212,7 +1212,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/Wheely3.swf",
+      "link": "cyan-assets/FLASH/wheely/Wheely3.swf",
       "description": "",
       "status": [
         "Working",
@@ -1225,7 +1225,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/Wheely4.swf",
+      "link": "cyan-assets/FLASH/wheely/Wheely4.swf",
       "description": "",
       "status": [
         "Working",
@@ -1238,7 +1238,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/Wheely5.swf",
+      "link": "cyan-assets/FLASH/wheely/Wheely5.swf",
       "description": "",
       "status": [
         "Working",
@@ -1251,7 +1251,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/Wheely6.swf",
+      "link": "cyan-assets/FLASH/wheely/Wheely6.swf",
       "description": "",
       "status": [
         "Working",
@@ -1264,7 +1264,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/Wheely7.swf",
+      "link": "cyan-assets/FLASH/wheely/Wheely7.swf",
       "description": "",
       "status": [
         "Working",
@@ -1277,7 +1277,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "public/cyan-assets/FLASH/wheely/Wheely8.swf",
+      "link": "cyan-assets/FLASH/wheely/Wheely8.swf",
       "description": "",
       "status": [
         "Working",

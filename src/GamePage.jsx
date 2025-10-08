@@ -89,22 +89,14 @@ const GamePage = () => {
 
       setIsDownloading(true);
       try {
-        const response = await fetch(`/api/download-game?gamePath=${encodeURIComponent(folderPath)}`);
-        const data = await response.json();
-
-        if (response.ok) {
-          // Extract filename from game.link
-          const filename = linkParts[linkParts.length - 1];
-          // For local dev, data.url is the base GitHub raw URL
-          const fullGameUrl = `${data.url}/${filename}`;
-          setDownloadedGameUrl(fullGameUrl);
-          setGameLaunched(true);
-        } else {
-          alert(`Failed to download game: ${data.message}`);
-        }
+        // The API now returns HTML content directly
+        const gameUrl = `/api/download-game?gamePath=${encodeURIComponent(folderPath)}`;
+        setDownloadedGameUrl(gameUrl);
+        setGameLaunched(true);
       } catch (error) {
         console.error('Download error:', error);
         alert(`Failed to download game: ${error.message}`);
+        setIsDownloading(false);
       } finally {
         setIsDownloading(false);
       }

@@ -32,42 +32,25 @@ export default async function handler(req, res) {
   try {
     console.log('Processing gamePath:', gamePath);
 
-    // Check if running in production (Vercel)
-    const isProduction = process.env.VERCEL_ENV === 'production';
+    // Download the HTML file directly from GitHub and return its content
+    const githubUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}.html`;
+    console.log('Fetching from GitHub:', githubUrl);
 
-    if (isProduction) {
-      // TODO: Implement Vercel Blob caching for production
-      // For now, fall back to direct GitHub URLs
-      const baseUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
-      console.log('Production: Returning GitHub URL:', baseUrl);
-
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      return res.end(JSON.stringify({
-        cached: false,
-        url: baseUrl,
-        gamePath,
-        isProduction: true
-      }));
-    } else {
-      // Local development: serve files directly from GitHub
-      const baseUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
-      console.log('Local dev: Returning baseUrl:', baseUrl);
-
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      return res.end(JSON.stringify({
-        cached: false,
-        url: baseUrl,
-        gamePath,
-        isLocalDev: true
-      }));
+    const response = await fetch(githubUrl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch from GitHub: ${response.status}`);
     }
 
+    const htmlContent = await response.text();
+
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    return res.end(htmlContent);
+
   } catch (error) {
-    console.error('Error in download API:', error);
+    console.error('Error downloading game:', error);
     res.statusCode = 500;
-    res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify({ message: `Error downloading game: ${error.message}` }));
+    res.setHeader('Content-Type', 'text/html');
+    return res.end(`<html><body><h1>Error Loading Game</h1><p>${error.message}</p></body></html>`);
   }
 }

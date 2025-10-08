@@ -20,7 +20,7 @@ const GamesList = () => {
   const [activeView, setActiveView] = useState('floride'); 
 
   useEffect(() => {
-    fetch('/src/games.json')
+    fetch('/games.json')
       .then(response => response.json())
       .then(data => setGames(data.games));
 

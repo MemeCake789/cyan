@@ -32,18 +32,37 @@ export default async function handler(req, res) {
   try {
     console.log('Processing gamePath:', gamePath);
 
-    // For local development, serve files directly from GitHub
-    const baseUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
-    console.log('Returning baseUrl:', baseUrl);
+    // Check if running in production (Vercel)
+    const isProduction = process.env.VERCEL_ENV === 'production';
 
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify({
-      cached: false,
-      url: baseUrl,
-      gamePath,
-      isLocalDev: true
-    }));
+    if (isProduction) {
+      // TODO: Implement Vercel Blob caching for production
+      // For now, fall back to direct GitHub URLs
+      const baseUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
+      console.log('Production: Returning GitHub URL:', baseUrl);
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      return res.end(JSON.stringify({
+        cached: false,
+        url: baseUrl,
+        gamePath,
+        isProduction: true
+      }));
+    } else {
+      // Local development: serve files directly from GitHub
+      const baseUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
+      console.log('Local dev: Returning baseUrl:', baseUrl);
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      return res.end(JSON.stringify({
+        cached: false,
+        url: baseUrl,
+        gamePath,
+        isLocalDev: true
+      }));
+    }
 
   } catch (error) {
     console.error('Error in download API:', error);

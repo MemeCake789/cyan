@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+
 
 export default async function handler(req, res) {
   console.log('Download API called with query:', req.query);
@@ -32,20 +32,13 @@ export default async function handler(req, res) {
   try {
     console.log('Processing gamePath:', gamePath);
 
-    // Download the HTML file directly from GitHub and return its content
+    // Redirect to the GitHub raw URL
     const githubUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
-    console.log('Fetching from GitHub:', githubUrl);
 
-    const response = await fetch(githubUrl);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch from GitHub: ${response.status}`);
-    }
-
-    const htmlContent = await response.text();
-
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    return res.end(htmlContent);
+    // Redirect to the GitHub URL instead of proxying the content
+    res.statusCode = 302;
+    res.setHeader('Location', githubUrl);
+    return res.end();
 
   } catch (error) {
     console.error('Error downloading game:', error);

@@ -1,43 +1,17 @@
 import fs from 'fs';
 import path from 'path';
-import yauzl from 'yauzl';
+import { Unzip } from 'fflate';
 import mime from 'mime-types';
 
-// Helper to buffer a stream
-function bufferStream(stream) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    stream.on('data', (chunk) => chunks.push(chunk));
-    stream.on('end', () => resolve(Buffer.concat(chunks)));
-    stream.on('error', reject);
-  });
-}
-
-// Promisified yauzl functions
-function fromBuffer(buffer) {
-    return new Promise((resolve, reject) => {
-        yauzl.fromBuffer(buffer, { lazyEntries: true }, (err, zipfile) => {
-            if (err) reject(err);
-            else resolve(zipfile);
-        });
-    });
-}
-
-function openReadStream(zipfile, entry) {
-    return new Promise((resolve, reject) => {
-        zipfile.openReadStream(entry, (err, stream) => {
-            if (err) reject(err);
-            else resolve(stream);
-        });
-    });
+function getContentType(filePath) {
+  return mime.lookup(filePath) || 'application/octet-stream';
 }
 
 export default async function (req, res) {
-  // Set CORS headers
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -45,9 +19,8 @@ export default async function (req, res) {
   const { zipPath, htmlFile } = req.query;
   let { assetPath } = req.query;
 
-
   if (assetPath && assetPath.startsWith('./')) {
-      assetPath = assetPath.substring(2);
+    assetPath = assetPath.substring(2);
   }
 
   if (!zipPath) {
@@ -63,9 +36,7 @@ export default async function (req, res) {
     let zipBuffer;
     const zipParts = [];
     const files = fs.readdirSync(zipDirectory);
-
     const zipPartRegex = new RegExp(`^${zipBaseName}\.z(ip|[0-9]{2})$`);
-
     files.forEach(file => {
         if (zipPartRegex.test(file)) {
             zipParts.push(path.join(zipDirectory, file));
@@ -82,46 +53,66 @@ export default async function (req, res) {
         return res.status(404).json({ message: 'Zip file not found' });
     }
 
-    const zipfile = await fromBuffer(zipBuffer);
-    const entries = await new Promise((resolve, reject) => {
-        const collectedEntries = [];
-        zipfile.on('entry', (entry) => {
-            collectedEntries.push(entry);
-            zipfile.readEntry();
-        });
-        zipfile.on('end', () => resolve(collectedEntries));
-        zipfile.on('error', reject);
-        zipfile.readEntry();
-    });
-
     if (assetPath) {
-      const entry = entries.find(e => e.fileName === assetPath);
-      if (entry) {
-        const readStream = await openReadStream(zipfile, entry);
-        const contentType = getContentType(assetPath);
-        res.setHeader('Content-Type', contentType);
-        readStream.pipe(res);
-      } else {
-        res.status(404).send('Asset not found in zip');
-      }
+      const unzip = new Unzip();
+      let assetFound = false;
+      unzip.onfile = file => {
+        if (assetFound) {
+          file.terminate();
+          return;
+        }
+        if (file.name === assetPath) {
+          assetFound = true;
+          res.setHeader('Content-Type', getContentType(assetPath));
+          file.pipe(res);
+        } else {
+          file.terminate();
+        }
+      };
+      unzip.on('finish', () => {
+        if (!assetFound) {
+          res.status(404).send('Asset not found in zip');
+        }
+      });
+      unzip.push(zipBuffer, true);
+
     } else {
-      let htmlEntry;
+      const fileNames = await new Promise(resolve => {
+        const names = [];
+        const unzip = new Unzip(file => {
+          names.push(file.name);
+          file.terminate();
+        });
+        unzip.on('finish', () => resolve(names));
+        unzip.push(zipBuffer, true);
+      });
+
+      let htmlFileName;
       if (htmlFile) {
-        htmlEntry = entries.find(e => e.fileName === htmlFile);
+        htmlFileName = fileNames.find(name => name === htmlFile);
+      }
+      if (!htmlFileName) {
+        htmlFileName = fileNames.find(name => name.endsWith('index.html'));
+      }
+      if (!htmlFileName) {
+        htmlFileName = fileNames.find(name => name.endsWith('.html'));
       }
 
-      if (!htmlEntry) {
-        htmlEntry = entries.find(e => e.fileName.endsWith('index.html'));
-      }
+      if (htmlFileName) {
+        const htmlContent = await new Promise(resolve => {
+          const unzip2 = new Unzip(file => {
+            if (file.name === htmlFileName) {
+              const chunks = [];
+              file.on('data', c => chunks.push(c));
+              file.on('end', () => resolve(Buffer.concat(chunks)));
+            } else {
+              file.terminate();
+            }
+          });
+          unzip2.push(zipBuffer, true);
+        });
 
-      if (!htmlEntry) {
-        htmlEntry = entries.find(e => e.fileName.endsWith('.html'));
-      }
-
-      if (htmlEntry) {
-        const readStream = await openReadStream(zipfile, htmlEntry);
-        const htmlContent = await bufferStream(readStream);
-        const baseHref = `/api/zip-proxy?zipPath=${encodeURIComponent(zipPath)}&assetPath=${encodeURIComponent(path.dirname(htmlEntry.fileName))}/`;
+        const baseHref = `/api/zip-proxy?zipPath=${encodeURIComponent(zipPath)}&assetPath=${encodeURIComponent(path.dirname(htmlFileName))}/`;
         let content = htmlContent.toString('utf8');
         content = content.replace('<head>', `<head><base href="${baseHref}">`);
         res.setHeader('Content-Type', 'text/html');
@@ -134,8 +125,4 @@ export default async function (req, res) {
     console.error('Error in zip-proxy:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-}
-
-function getContentType(filePath) {
-  return mime.lookup(filePath) || 'application/octet-stream';
 }

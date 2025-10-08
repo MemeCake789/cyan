@@ -17,8 +17,8 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/blob": "^2.0.0",
     "@vercel/speed-insights": "^1.2.0",
+    "fflate": "^0.8.2",
     "katex": "^0.16.22",
-    "mime-types": "^2.1.35",
     "mui-color-input": "^7.0.0",
     "node-fetch": "^3.3.2",
     "react": "^19.1.1",
@@ -29,8 +29,7 @@
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
-    "stream": "^0.0.2",
-    "yauzl": "^3.2.0"
+    "stream": "^0.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

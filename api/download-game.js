@@ -1,4 +1,4 @@
-
+import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   console.log('Download API called with query:', req.query);
@@ -29,16 +29,23 @@ export default async function handler(req, res) {
     return res.end(JSON.stringify({ message: 'Game path is required' }));
   }
 
-  try {
+   try {
     console.log('Processing gamePath:', gamePath);
 
-    // Redirect to the GitHub raw URL
-    const githubUrl = `https://raw.githubusercontent.com/Cyanide-App/cyan-assets/main/${gamePath}`;
+    // Use jsDelivr CDN instead of raw.githubusercontent.com
+    const cdnUrl = `https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/${gamePath}`;
+    console.log('Fetching from CDN:', cdnUrl);
 
-    // Redirect to the GitHub URL instead of proxying the content
-    res.statusCode = 302;
-    res.setHeader('Location', githubUrl);
-    return res.end();
+    const response = await fetch(cdnUrl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch from CDN: ${response.status} for URL: ${cdnUrl}`);
+    }
+
+    const content = await response.text();
+
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    return res.end(content);
 
   } catch (error) {
     console.error('Error downloading game:', error);

@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     console.log('Processing gamePath:', gamePath);
 
     // Use jsDelivr CDN instead of raw.githubusercontent.com
-    const cdnUrl = `https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/${gamePath}`;
+    const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${gamePath}`;
     console.log('Fetching from CDN:', cdnUrl);
 
     const response = await fetch(cdnUrl);

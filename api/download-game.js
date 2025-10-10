@@ -31,10 +31,11 @@ export default async function handler(req, res) {
 
    try {
      const decodedGamePath = decodeURIComponent(gamePath);
-     console.log('Processing gamePath:', decodedGamePath);
+     const path = decodedGamePath.split('?')[0]; // Remove query params for CDN
+     console.log('Processing gamePath:', decodedGamePath, 'path:', path);
 
      // Use jsDelivr CDN instead of raw.githubusercontent.com
-     const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${decodedGamePath}`;
+     const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets/${path}`;
      console.log('Fetching from CDN:', cdnUrl);
 
      const response = await fetch(cdnUrl);
@@ -44,13 +45,22 @@ export default async function handler(req, res) {
 
      const isHtml = decodedGamePath.endsWith('.html');
      if (isHtml) {
-       // Serve modified HTML with base href to proxy all relative requests
+       // Serve modified HTML with asset paths proxied
        const content = await response.text();
        const folder = decodedGamePath.substring(0, decodedGamePath.lastIndexOf('/') + 1);
        let modifiedContent = content;
 
-       // Add base tag to head to proxy all relative URLs
-       modifiedContent = modifiedContent.replace(/<head[^>]*>/, `$&<base href="/api/download-game?gamePath=${folder}">`);
+       // Modify src attributes
+       modifiedContent = modifiedContent.replace(/src="([^"]*)"/g, (match, src) => {
+         if (src.startsWith('http') || src.startsWith('//') || src.startsWith('data:')) return match;
+         return `src="/api/download-game?gamePath=${folder + src}"`;
+       });
+
+       // Modify href for CSS
+       modifiedContent = modifiedContent.replace(/href="([^"]*\.css[^"]*)"/g, (match, href) => {
+         if (href.startsWith('http') || href.startsWith('//')) return match;
+         return `href="/api/download-game?gamePath=${folder + href}"`;
+       });
 
        res.statusCode = 200;
        res.setHeader('Content-Type', 'text/html');

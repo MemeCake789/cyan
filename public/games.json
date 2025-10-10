@@ -13,18 +13,6 @@
       ]
     },
     {
-      "title": "10 Minutes Till Dawn",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/10minutestilldawn/icon.png",
-      "genre": "Action-Adventure",
-      "type": "HTML",
-      "link": "cyan-assets/HTML/10minutestilldawn/index.html",
-      "description": "",
-      "status": [
-        "Broken",
-        "Game does not finish loading "
-      ]
-    },
-    {
       "title": "Advance Wars",
       "core": "mgba",
       "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/EMULATORS/images/advancewars.jpg",
@@ -672,19 +660,20 @@
         "This game has no issues :D"
       ]
     },
-    {
-      "title": "Deltarune",
-      "imageSrc": "cyan-assets/HTML/deltarune/logo.png",
-      "genre": "RPG",
-      "type": "HTML",
-      "link": "cyan-assets/HTML/deltarune/index.html",
-      "description": "",
-      "status": [
-        "Working",
-        "This game has no issues :D"
-      ],
-      "date": "2025-10-07"
-    },
+     {
+       "title": "Deltarune",
+       "imageSrc": "cyan-assets/HTML/deltarune/logo.png",
+       "genre": "RPG",
+       "type": "HTML",
+       "link": "cyan-assets/HTML/deltarune/index.html",
+       "description": "",
+       "status": [
+         "Working",
+         "This game has no issues :D"
+       ],
+       "date": "2025-10-07",
+       "fixedDate": "2025-10-07"
+     },
     {
       "title": "Endoparasitic",
       "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Endoparasitic/endo.png",
@@ -697,20 +686,21 @@
         "This game has no issues :D"
       ]
     },
-    {
-      "title": "Half Life",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Half%20Life/half.jpg",
-      "genre": "Shooter",
-      "type": "HTML",
-      "link": "cyan-assets/HTML/hl/xash.html",
-      "description": "gooordon freeemannnn....",
-      "status": [
-        "Working",
-        "This game has no issues :D"
-      ],
-      "date": "2025-10-06"
+     {
+       "title": "Half Life",
+       "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Half%20Life/half.jpg",
+       "genre": "Shooter",
+       "type": "HTML",
+       "link": "cyan-assets/HTML/hl/xash.html",
+       "description": "gooordon freeemannnn....",
+       "status": [
+         "Working",
+         "This game has no issues :D"
+       ],
+       "date": "2025-10-06",
+       "fixedDate": "2025-10-06"
 
-    },
+     },
     {
       "title": "Hotline Miami",
       "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Hotline%20Miami/hotline.jpg",
@@ -1030,7 +1020,7 @@
       "imageSrc": "cyan-assets/HTML/Antimatter Dimensions/icon.png",
       "genre": "Incremental",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Antimatter Dimensions/index.html",
+      "link": "cyan-assets/HTML/Antimatter%20Dimensions/public/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1128,19 +1118,6 @@
         "This game has no issues :D"
       ],
       "date": "2025-10-03"
-    },
-    {
-      "title": "Getting Over It",
-      "imageSrc": "cyan-assets/HTML/GettingOverIt/image.png",
-      "genre": "Platformer",
-      "type": "HTML",
-      "link": "cyan-assets/HTML/GettingOverIt/index.html",
-      "description": "",
-      "status": [
-        "Unknown",
-        "Not tested"
-      ],
-      "date": "2025-10-06"
     },
     {
       "title": "Crime City 2 3D",

@@ -82,6 +82,14 @@ const GamesList = () => {
     return (now - gameAddedDate) < time;
   };
 
+  const isFixed = (gameFixedDate) => {
+    if (!gameFixedDate) return false;
+    const gameFixedDateObj = new Date(gameFixedDate);
+    const time = 13 * 24 * 60 * 60 * 1000;
+    const now = new Date();
+    return (now - gameFixedDateObj) < time;
+  };
+
   const sortedAndFilteredGames = games
     .filter(game => game.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .sort((a, b) => {
@@ -142,19 +150,20 @@ const GamesList = () => {
                     </tr>
                     {sortedAndFilteredGames.map((game, index) => (
                       <tr key={index} onClick={() => handleGameClick(game)}>
-                        <td
-                          onMouseEnter={() => setPreviewData({
-                            src: game.imageSrc,
-                            title: game.title,
-                            description: game.description,
-                            genre: game.genre
-                          })}
-                          onMouseLeave={() => setPreviewData(null)}
-                          className="game-title"
-                        >
-                          {isNew(game.date) && <span style={{ color: 'white', marginRight: '5px' }}>[NEW]</span>}
-                          {game.title}
-                        </td>
+                         <td
+                           onMouseEnter={() => setPreviewData({
+                             src: game.imageSrc,
+                             title: game.title,
+                             description: game.description,
+                             genre: game.genre
+                           })}
+                           onMouseLeave={() => setPreviewData(null)}
+                           className="game-title"
+                         >
+                           {isFixed(game.fixedDate) && <span style={{ color: 'white', marginRight: '5px' }}>[FIXED]</span>}
+                           {isNew(game.date) && <span style={{ color: 'white', marginRight: '5px' }}>[NEW]</span>}
+                           {game.title}
+                         </td>
                         <td className="game-genre">{game.genre}</td>
                         <td className={`game-status-text ${game.status[0].toLowerCase()}`}>{game.status[0]}</td>
                       </tr>

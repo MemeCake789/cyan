@@ -34,8 +34,8 @@ export default async function handler(req, res) {
      const path = decodedGamePath.split('?')[0]; // Remove query params for CDN
      console.log('Processing gamePath:', decodedGamePath, 'path:', path);
 
-     // Use jsDelivr CDN instead of raw.githubusercontent.com
-     const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets/${path}`;
+      // Use jsDelivr CDN instead of raw.githubusercontent.com
+      const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${path}`;
      console.log('Fetching from CDN:', cdnUrl);
 
      const response = await fetch(cdnUrl);
@@ -43,29 +43,70 @@ export default async function handler(req, res) {
        throw new Error(`Failed to fetch from CDN: ${response.status} for URL: ${cdnUrl}`);
      }
 
-     const isHtml = decodedGamePath.endsWith('.html');
-     if (isHtml) {
-       // Serve modified HTML with asset paths proxied
-       const content = await response.text();
-       const folder = decodedGamePath.substring(0, decodedGamePath.lastIndexOf('/') + 1);
-       let modifiedContent = content;
+      const isHtml = decodedGamePath.endsWith('.html');
+      if (isHtml) {
+        // Serve HTML with inlined assets
+        const content = await response.text();
+        const folder = decodedGamePath.substring(0, decodedGamePath.lastIndexOf('/') + 1);
+        let modifiedContent = content;
 
-       // Modify src attributes
-       modifiedContent = modifiedContent.replace(/src="([^"]*)"/g, (match, src) => {
-         if (src.startsWith('http') || src.startsWith('//') || src.startsWith('data:')) return match;
-         return `src="/api/download-game?gamePath=${folder + src}"`;
-       });
+        // Inline scripts
+        const scriptMatches = [...content.matchAll(/<script[^>]*src="([^"]*)"[^>]*><\/script>/g)];
+        for (const match of scriptMatches) {
+          const src = match[1];
+          if (!src.startsWith('http') && !src.startsWith('//')) {
+            try {
+              const assetPath = folder + src.split('?')[0];
+              const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
+              const assetResponse = await fetch(assetUrl);
+              if (assetResponse.ok) {
+                const assetContent = await assetResponse.text();
+                modifiedContent = modifiedContent.replace(match[0], `<script>${assetContent}</script>`);
+              }
+            } catch {}
+          }
+        }
 
-       // Modify href for CSS
-       modifiedContent = modifiedContent.replace(/href="([^"]*\.css[^"]*)"/g, (match, href) => {
-         if (href.startsWith('http') || href.startsWith('//')) return match;
-         return `href="/api/download-game?gamePath=${folder + href}"`;
-       });
+        // Inline styles
+        const styleMatches = [...content.matchAll(/<link[^>]*href="([^"]*\.css[^"]*)"[^>]*>/g)];
+        for (const match of styleMatches) {
+          const href = match[1];
+          if (!href.startsWith('http') && !href.startsWith('//')) {
+            try {
+              const assetPath = folder + href.split('?')[0];
+              const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
+              const assetResponse = await fetch(assetUrl);
+              if (assetResponse.ok) {
+                const assetContent = await assetResponse.text();
+                modifiedContent = modifiedContent.replace(match[0], `<style>${assetContent}</style>`);
+              }
+            } catch {}
+          }
+        }
 
-       res.statusCode = 200;
-       res.setHeader('Content-Type', 'text/html');
-       return res.end(modifiedContent);
-     } else {
+        // Inline images
+        const imgMatches = [...content.matchAll(/<img[^>]*src="([^"]*)"[^>]*>/g)];
+        for (const match of imgMatches) {
+          const src = match[1];
+          if (!src.startsWith('http') && !src.startsWith('//') && !src.startsWith('data:')) {
+            try {
+              const assetPath = folder + src.split('?')[0];
+              const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
+              const assetResponse = await fetch(assetUrl);
+              if (assetResponse.ok) {
+                const buffer = await assetResponse.arrayBuffer();
+                const base64 = Buffer.from(buffer).toString('base64');
+                const mime = assetResponse.headers.get('content-type') || 'image/png';
+                modifiedContent = modifiedContent.replace(match[0], match[0].replace(src, `data:${mime};base64,${base64}`));
+              }
+            } catch {}
+          }
+        }
+
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
+        return res.end(modifiedContent);
+      } else {
        // Serve the asset directly
        const content = await response.arrayBuffer();
        const mime = response.headers.get('content-type') || 'application/octet-stream';

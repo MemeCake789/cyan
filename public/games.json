@@ -671,9 +671,8 @@
          "Working",
          "This game has no issues :D"
        ],
-       "date": "2025-10-07",
-       "fixedDate": "2025-10-07"
-     },
+       "date": "2025-10-07"
+    },
     {
       "title": "Endoparasitic",
       "imageSrc": "https://cdn.jsdelivr.net/gh/Cyanide-App/cyan-assets@main/HTML/Endoparasitic/endo.png",
@@ -697,9 +696,7 @@
          "Working",
          "This game has no issues :D"
        ],
-       "date": "2025-10-06",
-       "fixedDate": "2025-10-06"
-
+       "date": "2025-10-06"
      },
     {
       "title": "Hotline Miami",

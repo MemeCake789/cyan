@@ -30,10 +30,11 @@ export default async function handler(req, res) {
   }
 
    try {
-     console.log('Processing gamePath:', gamePath);
+     const decodedGamePath = decodeURIComponent(gamePath);
+     console.log('Processing gamePath:', decodedGamePath);
 
      // Use jsDelivr CDN instead of raw.githubusercontent.com
-     const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${gamePath}`;
+     const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${decodedGamePath}`;
      console.log('Fetching from CDN:', cdnUrl);
 
      const response = await fetch(cdnUrl);
@@ -41,15 +42,15 @@ export default async function handler(req, res) {
        throw new Error(`Failed to fetch from CDN: ${response.status} for URL: ${cdnUrl}`);
      }
 
-     const isHtml = gamePath.endsWith('.html');
+     const isHtml = decodedGamePath.endsWith('.html');
      if (isHtml) {
        // Serve modified HTML with base href to proxy all relative requests
        const content = await response.text();
-       const folder = gamePath.substring(0, gamePath.lastIndexOf('/') + 1);
+       const folder = decodedGamePath.substring(0, decodedGamePath.lastIndexOf('/') + 1);
        let modifiedContent = content;
 
        // Add base tag to head to proxy all relative URLs
-       modifiedContent = modifiedContent.replace(/<head>/, `<head><base href="/api/download-game?gamePath=${encodeURIComponent(folder)}">`);
+       modifiedContent = modifiedContent.replace(/<head[^>]*>/, `$&<base href="/api/download-game?gamePath=${folder}">`);
 
        res.statusCode = 200;
        res.setHeader('Content-Type', 'text/html');

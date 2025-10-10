@@ -88,8 +88,8 @@ const GamePage = () => {
 
       setIsDownloading(true);
       try {
-        // Serve directly from CDN to include all assets
-        const gameUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${fullPath}`;
+        // The API now returns HTML content with inlined assets
+        const gameUrl = `/api/download-game?gamePath=${encodeURIComponent(fullPath)}`;
         setDownloadedGameUrl(gameUrl);
         setGameLaunched(true);
       } catch (error) {

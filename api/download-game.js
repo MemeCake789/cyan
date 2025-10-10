@@ -30,27 +30,43 @@ export default async function handler(req, res) {
   }
 
    try {
-    console.log('Processing gamePath:', gamePath);
+     console.log('Processing gamePath:', gamePath);
 
-    // Use jsDelivr CDN instead of raw.githubusercontent.com
-    const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${gamePath}`;
-    console.log('Fetching from CDN:', cdnUrl);
+     // Use jsDelivr CDN instead of raw.githubusercontent.com
+     const cdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${gamePath}`;
+     console.log('Fetching from CDN:', cdnUrl);
 
-    const response = await fetch(cdnUrl);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch from CDN: ${response.status} for URL: ${cdnUrl}`);
-    }
+     const response = await fetch(cdnUrl);
+     if (!response.ok) {
+       throw new Error(`Failed to fetch from CDN: ${response.status} for URL: ${cdnUrl}`);
+     }
 
-    const content = await response.text();
+     const isHtml = gamePath.endsWith('.html');
+     if (isHtml) {
+       // Serve modified HTML with base href to proxy all relative requests
+       const content = await response.text();
+       const folder = gamePath.substring(0, gamePath.lastIndexOf('/') + 1);
+       let modifiedContent = content;
 
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    return res.end(content);
+       // Add base tag to head to proxy all relative URLs
+       modifiedContent = modifiedContent.replace(/<head>/, `<head><base href="/api/download-game?gamePath=${encodeURIComponent(folder)}">`);
 
-  } catch (error) {
-    console.error('Error downloading game:', error);
-    res.statusCode = 500;
-    res.setHeader('Content-Type', 'text/html');
-    return res.end(`<html><body><h1>Error Loading Game</h1><p>${error.message}</p></body></html>`);
-  }
+       res.statusCode = 200;
+       res.setHeader('Content-Type', 'text/html');
+       return res.end(modifiedContent);
+     } else {
+       // Serve the asset directly
+       const content = await response.arrayBuffer();
+       const mime = response.headers.get('content-type') || 'application/octet-stream';
+       res.statusCode = 200;
+       res.setHeader('Content-Type', mime);
+       return res.end(Buffer.from(content));
+     }
+
+   } catch (error) {
+     console.error('Error downloading game:', error);
+     res.statusCode = 500;
+     res.setHeader('Content-Type', 'text/html');
+     return res.end(`<html><body><h1>Error Loading Game</h1><p>${error.message}</p></body></html>`);
+   }
 }

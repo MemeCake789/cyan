@@ -53,8 +53,9 @@ export default async function handler(req, res) {
         // Inline scripts
         const scriptMatches = [...content.matchAll(/<script[^>]*src="([^"]*)"[^>]*><\/script>/g)];
         for (const match of scriptMatches) {
-          const src = match[1];
+          let src = match[1];
           if (!src.startsWith('http') && !src.startsWith('//')) {
+            if (src.startsWith('/')) src = src.substring(1); // Make absolute paths relative
             try {
               const assetPath = folder + src.split('?')[0];
               const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
@@ -70,8 +71,9 @@ export default async function handler(req, res) {
         // Inline styles
         const styleMatches = [...content.matchAll(/<link[^>]*href="([^"]*\.css[^"]*)"[^>]*>/g)];
         for (const match of styleMatches) {
-          const href = match[1];
+          let href = match[1];
           if (!href.startsWith('http') && !href.startsWith('//')) {
+            if (href.startsWith('/')) href = href.substring(1); // Make absolute paths relative
             try {
               const assetPath = folder + href.split('?')[0];
               const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
@@ -87,8 +89,9 @@ export default async function handler(req, res) {
         // Inline images
         const imgMatches = [...content.matchAll(/<img[^>]*src="([^"]*)"[^>]*>/g)];
         for (const match of imgMatches) {
-          const src = match[1];
+          let src = match[1];
           if (!src.startsWith('http') && !src.startsWith('//') && !src.startsWith('data:')) {
+            if (src.startsWith('/')) src = src.substring(1); // Make absolute paths relative
             try {
               const assetPath = folder + src.split('?')[0];
               const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
@@ -97,11 +100,16 @@ export default async function handler(req, res) {
                 const buffer = await assetResponse.arrayBuffer();
                 const base64 = Buffer.from(buffer).toString('base64');
                 const mime = assetResponse.headers.get('content-type') || 'image/png';
-                modifiedContent = modifiedContent.replace(match[0], match[0].replace(src, `data:${mime};base64,${base64}`));
+                modifiedContent = modifiedContent.replace(match[0], match[0].replace(match[1], `data:${mime};base64,${base64}`));
               }
             } catch {}
           }
         }
+
+        // Make any remaining absolute paths relative
+        modifiedContent = modifiedContent.replace(/src="\/([^"]*)"/g, 'src="$1"');
+        modifiedContent = modifiedContent.replace(/href="\/([^"]*\.css[^"]*)"/g, 'href="$1"');
+        modifiedContent = modifiedContent.replace(/src="\/([^"]*)"/g, 'src="$1"'); // for images
 
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');

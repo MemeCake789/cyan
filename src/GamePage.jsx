@@ -23,10 +23,11 @@ const GamePage = () => {
   const game = gamesData.games.find((g) => g.title === decodeURIComponent(title));
   const iframeRef = useRef(null);
 
-  const [gameLaunched, setGameLaunched] = useState(false);
-  const [htmlContent, setHtmlContent] = useState('');
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const [animateControls, setAnimateControls] = useState(false);
+   const [gameLaunched, setGameLaunched] = useState(false);
+   const [htmlContent, setHtmlContent] = useState('');
+   const [isDownloading, setIsDownloading] = useState(false);
+   const [isFullScreen, setIsFullScreen] = useState(false);
+   const [animateControls, setAnimateControls] = useState(false);
 
   useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
@@ -74,9 +75,25 @@ const GamePage = () => {
     return <div>Game not found</div>;
   }
 
-  const handleLaunchGame = async () => {
-    //logic here
-  };
+   const handleLaunchGame = async () => {
+     if (game.type === 'HTML') {
+       setIsDownloading(true);
+       try {
+         const response = await fetch(`/api/load-game?link=${game.link}`);
+         if (!response.ok) throw new Error('Failed to load game');
+         const html = await response.text();
+         setHtmlContent(html);
+         setGameLaunched(true);
+       } catch (error) {
+         console.error('Error loading game:', error);
+         alert('Failed to load game. Please try again.');
+       } finally {
+         setIsDownloading(false);
+       }
+     } else {
+       setGameLaunched(true);
+     }
+   };
 
 
 
@@ -104,13 +121,13 @@ const GamePage = () => {
       </div>
 
       <div className="game-content-container">
-        {gameLaunched ? (
-          game.type === 'HTML' ? (
-            <iframe ref={iframeRef} src={downloadedGameUrl || `/${game.link.startsWith('public/') ? game.link.substring('public/'.length) : game.link}`} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
-          ) : (
-            <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen />
-          )
-        ) : (
+         {gameLaunched ? (
+           game.type === 'HTML' ? (
+             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+           ) : (
+             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen />
+           )
+         ) : (
           <div className="launch-screen">
             <div className='launch-controls'>
               <button className="launch-button-game" onClick={handleLaunchGame} disabled={isDownloading}>

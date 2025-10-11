@@ -70,7 +70,9 @@ export default async function handler(request) {
 
   // Modify HTML to replace relative URLs with Blob URLs
   const $ = cheerio.load(htmlContent);
-  $('script[src], link[href], img[src]').each((i, el) => {
+  const elements = $('script[src], link[href], img[src]');
+  for (let i = 0; i < elements.length; i++) {
+    const el = elements[i];
     const tag = $(el);
     const attr = tag.attr('src') ? 'src' : tag.attr('href') ? 'href' : null;
     if (attr) {
@@ -83,7 +85,7 @@ export default async function handler(request) {
         }
       }
     }
-  });
+  }
 
   return new Response($.html(), { headers: { 'Content-Type': 'text/html' } });
 }

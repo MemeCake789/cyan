@@ -25,8 +25,7 @@ async function cacheFile(filePath, downloadUrl) {
   const response = await fetch(downloadUrl);
   if (!response.ok) throw new Error(`Failed to fetch file: ${response.status}`);
   const buffer = await response.arrayBuffer();
-  const file = new File([buffer], filePath.split('/').pop(), { type: 'application/octet-stream' });
-  const { url } = await put(filePath, file, { access: 'public' });
+  const { url } = await put(filePath, buffer, { access: 'public' });
   await redis.set(`blob:${REPO}:${filePath}`, url);
   return url;
 }

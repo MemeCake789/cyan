@@ -1,6 +1,9 @@
-const { Redis } = require('@upstash/redis');
-const { put } = require('@vercel/blob');
-const fetch = require('node-fetch');
+import { Redis } from '@upstash/redis';
+import { put } from '@vercel/blob';
+import fetch from 'node-fetch';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 const cheerio = require('cheerio');
 
 const redis = new Redis({
@@ -44,7 +47,7 @@ async function loadAndCacheFolder(folderPath) {
   await redis.set(`folder:${REPO}:${folderPath}`, 'cached');
 }
 
-module.exports = async function handler(request) {
+export default async function handler(request) {
   const url = new URL(request.url);
   const link = url.searchParams.get('link');
   if (!link) return new Response('Missing link param', { status: 400 });

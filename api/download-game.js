@@ -120,12 +120,19 @@ export default async function handler(req, res) {
         res.setHeader('Content-Type', 'text/html');
         return res.end(modifiedContent);
       } else {
-       // Serve the asset directly
-       const content = await response.arrayBuffer();
-       const mime = response.headers.get('content-type') || 'application/octet-stream';
+       // Serve the asset directly, modifying JS to make absolute paths relative
+       let content = await response.arrayBuffer();
+       let mime = response.headers.get('content-type') || 'application/octet-stream';
+       if (path.endsWith('.js')) {
+         let text = Buffer.from(content).toString('utf8');
+         text = text.replace(/'\/([^']*)'/g, "'$1'");
+         text = text.replace(/"\/([^"]*)"/g, '"$1"');
+         mime = 'text/javascript';
+         content = Buffer.from(text, 'utf8');
+       }
        res.statusCode = 200;
        res.setHeader('Content-Type', mime);
-       return res.end(Buffer.from(content));
+       return res.end(content);
      }
 
    } catch (error) {

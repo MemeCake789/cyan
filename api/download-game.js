@@ -61,7 +61,10 @@ export default async function handler(req, res) {
               const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
               const assetResponse = await fetch(assetUrl);
               if (assetResponse.ok) {
-                const assetContent = await assetResponse.text();
+                let assetContent = await assetResponse.text();
+                // Make absolute paths in JS relative
+                assetContent = assetContent.replace(/'\/([^']*)'/g, "'$1'");
+                assetContent = assetContent.replace(/"\/([^"]*)"/g, '"$1"');
                 modifiedContent = modifiedContent.replace(match[0], `<script>${assetContent}</script>`);
               }
             } catch {}
@@ -79,7 +82,9 @@ export default async function handler(req, res) {
               const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
               const assetResponse = await fetch(assetUrl);
               if (assetResponse.ok) {
-                const assetContent = await assetResponse.text();
+                let assetContent = await assetResponse.text();
+                // Make absolute paths in CSS relative
+                assetContent = assetContent.replace(/url\(['"]?\/([^'"]*)['"]?\)/g, 'url("$1")');
                 modifiedContent = modifiedContent.replace(match[0], `<style>${assetContent}</style>`);
               }
             } catch {}

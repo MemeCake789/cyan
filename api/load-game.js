@@ -1,7 +1,7 @@
-const { Redis } = require('@upstash/redis');
-const { put } = require('@vercel/blob');
-const fetch = require('node-fetch');
-const cheerio = require('cheerio');
+import { Redis } from '@upstash/redis';
+import { put } from '@vercel/blob';
+import fetch from 'node-fetch';
+import cheerio from 'cheerio';
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,

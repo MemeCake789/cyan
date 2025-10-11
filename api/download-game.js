@@ -57,9 +57,17 @@ export default async function handler(req, res) {
           if (!src.startsWith('http') && !src.startsWith('//')) {
             if (src.startsWith('/')) src = src.substring(1); // Make absolute paths relative
             try {
-              const assetPath = folder + src.split('?')[0];
-              const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
-              const assetResponse = await fetch(assetUrl);
+              let assetPath = folder + src.split('?')[0];
+              let assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
+              let assetResponse = await fetch(assetUrl);
+              if (!assetResponse.ok) {
+                // Try with build instead of Build for case issues
+                const altAssetPath = assetPath.replace(/\/Build\//g, '/build/');
+                if (altAssetPath !== assetPath) {
+                  assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${altAssetPath}`;
+                  assetResponse = await fetch(assetUrl);
+                }
+              }
               if (assetResponse.ok) {
                 let assetContent = await assetResponse.text();
                 // Make absolute paths in JS relative
@@ -78,9 +86,17 @@ export default async function handler(req, res) {
           if (!href.startsWith('http') && !href.startsWith('//')) {
             if (href.startsWith('/')) href = href.substring(1); // Make absolute paths relative
             try {
-              const assetPath = folder + href.split('?')[0];
-              const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
-              const assetResponse = await fetch(assetUrl);
+              let assetPath = folder + href.split('?')[0];
+              let assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
+              let assetResponse = await fetch(assetUrl);
+              if (!assetResponse.ok) {
+                // Try with build instead of Build
+                const altAssetPath = assetPath.replace(/\/Build\//g, '/build/');
+                if (altAssetPath !== assetPath) {
+                  assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${altAssetPath}`;
+                  assetResponse = await fetch(assetUrl);
+                }
+              }
               if (assetResponse.ok) {
                 let assetContent = await assetResponse.text();
                 // Make absolute paths in CSS relative
@@ -98,9 +114,17 @@ export default async function handler(req, res) {
           if (!src.startsWith('http') && !src.startsWith('//') && !src.startsWith('data:')) {
             if (src.startsWith('/')) src = src.substring(1); // Make absolute paths relative
             try {
-              const assetPath = folder + src.split('?')[0];
-              const assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
-              const assetResponse = await fetch(assetUrl);
+              let assetPath = folder + src.split('?')[0];
+              let assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${assetPath}`;
+              let assetResponse = await fetch(assetUrl);
+              if (!assetResponse.ok) {
+                // Try with build instead of Build
+                const altAssetPath = assetPath.replace(/\/Build\//g, '/build/');
+                if (altAssetPath !== assetPath) {
+                  assetUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${altAssetPath}`;
+                  assetResponse = await fetch(assetUrl);
+                }
+              }
               if (assetResponse.ok) {
                 const buffer = await assetResponse.arrayBuffer();
                 const base64 = Buffer.from(buffer).toString('base64');
@@ -116,9 +140,10 @@ export default async function handler(req, res) {
         modifiedContent = modifiedContent.replace(/href="\/([^"]*\.css[^"]*)"/g, 'href="$1"');
         modifiedContent = modifiedContent.replace(/src="\/([^"]*)"/g, 'src="$1"'); // for images
 
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        return res.end(modifiedContent);
+       res.statusCode = 200;
+       res.setHeader('Content-Type', 'text/html');
+       res.setHeader('Cache-Control', 'no-cache');
+       return res.end(modifiedContent);
       } else {
        // Serve the asset directly, modifying JS to make absolute paths relative
        let content = await response.arrayBuffer();
@@ -129,9 +154,28 @@ export default async function handler(req, res) {
          text = text.replace(/"\/([^"]*)"/g, '"$1"');
          mime = 'text/javascript';
          content = Buffer.from(text, 'utf8');
+       } else if (!response.ok) {
+         // Try with build instead of Build
+         const altPath = path.replace(/\/Build\//g, '/build/');
+         if (altPath !== path) {
+           const altCdnUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${altPath}`;
+           const altResponse = await fetch(altCdnUrl);
+           if (altResponse.ok) {
+             content = await altResponse.arrayBuffer();
+             mime = altResponse.headers.get('content-type') || mime;
+             if (altPath.endsWith('.js')) {
+               let text = Buffer.from(content).toString('utf8');
+               text = text.replace(/'\/([^']*)'/g, "'$1'");
+               text = text.replace(/"\/([^"]*)"/g, '"$1"');
+               mime = 'text/javascript';
+               content = Buffer.from(text, 'utf8');
+             }
+           }
+         }
        }
        res.statusCode = 200;
        res.setHeader('Content-Type', mime);
+       res.setHeader('Cache-Control', 'no-cache');
        return res.end(content);
      }
 

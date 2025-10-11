@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './GamePage.css';
-import createGameHtml from './GameLoader';
 
 const GamePage = () => {
   const { title } = useParams();
@@ -28,8 +27,6 @@ const GamePage = () => {
   const [htmlContent, setHtmlContent] = useState('');
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [animateControls, setAnimateControls] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [downloadedGameUrl, setDownloadedGameUrl] = useState('');
 
   useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
@@ -78,30 +75,7 @@ const GamePage = () => {
   }
 
   const handleLaunchGame = async () => {
-    // Check if game needs downloading (HTML, FLASH games with cyan-assets paths)
-    const needsDownload = (game.type === 'HTML' || game.type === 'FLASH') &&
-                          game.link.startsWith('cyan-assets/');
-
-    if (needsDownload) {
-      // Extract full path from game.link (e.g., "cyan-assets/HTML/2048/2048.html" -> "HTML/2048/2048.html")
-      const fullPath = game.link.substring('cyan-assets/'.length); // Remove "cyan-assets/" prefix
-
-      setIsDownloading(true);
-      try {
-        // The API now returns HTML content with inlined assets
-        const gameUrl = `/api/download-game?gamePath=${encodeURIComponent(fullPath)}`;
-        setDownloadedGameUrl(gameUrl);
-        setGameLaunched(true);
-      } catch (error) {
-        console.error('Download error:', error);
-        alert(`Failed to download game: ${error.message}`);
-        setIsDownloading(false);
-      } finally {
-        setIsDownloading(false);
-      }
-    } else {
-      setGameLaunched(true);
-    }
+    //logic here
   };
 
 
@@ -133,8 +107,6 @@ const GamePage = () => {
         {gameLaunched ? (
           game.type === 'HTML' ? (
             <iframe ref={iframeRef} src={downloadedGameUrl || `/${game.link.startsWith('public/') ? game.link.substring('public/'.length) : game.link}`} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
-          ) : game.type === 'ZIP' ? (
-            <iframe ref={iframeRef} src={`/api/zip-proxy?zipPath=${game.link}${game.htmlFile ? `&htmlFile=${game.htmlFile}` : ''}`} title={game.title} className="game-iframe" allowFullScreen />
           ) : (
             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen />
           )

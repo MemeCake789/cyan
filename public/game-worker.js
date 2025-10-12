@@ -123,6 +123,7 @@ self.addEventListener('message', async (event) => {
         throw new Error('Main HTML not found in cache after caching process.');
       }
       const htmlText = await mainHtmlResponse.text();
+      let rewrittenHtml = htmlText; // Initialize with original HTML
 
       // 1. Inject a <base> tag to handle relative paths correctly.
       const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
@@ -171,6 +172,7 @@ self.addEventListener('fetch', (event) => {
         if (cachedResponse) {
           console.log('Serving main HTML from cache:', gameHtmlGithubUrl);
           const htmlText = await cachedResponse.text();
+          let rewrittenHtml = htmlText; // Initialize with original HTML
 
           // 1. Inject a <base> tag to handle relative paths correctly.
           const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));

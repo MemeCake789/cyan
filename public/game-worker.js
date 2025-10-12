@@ -125,39 +125,27 @@ self.addEventListener('message', async (event) => {
        const htmlText = await mainHtmlResponse.text();
        let rewrittenHtml = htmlText; // Initialize with original HTML
 
-        const isUnityGame = rewrittenHtml.includes('UnityLoader.js');
+         // 1. Inject a <base> tag to handle relative paths correctly.
+         const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+         if (rewrittenHtml.includes('<head>')) {
+           rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+         } else {
+           rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+         }
 
-        // 1. Inject a <base> tag to handle relative paths correctly.
-        const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
-        if (rewrittenHtml.includes('<head>')) {
-          rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-        } else {
-          rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
-        }
+            // Rewrite all relative src/href attributes to absolute URLs
+            rewrittenHtml = rewrittenHtml.replace(/(src|href)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi, (match, attr, quote, url) => {
+              const currentgameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
+              const currentAbsoluteGameFolderPath = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${currentgameFolderPath}/`;
 
-        // For non-Unity games, wrap inline scripts to prevent race conditions.
-        // For Unity games, do nothing else, preserving their original script loading.
-        if (!isUnityGame) {
-          rewrittenHtml = rewrittenHtml.replace(
-           /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
-           (match, openTag, scriptContent, closeTag) => {
-             if (scriptContent.trim().length > 0) {
-               return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
-             }
-             return match;
-           }
-         );
-        }
-
-       console.log('Rewritten HTML (cache):', rewrittenHtml); // Log rewritten HTML
-       event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
-
-    } catch (error) {
-      console.error('Service Worker caching failed:', error);
-      event.source.postMessage({ type: 'CACHE_ERROR', gameLink, error: error.message });
-    }
-  }
-});
+              if (url.startsWith('/')) {
+                // Root-relative path, make it absolute to the rawBaseUrl
+                return `${attr}=${quote}${rawBaseUrl}${url.substring(1)}${quote}`;
+              } else {
+                // Truly relative path, make it absolute to the gameFolderPath (handled by base tag, but explicit rewrite for robustness)
+                return `${attr}=${quote}${currentAbsoluteGameFolderPath}${url}${quote}`;
+              }
+            });
 
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);
@@ -177,8 +165,6 @@ self.addEventListener('fetch', (event) => {
           const htmlText = await cachedResponse.text();
           let rewrittenHtml = htmlText; // Initialize with original HTML
 
-           const isUnityGame = rewrittenHtml.includes('UnityLoader.js');
-
            // 1. Inject a <base> tag to handle relative paths correctly.
            const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
            const baseHref = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${gameFolderPath}/`;
@@ -188,21 +174,19 @@ self.addEventListener('fetch', (event) => {
              rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
            }
 
-           // For non-Unity games, wrap inline scripts to prevent race conditions.
-           // For Unity games, do nothing else, preserving their original script loading.
-           if (!isUnityGame) {
-             rewrittenHtml = rewrittenHtml.replace(
-              /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
-              (match, openTag, scriptContent, closeTag) => {
-                if (scriptContent.trim().length > 0) {
-                  return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
-                }
-                return match;
-              }
-            );
-           }
+           // Rewrite all relative src/href attributes to absolute URLs
+           rewrittenHtml = rewrittenHtml.replace(/(src|href)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi, (match, attr, quote, url) => {
+             const currentgameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
+             const currentAbsoluteGameFolderPath = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${currentgameFolderPath}/`;
 
-           // Rewrite all relative src/href attributes to absolute URLs\n           rewrittenHtml = rewrittenHtml.replace(/(src|href)=([\'\"])(?!https?:\/\/|data:)(.*?)\\2/gi, (match, attr, quote, url) => {\n             const currentgameFolderPath = gameLink.substring(0, gameLink.lastIndexOf(\'/\'));\n             const currentAbsoluteGameFolderPath = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${currentgameFolderPath}/`;\n\n             if (url.startsWith(\'/\')) {\n               // Root-relative path, make it absolute to the rawBaseUrl\n               return `${attr}=${quote}${rawBaseUrl}${url.substring(1)}${quote}`;\n             } else {\n               // Truly relative path, make it absolute to the gameFolderPath (handled by base tag, but explicit rewrite for robustness)\n               return `${attr}=${quote}${currentAbsoluteGameFolderPath}${url}${quote}`;\n             }\n           });
+             if (url.startsWith('/')) {
+               // Root-relative path, make it absolute to the rawBaseUrl
+               return `${attr}=${quote}${rawBaseUrl}${url.substring(1)}${quote}`;
+             } else {
+               // Truly relative path, make it absolute to the gameFolderPath (handled by base tag, but explicit rewrite for robustness)
+               return `${attr}=${quote}${currentAbsoluteGameFolderPath}${url}${quote}`;
+             }
+           });
 
            console.log('Rewritten HTML (fetch):', rewrittenHtml); // Log rewritten HTML
            return new Response(rewrittenHtml, {

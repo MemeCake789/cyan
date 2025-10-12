@@ -134,14 +134,10 @@ self.addEventListener('message', async (event) => {
         rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
       }
 
-      // 2. Defer the UnityLoader instantiation script
+      // Defer the UnityLoader instantiation script using a robust regex
       rewrittenHtml = rewrittenHtml.replace(
-        '<script>UnityLoader.instantiate(',
-        '<script>window.onload = function() { UnityLoader.instantiate('
-      );
-      rewrittenHtml = rewrittenHtml.replace(
-        'onProgress: UnityProgress});</script>',
-        'onProgress: UnityProgress}) };</script>'
+        /(<script>)([\s\S]*?UnityLoader\.instantiate[\s\S]*?)(<\/script>)/i,
+        "$1window.addEventListener('load', function() { $2 });$3"
       );
 
       event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
@@ -181,17 +177,13 @@ self.addEventListener('fetch', (event) => {
             rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
           }
 
-          // 2. Defer the UnityLoader instantiation script
-      rewrittenHtml = rewrittenHtml.replace(
-        '<script>UnityLoader.instantiate(',
-        '<script>window.onload = function() { UnityLoader.instantiate('
-      );
-      rewrittenHtml = rewrittenHtml.replace(
-        'onProgress: UnityProgress});</script>',
-        'onProgress: UnityProgress}) };</script>'
-      );
+          // Defer the UnityLoader instantiation script using a robust regex
+          rewrittenHtml = rewrittenHtml.replace(
+            /(<script>)([\s\S]*?UnityLoader\.instantiate[\s\S]*?)(<\/script>)/i,
+            "$1window.addEventListener('load', function() { $2 });$3"
+          );
 
-      return new Response(rewrittenHtml, {
+          return new Response(rewrittenHtml, {
             headers: { 'Content-Type': 'text/html' },
           });
         }

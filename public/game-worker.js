@@ -201,6 +201,13 @@ self.addEventListener('fetch', (event) => {
               }
             );
            }
+
+           // Rewrite root-relative URLs for all games to ensure they resolve correctly
+           rewrittenHtml = rewrittenHtml.replace(/(src|href)=['"](\/.*?)(['"])/gi, (match, attr, path, quote) => {
+             return `${attr}="${rawBaseUrl}${path.substring(1)}${quote}`;
+           });
+
+           console.log('Rewritten HTML (fetch):', rewrittenHtml); // Log rewritten HTML
            return new Response(rewrittenHtml, {
              headers: { 'Content-Type': 'text/html' },
            });

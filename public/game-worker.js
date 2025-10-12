@@ -134,6 +134,16 @@ self.addEventListener('message', async (event) => {
         rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
       }
 
+      // 2. Defer the UnityLoader instantiation script
+      rewrittenHtml = rewrittenHtml.replace(
+        '<script>UnityLoader.instantiate(',
+        '<script>window.onload = function() { UnityLoader.instantiate('
+      );
+      rewrittenHtml = rewrittenHtml.replace(
+        'onProgress: UnityProgress});</script>',
+        'onProgress: UnityProgress}) };</script>'
+      );
+
       event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
 
     } catch (error) {
@@ -171,7 +181,17 @@ self.addEventListener('fetch', (event) => {
             rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
           }
 
-          return new Response(rewrittenHtml, {
+          // 2. Defer the UnityLoader instantiation script
+      rewrittenHtml = rewrittenHtml.replace(
+        '<script>UnityLoader.instantiate(',
+        '<script>window.onload = function() { UnityLoader.instantiate('
+      );
+      rewrittenHtml = rewrittenHtml.replace(
+        'onProgress: UnityProgress});</script>',
+        'onProgress: UnityProgress}) };</script>'
+      );
+
+      return new Response(rewrittenHtml, {
             headers: { 'Content-Type': 'text/html' },
           });
         }

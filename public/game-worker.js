@@ -125,7 +125,6 @@ self.addEventListener('message', async (event) => {
       const htmlText = await mainHtmlResponse.text();
 
       // Inject a <base> tag to handle relative paths correctly.
-      const gameFolderPath = gameRepoPath.substring(0, gameRepoPath.lastIndexOf('/'));
       const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
 
       let rewrittenHtml = htmlText;

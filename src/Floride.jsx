@@ -80,7 +80,7 @@ const Floride = () => {
                   For **inline** mathematics, wrap the expression in single dollar signs. Example: \`The equation is $E=mc^2$.\`. 
                   For **block** mathematics, wrap the expression in double dollar signs. Example: 
                   \`
-                  $$ \sum_{i=1}^{n} i = \frac{n(n+1)}{2} $$
+                   $$ \sum_{i=1}^{n} i = \frac{n(n+1)}{2} $$
                   \`. 
                   Do not use brackets like \`\\[ ... \\]\` or \`\\( ... \\)\`. Do not use plain text for math. For example, instead of writing x^2, write \`$x^2$\``
     };

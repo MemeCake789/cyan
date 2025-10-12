@@ -114,44 +114,43 @@ self.addEventListener('message', async (event) => {
         }
       });
 
-      await Promise.all(cachePromises);
-      console.log(`All files for ${gameTitle} cached.`);
+       await Promise.all(cachePromises);
+       console.log(`All files for ${gameTitle} cached.`);
 
-      // Now, fetch the main HTML, rewrite its URLs, and send it back to the client
-      const mainHtmlResponse = await cache.match(`${rawBaseUrl}${gameRepoPath}`); // Get from cache
-      if (!mainHtmlResponse) {
-        throw new Error('Main HTML not found in cache after caching process.');
-      }
-      const htmlText = await mainHtmlResponse.text();
-      let rewrittenHtml = htmlText; // Initialize with original HTML
-
-       const isUnityGame = rewrittenHtml.includes('UnityLoader.js');
-
-       // 1. Inject a <base> tag to handle relative paths correctly.
-       if (!isUnityGame) { // Only inject base tag for non-Unity games
-         const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
-         if (rewrittenHtml.includes('<head>')) {
-           rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-         } else {
-           rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
-         }
+       // Now, fetch the main HTML, rewrite its URLs, and send it back to the client
+       const mainHtmlResponse = await cache.match(`${rawBaseUrl}${gameRepoPath}`); // Get from cache
+       if (!mainHtmlResponse) {
+         throw new Error('Main HTML not found in cache after caching process.');
        }
+       const htmlText = await mainHtmlResponse.text();
+       let rewrittenHtml = htmlText; // Initialize with original HTML
 
-       // For non-Unity games, wrap inline scripts to prevent race conditions.
-       // For Unity games, do nothing else, preserving their original script loading.
-       if (!isUnityGame) {
-         rewrittenHtml = rewrittenHtml.replace(
-          /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
-          (match, openTag, scriptContent, closeTag) => {
-            if (scriptContent.trim().length > 0) {
-              return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
-            }
-            return match;
-          }
-        );
-       }
+        const isUnityGame = rewrittenHtml.includes('UnityLoader.js');
 
-      event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
+        // 1. Inject a <base> tag to handle relative paths correctly.
+        const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+        if (rewrittenHtml.includes('<head>')) {
+          rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+        } else {
+          rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+        }
+
+        // For non-Unity games, wrap inline scripts to prevent race conditions.
+        // For Unity games, do nothing else, preserving their original script loading.
+        if (!isUnityGame) {
+          rewrittenHtml = rewrittenHtml.replace(
+           /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
+           (match, openTag, scriptContent, closeTag) => {
+             if (scriptContent.trim().length > 0) {
+               return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
+             }
+             return match;
+           }
+         );
+        }
+
+       console.log('Rewritten HTML (cache):', rewrittenHtml); // Log rewritten HTML
+       event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
 
     } catch (error) {
       console.error('Service Worker caching failed:', error);
@@ -201,6 +200,26 @@ self.addEventListener('fetch', (event) => {
                 return match;
               }
             );
+           }
+                return match;
+              }
+            );
+           } else { // For Unity games, rewrite script src to absolute URLs
+             const rawBaseUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/`;
+             const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
+             const absoluteGameFolderPath = `${rawBaseUrl}${gameFolderPath}/`;
+
+         rewrittenHtml = rewrittenHtml.replace(/(src|href)=['"](?!data:)(.*?)['"](?!data:)/gi, (match, attr, url) => {
+           if (url.startsWith('http')) {
+             return match; // Already absolute
+           } else if (url.startsWith('/')) {
+             // Root-relative path, make it absolute to the rawBaseUrl
+             return `${attr}="${rawBaseUrl}${url.substring(1)}"`;
+           } else {
+             // Truly relative path, make it absolute to the gameFolderPath
+             return `${attr}="${absoluteGameFolderPath}${url}"`;
+           }
+         });
            }
 
           return new Response(rewrittenHtml, {

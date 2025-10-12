@@ -227,7 +227,10 @@ self.addEventListener('fetch', (event) => {
         }
         // If asset not in cache (e.g., new asset or cache miss), try network
         console.log('Fetching asset from network:', event.request.url);
-        return fetch(event.request);
+        const networkResponse = await fetch(event.request);
+        const newHeaders = new Headers(networkResponse.headers);
+        newHeaders.set('Access-Control-Allow-Origin', '*'); // Add CORS header
+        return new Response(networkResponse.body, { headers: newHeaders });
       })
     );
     return;

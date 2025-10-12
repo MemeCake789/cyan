@@ -201,30 +201,9 @@ self.addEventListener('fetch', (event) => {
               }
             );
            }
-                return match;
-              }
-            );
-           } else { // For Unity games, rewrite script src to absolute URLs
-             const rawBaseUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/`;
-             const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
-             const absoluteGameFolderPath = `${rawBaseUrl}${gameFolderPath}/`;
-
-         rewrittenHtml = rewrittenHtml.replace(/(src|href)=['"](?!data:)(.*?)['"](?!data:)/gi, (match, attr, url) => {
-           if (url.startsWith('http')) {
-             return match; // Already absolute
-           } else if (url.startsWith('/')) {
-             // Root-relative path, make it absolute to the rawBaseUrl
-             return `${attr}="${rawBaseUrl}${url.substring(1)}"`;
-           } else {
-             // Truly relative path, make it absolute to the gameFolderPath
-             return `${attr}="${absoluteGameFolderPath}${url}"`;
-           }
-         });
-           }
-
-          return new Response(rewrittenHtml, {
-            headers: { 'Content-Type': 'text/html' },
-          });
+           return new Response(rewrittenHtml, {
+             headers: { 'Content-Type': 'text/html' },
+           });
         }
         // If main HTML not in cache, try network (shouldn't happen if CACHE_GAME worked)
         console.warn('Main HTML not found in cache, fetching from network:', gameHtmlGithubUrl);

@@ -125,27 +125,29 @@ self.addEventListener('message', async (event) => {
       const htmlText = await mainHtmlResponse.text();
       let rewrittenHtml = htmlText; // Initialize with original HTML
 
-      // 1. Inject a <base> tag to handle relative paths correctly.
-      const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
-      if (rewrittenHtml.includes('<head>')) {
-        rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-      } else {
-        rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
-      }
+       const isUnityGame = rewrittenHtml.includes('UnityLoader.js');
 
-       // 2. Add defer attribute to all external scripts to ensure they execute in order
-       // rewrittenHtml = rewrittenHtml.replace(/<script\s+src="/g, '<script defer src="');
+       // 1. Inject a <base> tag to handle relative paths correctly.
+       const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+       if (rewrittenHtml.includes('<head>')) {
+         rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+       } else {
+         rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+       }
 
-       // 3. Wrap all inline scripts in a 'load' event listener to prevent race conditions
-       rewrittenHtml = rewrittenHtml.replace(
-        /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
-        (match, openTag, scriptContent, closeTag) => {
-          if (scriptContent.trim().length > 0) {
-            return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
+       // For non-Unity games, wrap inline scripts to prevent race conditions.
+       // For Unity games, do nothing else, preserving their original script loading.
+       if (!isUnityGame) {
+         rewrittenHtml = rewrittenHtml.replace(
+          /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
+          (match, openTag, scriptContent, closeTag) => {
+            if (scriptContent.trim().length > 0) {
+              return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
+            }
+            return match;
           }
-          return match;
-        }
-      );
+        );
+       }
 
       event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
 
@@ -174,28 +176,30 @@ self.addEventListener('fetch', (event) => {
           const htmlText = await cachedResponse.text();
           let rewrittenHtml = htmlText; // Initialize with original HTML
 
-          // 1. Inject a <base> tag to handle relative paths correctly.
-          const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
-          const baseHref = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${gameFolderPath}/`;
-          if (rewrittenHtml.includes('<head>')) {
-            rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-          } else {
-            rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
-          }
+           const isUnityGame = rewrittenHtml.includes('UnityLoader.js');
 
-           // 2. Add defer attribute to all external scripts to ensure they execute in order
-           // rewrittenHtml = rewrittenHtml.replace(/<script\s+src="/g, '<script defer src="');
+           // 1. Inject a <base> tag to handle relative paths correctly.
+           const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
+           const baseHref = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${gameFolderPath}/`;
+           if (rewrittenHtml.includes('<head>')) {
+             rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+           } else {
+             rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+           }
 
-           // 3. Wrap all inline scripts in a 'load' event listener to prevent race conditions
-           rewrittenHtml = rewrittenHtml.replace(
-            /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
-            (match, openTag, scriptContent, closeTag) => {
-              if (scriptContent.trim().length > 0) {
-                return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
+           // For non-Unity games, wrap inline scripts to prevent race conditions.
+           // For Unity games, do nothing else, preserving their original script loading.
+           if (!isUnityGame) {
+             rewrittenHtml = rewrittenHtml.replace(
+              /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
+              (match, openTag, scriptContent, closeTag) => {
+                if (scriptContent.trim().length > 0) {
+                  return `${openTag}window.addEventListener('load', function() { try { ${scriptContent} } catch (e) { console.error('Error in loaded script:', e); } });${closeTag}`;
+                }
+                return match;
               }
-              return match;
-            }
-          );
+            );
+           }
 
           return new Response(rewrittenHtml, {
             headers: { 'Content-Type': 'text/html' },

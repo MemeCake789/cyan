@@ -122,45 +122,6 @@ self.addEventListener('message', async (event) => {
     }
   }
 });
-        }
-      }
-
-      // Also add the main HTML file itself if it's not already in the list
-      const mainHtmlFileInTree = filesToCache.some(file => file.path === gameLink);
-      if (!mainHtmlFileInTree) {
-        filesToCache.push({
-          path: gameLink,
-          download_url: `${rawBaseUrl}${gameLink}`,
-        });
-      }
-
-      const cache = await caches.open(CACHE_NAME);
-      const cachePromises = filesToCache.map(async (file) => {
-        const githubFileUrl = file.download_url;
-
-        try {
-          const fileResponse = await fetch(githubFileUrl);
-          if (fileResponse.ok) {
-            await cache.put(githubFileUrl, fileResponse);
-            console.log(`Cached: ${file.path}`);
-          } else {
-            console.error(`Failed to cache ${file.path}: ${fileResponse.status}`);
-          }
-        } catch (error) {
-          console.error(`Error fetching or caching ${file.path}:`, error);
-        }
-      });
-
-      await Promise.all(cachePromises);
-      event.source.postMessage({ type: 'GAME_CACHED', gameLink });
-      console.log(`All files for ${gameTitle} cached.`);
-
-    } catch (error) {
-      console.error('Service Worker caching failed:', error);
-      event.source.postMessage({ type: 'CACHE_ERROR', gameLink, error: error.message });
-    }
-  }
-});
 
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);

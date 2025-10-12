@@ -30,6 +30,33 @@ const GamePage = () => {
    const [animateControls, setAnimateControls] = useState(false);
 
   useEffect(() => {
+    if (!game || game.type !== 'HTML') return;
+
+    const messageListener = (event) => {
+      if (event.data.type === 'GAME_CACHED' && event.data.gameLink === game.link) {
+        console.log('Game cached by service worker:', game.title);
+        // Construct a URL that the service worker will intercept
+        const cachedGameUrl = `/cached-game/${encodeURIComponent(game.link)}`;
+        if (iframeRef.current) {
+          iframeRef.current.src = cachedGameUrl;
+        }
+        setGameLaunched(true);
+        setIsDownloading(false);
+      } else if (event.data.type === 'CACHE_ERROR' && event.data.gameLink === game.link) {
+        console.error('Service Worker caching error:', event.data.error);
+        alert(`Failed to load game: ${event.data.error}. Please try again.`);
+        setIsDownloading(false);
+      }
+    };
+
+    navigator.serviceWorker.addEventListener('message', messageListener);
+
+    return () => {
+      navigator.serviceWorker.removeEventListener('message', messageListener);
+    };
+  }, [game, iframeRef]);
+
+  useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
     canvases.forEach(canvas => { canvas.remove(); });
 
@@ -37,8 +64,9 @@ const GamePage = () => {
       if (game.type === 'HTML') {
         setHtmlContent('');
       } else {
-        const generatedHtml = createGameHtml(game);
-        setHtmlContent(generatedHtml);
+        // For EMULATOR or FLASH games, keep existing logic if any
+        // For now, we'll just clear htmlContent for HTML games
+        setHtmlContent('');
       }
     }
   }, [game]);
@@ -78,19 +106,18 @@ const GamePage = () => {
    const handleLaunchGame = async () => {
      if (game.type === 'HTML') {
        setIsDownloading(true);
-       try {
-         const response = await fetch(`/api/load-game?link=${game.link}`);
-         if (!response.ok) throw new Error('Failed to load game');
-         const html = await response.text();
-         setHtmlContent(html);
-         setGameLaunched(true);
-       } catch (error) {
-         console.error('Error loading game:', error);
-         alert('Failed to load game. Please try again.');
-       } finally {
+       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+         navigator.serviceWorker.controller.postMessage({
+           type: 'CACHE_GAME',
+           gameLink: game.link,
+           gameTitle: game.title,
+         });
+       } else {
+         alert('Service Worker not active. Please refresh the page.');
          setIsDownloading(false);
        }
      } else {
+       // For EMULATOR or FLASH games, keep existing logic if any, or set launched directly
        setGameLaunched(true);
      }
    };
@@ -123,7 +150,7 @@ const GamePage = () => {
       <div className="game-content-container">
          {gameLaunched ? (
            game.type === 'HTML' ? (
-             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+             <iframe ref={iframeRef} src={`/cached-game/${encodeURIComponent(game.link)}`} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
            ) : (
              <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen />
            )

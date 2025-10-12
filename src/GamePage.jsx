@@ -30,27 +30,16 @@ const GamePage = () => {
    const [animateControls, setAnimateControls] = useState(false);
 
   useEffect(() => {
-    if (!game || game.type !== 'HTML') return;
+    if (iframeRef.current && htmlContent) {
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      iframeRef.current.src = url;
 
-    const messageListener = (event) => {
-      if (event.data.type === 'GAME_CACHED_HTML' && event.data.gameLink === game.link) {
-        console.log('Game HTML received from service worker:', game.title);
-        setHtmlContent(event.data.htmlContent);
-        setGameLaunched(true);
-        setIsDownloading(false);
-      } else if (event.data.type === 'CACHE_ERROR' && event.data.gameLink === game.link) {
-        console.error('Service Worker caching error:', event.data.error);
-        alert(`Failed to load game: ${event.data.error}. Please try again.`);
-        setIsDownloading(false);
-      }
-    };
-
-    navigator.serviceWorker.addEventListener('message', messageListener);
-
-    return () => {
-      navigator.serviceWorker.removeEventListener('message', messageListener);
-    };
-  }, [game, iframeRef]);
+      return () => {
+        URL.revokeObjectURL(url);
+      };
+    }
+  }, [htmlContent]);
 
   useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
@@ -146,9 +135,9 @@ const GamePage = () => {
       <div className="game-content-container">
          {gameLaunched ? (
            game.type === 'HTML' ? (
-             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+             <iframe ref={iframeRef} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
            ) : (
-             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen />
+             <iframe ref={iframeRef} title={game.title} className="game-iframe" allowFullScreen />
            )
          ) : (
           <div className="launch-screen">

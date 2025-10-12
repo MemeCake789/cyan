@@ -117,35 +117,8 @@ self.addEventListener('message', async (event) => {
        await Promise.all(cachePromises);
        console.log(`All files for ${gameTitle} cached.`);
 
-       // Now, fetch the main HTML, rewrite its URLs, and send it back to the client
-       const mainHtmlResponse = await cache.match(`${rawBaseUrl}${gameRepoPath}`); // Get from cache
-       if (!mainHtmlResponse) {
-         throw new Error('Main HTML not found in cache after caching process.');
-       }
-       const htmlText = await mainHtmlResponse.text();
-       let rewrittenHtml = htmlText; // Initialize with original HTML
 
-         // 1. Inject a <base> tag to handle relative paths correctly.
-         const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
-         if (rewrittenHtml.includes('<head>')) {
-           rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-         } else {
-           rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
-         }
 
-            // Rewrite all relative src/href attributes to absolute URLs
-            rewrittenHtml = rewrittenHtml.replace(/(src|href)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi, (match, attr, quote, url) => {
-              const currentgameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
-              const currentAbsoluteGameFolderPath = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${currentgameFolderPath}/`;
-
-              if (url.startsWith('/')) {
-                // Root-relative path, make it absolute to the rawBaseUrl
-                return `${attr}=${quote}${rawBaseUrl}${url.substring(1)}${quote}`;
-              } else {
-                // Truly relative path, make it absolute to the gameFolderPath (handled by base tag, but explicit rewrite for robustness)
-                return `${attr}=${quote}${currentAbsoluteGameFolderPath}${url}${quote}`;
-              }
-            });
 
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);

@@ -117,8 +117,10 @@ self.addEventListener('message', async (event) => {
        await Promise.all(cachePromises);
        console.log(`All files for ${gameTitle} cached.`);
 
-
-
+     } catch (error) {
+       console.error('Error in CACHE_GAME message handler:', error);
+     }
+   });
 
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);

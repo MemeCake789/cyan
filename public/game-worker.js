@@ -202,10 +202,7 @@ self.addEventListener('fetch', (event) => {
             );
            }
 
-           // Rewrite root-relative URLs for all games to ensure they resolve correctly
-           rewrittenHtml = rewrittenHtml.replace(/(src|href)=['"](\/.*?)(['"])/gi, (match, attr, path, quote) => {
-             return `${attr}="${rawBaseUrl}${path.substring(1)}${quote}`;
-           });
+           // Rewrite all relative src/href attributes to absolute URLs\n           rewrittenHtml = rewrittenHtml.replace(/(src|href)=([\'\"])(?!https?:\/\/|data:)(.*?)\\2/gi, (match, attr, quote, url) => {\n             const currentgameFolderPath = gameLink.substring(0, gameLink.lastIndexOf(\'/\'));\n             const currentAbsoluteGameFolderPath = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${currentgameFolderPath}/`;\n\n             if (url.startsWith(\'/\')) {\n               // Root-relative path, make it absolute to the rawBaseUrl\n               return `${attr}=${quote}${rawBaseUrl}${url.substring(1)}${quote}`;\n             } else {\n               // Truly relative path, make it absolute to the gameFolderPath (handled by base tag, but explicit rewrite for robustness)\n               return `${attr}=${quote}${currentAbsoluteGameFolderPath}${url}${quote}`;\n             }\n           });
 
            console.log('Rewritten HTML (fetch):', rewrittenHtml); // Log rewritten HTML
            return new Response(rewrittenHtml, {

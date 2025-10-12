@@ -136,34 +136,45 @@ self.addEventListener('fetch', (event) => {
       caches.open(CACHE_NAME).then(async (cache) => {
         const cachedResponse = await cache.match(gameHtmlGithubUrl);
         if (cachedResponse) {
-          console.log('Serving main HTML from cache:', gameHtmlGithubUrl);
-          const htmlText = await cachedResponse.text();
-          let rewrittenHtml = htmlText; // Initialize with original HTML
+           console.log('Serving main HTML from cache:', gameHtmlGithubUrl);
+           const htmlText = await cachedResponse.text();
+           let rewrittenHtml = htmlText; // Initialize with original HTML
 
-           // 1. Inject a <base> tag to handle relative paths correctly.
+           console.log('DEBUG: gameLink', gameLink);
            const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
-           const baseHref = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${gameFolderPath}/`;
-           if (rewrittenHtml.includes('<head>')) {
-             rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-           } else {
-             rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
-           }
+           console.log('DEBUG: gameFolderPath', gameFolderPath);
+           const rawBaseUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/`;
+           console.log('DEBUG: rawBaseUrl', rawBaseUrl);
 
-           // Rewrite all relative src/href attributes to absolute URLs
-           rewrittenHtml = rewrittenHtml.replace(/(src|href)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi, (match, attr, quote, url) => {
-             const currentgameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
-             const currentAbsoluteGameFolderPath = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${currentgameFolderPath}/`;
+            // 1. Inject a <base> tag to handle relative paths correctly.
+            const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+            console.log('DEBUG: baseHref', baseHref);
+            if (rewrittenHtml.includes('<head>')) {
+              rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+            } else {
+              rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+            }
 
-             if (url.startsWith('/')) {
-               // Root-relative path, make it absolute to the rawBaseUrl
-               return `${attr}=${quote}${rawBaseUrl}${url.substring(1)}${quote}`;
-             } else {
-               // Truly relative path, make it absolute to the gameFolderPath (handled by base tag, but explicit rewrite for robustness)
-               return `${attr}=${quote}${currentAbsoluteGameFolderPath}${url}${quote}`;
-             }
-           });
+            // Rewrite all relative src/href attributes to absolute URLs
+            rewrittenHtml = rewrittenHtml.replace(/(src|href)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi, (match, attr, quote, url) => {
+              console.log('DEBUG: Rewriting URL:', url);
+              const currentgameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
+              const currentAbsoluteGameFolderPath = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${currentgameFolderPath}/`;
+              console.log('DEBUG: currentAbsoluteGameFolderPath', currentAbsoluteGameFolderPath);
 
-           console.log('Rewritten HTML (fetch):', rewrittenHtml); // Log rewritten HTML
+              let rewrittenUrl;
+              if (url.startsWith('/')) {
+                // Root-relative path, make it absolute to the rawBaseUrl
+                rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;
+              } else {
+                // Truly relative path, make it absolute to the gameFolderPath (handled by base tag, but explicit rewrite for robustness)
+                rewrittenUrl = `${currentAbsoluteGameFolderPath}${url}`;
+              }
+              console.log('DEBUG: Rewritten URL:', rewrittenUrl);
+              return `${attr}=${quote}${rewrittenUrl}${quote}`;
+            });
+
+            console.log('Rewritten HTML (fetch):', rewrittenHtml); // Log rewritten HTML
            return new Response(rewrittenHtml, {
              headers: { 'Content-Type': 'text/html' },
            });

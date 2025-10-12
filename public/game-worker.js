@@ -124,20 +124,16 @@ self.addEventListener('message', async (event) => {
       }
       const htmlText = await mainHtmlResponse.text();
 
-      // Rewrite relative URLs in the HTML to point to the full GitHub raw URLs
-      const rewrittenHtml = htmlText.replace(
-        /(src|href|url)="([^'"#]+)"/g,
-        (match, attr, relativePath) => {
-          if (relativePath.startsWith('http') || relativePath.startsWith('//')) {
-            return match; // Already absolute
-          }
-          // Construct the full GitHub raw URL for the asset, normalizing path segments
-          const normalizedRelativePath = relativePath.split('/').filter(Boolean).join('/');
-          const fullGithubAssetPath = `${gameFolderPath}/${normalizedRelativePath}`.replace(/\/\.\//g, '/').replace(/\/\//g, '/'); // Normalize paths
-          const fullGithubAssetUrl = `${rawBaseUrl}${fullGithubAssetPath}`;
-          return `${attr}="${fullGithubAssetUrl}"`;
-        }
-      );
+      // Inject a <base> tag to handle relative paths correctly.
+      const gameFolderPath = gameRepoPath.substring(0, gameRepoPath.lastIndexOf('/'));
+      const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+
+      let rewrittenHtml = htmlText;
+      if (rewrittenHtml.includes('<head>')) {
+        rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+      } else {
+        rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+      }
 
       event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
 
@@ -165,20 +161,16 @@ self.addEventListener('fetch', (event) => {
           console.log('Serving main HTML from cache:', gameHtmlGithubUrl);
           const htmlText = await cachedResponse.text();
 
-          // Rewrite relative URLs in the HTML to point to the full GitHub raw URLs
-          const rewrittenHtml = htmlText.replace(
-            /(src|href|url)="([^'"#]+)"/g,
-            (match, attr, relativePath) => {
-              if (relativePath.startsWith('http') || relativePath.startsWith('//')) {
-                return match; // Already absolute
-              }
-              // Construct the full GitHub path for the asset
-              const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
-              const fullGithubAssetPath = `${gameFolderPath}/${relativePath}`.replace(/\/\.\//g, '/'); // Normalize paths
-              const fullGithubAssetUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${fullGithubAssetPath}`;
-              return `${attr}="${fullGithubAssetUrl}"`;
-            }
-          );
+          // Inject a <base> tag to handle relative paths correctly.
+          const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
+          const baseHref = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${gameFolderPath}/`;
+
+          let rewrittenHtml = htmlText;
+          if (rewrittenHtml.includes('<head>')) {
+            rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+          } else {
+            rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+          }
 
           return new Response(rewrittenHtml, {
             headers: { 'Content-Type': 'text/html' },

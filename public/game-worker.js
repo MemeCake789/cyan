@@ -128,11 +128,13 @@ self.addEventListener('message', async (event) => {
        const isUnityGame = rewrittenHtml.includes('UnityLoader.js');
 
        // 1. Inject a <base> tag to handle relative paths correctly.
-       const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
-       if (rewrittenHtml.includes('<head>')) {
-         rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-       } else {
-         rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+       if (!isUnityGame) { // Only inject base tag for non-Unity games
+         const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+         if (rewrittenHtml.includes('<head>')) {
+           rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+         } else {
+           rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+         }
        }
 
        // For non-Unity games, wrap inline scripts to prevent race conditions.

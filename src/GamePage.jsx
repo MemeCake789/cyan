@@ -42,6 +42,29 @@ const GamePage = () => {
   }, [htmlContent]);
 
   useEffect(() => {
+    if (!game || game.type !== 'HTML') return;
+
+    const messageListener = (event) => {
+      if (event.data.type === 'GAME_CACHED_HTML' && event.data.gameLink === game.link) {
+        console.log('Game HTML received from service worker:', game.title);
+        setHtmlContent(event.data.htmlContent);
+        setGameLaunched(true);
+        setIsDownloading(false);
+      } else if (event.data.type === 'CACHE_ERROR' && event.data.gameLink === game.link) {
+        console.error('Service Worker caching error:', event.data.error);
+        alert(`Failed to load game: ${event.data.error}. Please try again.`);
+        setIsDownloading(false);
+      }
+    };
+
+    navigator.serviceWorker.addEventListener('message', messageListener);
+
+    return () => {
+      navigator.serviceWorker.removeEventListener('message', messageListener);
+    };
+  }, [game]);
+
+  useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
     canvases.forEach(canvas => { canvas.remove(); });
 

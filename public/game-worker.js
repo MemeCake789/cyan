@@ -31,7 +31,9 @@ self.addEventListener('message', async (event) => {
     const { gameLink, gameTitle } = event.data;
     console.log(`Service Worker received message to cache game: ${gameTitle} at ${gameLink}`);
 
-    const gameFolderPath = gameLink.substring(0, gameLink.lastIndexOf('/'));
+    // Adjust gameLink to be relative to the repo root (e.g., 'HTML/Bitlife/index.html')
+    const gameRepoPath = gameLink.startsWith('cyan-assets/') ? gameLink.substring('cyan-assets/'.length) : gameLink;
+    const gameFolderPath = gameRepoPath.substring(0, gameRepoPath.lastIndexOf('/'));
 
     try {
       // 1. Get the SHA of the main branch
@@ -56,9 +58,70 @@ self.addEventListener('message', async (event) => {
       for (const item of treeData.tree) {
         if (item.type === 'blob' && item.path.startsWith(gameFolderPath)) {
           filesToCache.push({
-            path: item.path,
+            path: item.path, // This is already relative to repo root
             download_url: `${rawBaseUrl}${item.path}`,
           });
+        }
+      }
+
+      // Ensure the main HTML file is in the list
+      const mainHtmlFileInTree = filesToCache.some(file => file.path === gameRepoPath);
+      if (!mainHtmlFileInTree) {
+        filesToCache.push({
+          path: gameRepoPath,
+          download_url: `${rawBaseUrl}${gameRepoPath}`,
+        });
+      }
+
+      const cache = await caches.open(CACHE_NAME);
+      const cachePromises = filesToCache.map(async (file) => {
+        const githubFileUrl = file.download_url; // This is the full raw GitHub URL
+
+        try {
+          const fileResponse = await fetch(githubFileUrl);
+          if (fileResponse.ok) {
+            await cache.put(githubFileUrl, fileResponse);
+            console.log(`Cached: ${file.path}`);
+          } else {
+            console.error(`Failed to cache ${file.path}: ${fileResponse.status}`);
+          }
+        } catch (error) {
+          console.error(`Error fetching or caching ${file.path}:`, error);
+        }
+      });
+
+      await Promise.all(cachePromises);
+      console.log(`All files for ${gameTitle} cached.`);
+
+      // Now, fetch the main HTML, rewrite its URLs, and send it back to the client
+      const mainHtmlResponse = await cache.match(`${rawBaseUrl}${gameRepoPath}`); // Get from cache
+      if (!mainHtmlResponse) {
+        throw new Error('Main HTML not found in cache after caching process.');
+      }
+      const htmlText = await mainHtmlResponse.text();
+
+      // Rewrite relative URLs in the HTML to point to the full GitHub raw URLs
+      const rewrittenHtml = htmlText.replace(
+        /(src|href|url)="([^'"#]+)"/g,
+        (match, attr, relativePath) => {
+          if (relativePath.startsWith('http') || relativePath.startsWith('//')) {
+            return match; // Already absolute
+          }
+          // Construct the full GitHub raw URL for the asset
+          const fullGithubAssetPath = `${gameFolderPath}/${relativePath}`.replace(/\/\.\//g, '/'); // Normalize paths
+          const fullGithubAssetUrl = `${rawBaseUrl}${fullGithubAssetPath}`;
+          return `${attr}="${fullGithubAssetUrl}"`;
+        }
+      );
+
+      event.source.postMessage({ type: 'GAME_CACHED_HTML', gameLink, htmlContent: rewrittenHtml });
+
+    } catch (error) {
+      console.error('Service Worker caching failed:', error);
+      event.source.postMessage({ type: 'CACHE_ERROR', gameLink, error: error.message });
+    }
+  }
+});
         }
       }
 

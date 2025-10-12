@@ -33,13 +33,9 @@ const GamePage = () => {
     if (!game || game.type !== 'HTML') return;
 
     const messageListener = (event) => {
-      if (event.data.type === 'GAME_CACHED' && event.data.gameLink === game.link) {
-        console.log('Game cached by service worker:', game.title);
-        // Construct a URL that the service worker will intercept
-        const cachedGameUrl = `/cached-game/${encodeURIComponent(game.link)}`;
-        if (iframeRef.current) {
-          iframeRef.current.src = cachedGameUrl;
-        }
+      if (event.data.type === 'GAME_CACHED_HTML' && event.data.gameLink === game.link) {
+        console.log('Game HTML received from service worker:', game.title);
+        setHtmlContent(event.data.htmlContent);
         setGameLaunched(true);
         setIsDownloading(false);
       } else if (event.data.type === 'CACHE_ERROR' && event.data.gameLink === game.link) {
@@ -150,7 +146,7 @@ const GamePage = () => {
       <div className="game-content-container">
          {gameLaunched ? (
            game.type === 'HTML' ? (
-             <iframe ref={iframeRef} src={`/cached-game/${encodeURIComponent(game.link)}`} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
            ) : (
              <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen />
            )

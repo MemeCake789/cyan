@@ -58,7 +58,7 @@ self.addEventListener('message', async (event) => {
 
     try {
       // 1. Get the SHA of the main branch
-      const branchResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/branches/main`);
+      const branchResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/branches/main`, { mode: 'cors' });
       if (!branchResponse.ok) {
         throw new Error(`GitHub Branch API error: ${branchResponse.status} - ${branchResponse.statusText}`);
       }

@@ -133,11 +133,11 @@ self.addEventListener('message', async (event) => {
         rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
       }
 
-      // 2. Add defer attribute to all external scripts to ensure they execute in order
-      rewrittenHtml = rewrittenHtml.replace(/<script\s+src="/g, '<script defer src="');
+       // 2. Add defer attribute to all external scripts to ensure they execute in order
+       // rewrittenHtml = rewrittenHtml.replace(/<script\s+src="/g, '<script defer src="');
 
-      // 3. Wrap all inline scripts in a 'load' event listener to prevent race conditions
-      rewrittenHtml = rewrittenHtml.replace(
+       // 3. Wrap all inline scripts in a 'load' event listener to prevent race conditions
+       rewrittenHtml = rewrittenHtml.replace(
         /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
         (match, openTag, scriptContent, closeTag) => {
           if (scriptContent.trim().length > 0) {
@@ -183,11 +183,11 @@ self.addEventListener('fetch', (event) => {
             rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
           }
 
-          // 2. Add defer attribute to all external scripts to ensure they execute in order
-          rewrittenHtml = rewrittenHtml.replace(/<script\s+src="/g, '<script defer src="');
+           // 2. Add defer attribute to all external scripts to ensure they execute in order
+           // rewrittenHtml = rewrittenHtml.replace(/<script\s+src="/g, '<script defer src="');
 
-          // 3. Wrap all inline scripts in a 'load' event listener to prevent race conditions
-          rewrittenHtml = rewrittenHtml.replace(
+           // 3. Wrap all inline scripts in a 'load' event listener to prevent race conditions
+           rewrittenHtml = rewrittenHtml.replace(
             /(<script(?![^>]*src)>)([\s\S]+?)(<\/script>)/gi,
             (match, openTag, scriptContent, closeTag) => {
               if (scriptContent.trim().length > 0) {

@@ -18,7 +18,7 @@ const createGameHtml = (game, downloadedUrl = null) => {
           </style>
         </head>
         <body>
-          <iframe src="${game.link}" sandbox="allow-scripts allow-same-origin"></iframe>
+          <iframe src="/cached-game/${encodeURIComponent(game.link)}" sandbox="allow-scripts allow-same-origin"></iframe>
         </body>
         </html>`;
       break;

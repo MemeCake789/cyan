@@ -344,24 +344,26 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
         return new Promise(async (resolve) => {
+          let headers;
           if (cachedResponse) {
             console.log("Serving asset from cache:", event.request.url);
-            const headers = new Headers(cachedResponse.headers);
+            headers = new Headers(cachedResponse.headers);
             const assetPathInRepo = requestUrl.pathname.replace(
               `/${GITHUB_REPO}/main/`,
               "",
             );
             headers.set("Content-Type", getMimeType(assetPathInRepo));
+            headers.set("Access-Control-Allow-Origin", "*");
+            headers.set("Cross-Origin-Resource-Policy", "cross-origin");
             resolve(new Response(cachedResponse.body, { headers }));
           } else {
             // If asset not in cache (e.g., new asset or cache miss), try network
             console.log("Fetching asset from network:", event.request.url);
             const networkResponse = await fetch(event.request);
-            const newHeaders = new Headers(networkResponse.headers);
-            newHeaders.set("Access-Control-Allow-Origin", "*"); // Add CORS header
-            resolve(
-              new Response(networkResponse.body, { headers: newHeaders }),
-            );
+            headers = new Headers(networkResponse.headers);
+            headers.set("Access-Control-Allow-Origin", "*");
+            headers.set("Cross-Origin-Resource-Policy", "cross-origin");
+            resolve(new Response(networkResponse.body, { headers }));
           }
         });
       }),

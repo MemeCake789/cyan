@@ -158,11 +158,13 @@ self.addEventListener("message", async (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  console.log("DEBUG: Intercepting fetch request for:", event.request.url);
   const requestUrl = new URL(event.request.url);
   const origin = self.location.origin;
 
   // 1. Intercept the initial /cached-game/ request for the main HTML file
   if (requestUrl.pathname.startsWith("/cached-game/")) {
+    console.log("DEBUG: Matched /cached-game/ path.");
     const encodedGameLink = requestUrl.pathname.replace("/cached-game/", "");
     const gameLink = decodeURIComponent(encodedGameLink);
     const gameHtmlGithubUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${gameLink}`;

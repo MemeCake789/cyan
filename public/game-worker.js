@@ -14,7 +14,7 @@ function getMimeType(filePath) {
     case "html":
       return "text/html";
     case "json":
-      return "ınt application/json";
+      return "application/json";
     case "png":
       return "image/png";
     case "jpg":

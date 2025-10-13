@@ -151,8 +151,34 @@ self.addEventListener("message", async (event) => {
 
       await Promise.all(cachePromises);
       console.log(`All files for ${gameTitle} cached.`);
+
+      // After all files are cached, retrieve the main HTML and send it to the client
+      const mainHtmlGithubUrl = `${rawBaseUrl}${gameRepoPath}`;
+      const cachedHtmlResponse = await cache.match(mainHtmlGithubUrl);
+
+      if (cachedHtmlResponse) {
+        const htmlContent = await cachedHtmlResponse.text();
+        event.source.postMessage({
+          type: "GAME_CACHED_HTML",
+          gameLink: gameLink,
+          htmlContent: htmlContent,
+        });
+        console.log(`Sent GAME_CACHED_HTML for ${gameTitle} to client.`);
+      } else {
+        console.error(`Main HTML file not found in cache after caching all files: ${mainHtmlGithubUrl}`);
+        event.source.postMessage({
+          type: "CACHE_ERROR",
+          gameLink: gameLink,
+          error: "Main HTML file not found in cache after caching all files.",
+        });
+      }
     } catch (error) {
       console.error("Error in CACHE_GAME message handler:", error);
+      event.source.postMessage({
+        type: "CACHE_ERROR",
+        gameLink: gameLink,
+        error: error.message,
+      });
     }
   }
 });
@@ -227,6 +253,7 @@ self.addEventListener("fetch", (event) => {
             );
 
             console.log("Rewritten HTML (fetch):", rewrittenHtml); // Log rewritten HTML
+
             return new Response(rewrittenHtml, {
               headers: { "Content-Type": "text/html" },
             });

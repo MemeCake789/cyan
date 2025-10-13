@@ -78,7 +78,7 @@ self.addEventListener("message", async (event) => {
 
     try {
       const githubBranchApiUrl = `https://api.github.com/repos/${GITHUB_REPO}/branches/main`;
-      console.log('DEBUG: Fetching GitHub Branch API:', githubBranchApiUrl);
+      console.log("DEBUG: Fetching GitHub Branch API:", githubBranchApiUrl);
       const branchResponse = await fetch(githubBranchApiUrl, { mode: "cors" });
       if (!branchResponse.ok) {
         throw new Error(
@@ -157,15 +157,80 @@ self.addEventListener("message", async (event) => {
       const cachedHtmlResponse = await cache.match(mainHtmlGithubUrl);
 
       if (cachedHtmlResponse) {
-        const htmlContent = await cachedHtmlResponse.text();
+        let htmlContent = await cachedHtmlResponse.text();
+        let rewrittenHtml = htmlContent; // Initialize with original HTML
+
+        console.log("DEBUG: gameLink", gameLink);
+        console.log("DEBUG: gameFolderPath", gameFolderPath);
+        console.log("DEBUG: rawBaseUrl", rawBaseUrl);
+
+        // 1. Inject a <base> tag to handle relative paths correctly.
+        const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+        console.log("DEBUG: baseHref", baseHref);
+        if (rewrittenHtml.includes("<head>")) {
+          rewrittenHtml = rewrittenHtml.replace(
+            "<head>",
+            `<head><base href="${baseHref}">`,
+          );
+        } else {
+          rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+        }
+
+        // Rewrite all relative src/href attributes to absolute URLs
+        rewrittenHtml = rewrittenHtml.replace(
+          /(src|href)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi,
+          (match, attr, quote, url) => {
+            console.log("DEBUG: Rewriting URL:", url);
+            const currentAbsoluteGameFolderPath = `${rawBaseUrl}${gameFolderPath}/`;
+            console.log(
+              "DEBUG: currentAbsoluteGameFolderPath",
+              currentAbsoluteGameFolderPath,
+            );
+
+            let rewrittenUrl;
+            if (url.startsWith("/")) {
+              // Root-relative path, make it absolute to the rawBaseUrl
+              rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;
+            } else {
+              // Truly relative path, make it absolute to the gameFolderPath
+              rewrittenUrl = `${currentAbsoluteGameFolderPath}${url}`;
+            }
+            console.log("DEBUG: Rewritten URL:", rewrittenUrl);
+            return `${attr}=${quote}${rewrittenUrl}${quote}`;
+          },
+        );
+
+        // Special handling for UnityLoader.instantiate jsonUrl
+        const instantiateMatch = rewrittenHtml.match(
+          /UnityLoader\.instantiate\(\s*"gameContainer"\s*,\s*"([^"]+)"\s*,/,
+        );
+        if (instantiateMatch) {
+          const jsonPath = instantiateMatch[1];
+          let absoluteJson;
+          if (jsonPath.startsWith("/")) {
+            absoluteJson = `${rawBaseUrl}${jsonPath.substring(1)}`;
+          } else {
+            absoluteJson = `${rawBaseUrl}${gameFolderPath}/${jsonPath}`;
+          }
+          rewrittenHtml = rewrittenHtml.replace(
+            instantiateMatch[0],
+            `UnityLoader.instantiate("gameContainer", "${absoluteJson}", `,
+          );
+          console.log(`Rewrote UnityLoader jsonUrl to: ${absoluteJson}`);
+        }
+
+        console.log("Rewritten HTML (message):", rewrittenHtml); // Log rewritten HTML if needed
+
         event.source.postMessage({
           type: "GAME_CACHED_HTML",
           gameLink: gameLink,
-          htmlContent: htmlContent,
+          htmlContent: rewrittenHtml,
         });
         console.log(`Sent GAME_CACHED_HTML for ${gameTitle} to client.`);
       } else {
-        console.error(`Main HTML file not found in cache after caching all files: ${mainHtmlGithubUrl}`);
+        console.error(
+          `Main HTML file not found in cache after caching all files: ${mainHtmlGithubUrl}`,
+        );
         event.source.postMessage({
           type: "CACHE_ERROR",
           gameLink: gameLink,

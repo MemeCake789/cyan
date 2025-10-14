@@ -32,13 +32,15 @@ const GamesList = () => {
   }, []);
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
     };
 
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, []);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen]);
 
 
 
@@ -85,19 +87,7 @@ const GamesList = () => {
   };
 
   const handleFullscreen = () => {
-    try {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else {
-        if (window.top !== window) {
-          window.parent.document.documentElement.requestFullscreen();
-        } else {
-          containerRef.current.requestFullscreen();
-        }
-      }
-    } catch (e) {
-      alert('Fullscreen not supported in this context.');
-    }
+    setIsFullscreen(!isFullscreen);
   };
 
   const handleClose = () => {

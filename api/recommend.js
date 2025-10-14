@@ -15,11 +15,13 @@ export default async function handler(request, response) {
     return response.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  let body;
-  try {
-    body = JSON.parse(request.body);
-  } catch (error) {
-    return response.status(400).json({ message: 'Invalid JSON' });
+  let body = request.body;
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body);
+    } catch (error) {
+      return response.status(400).json({ message: 'Invalid JSON' });
+    }
   }
   const { gameName } = body;
 

@@ -87,23 +87,58 @@ const GamePage = () => {
     return <div>Game not found</div>;
   }
 
+  const getAllFiles = async (path) => {
+    const url = `https://api.github.com/repos/MemeCake789/cyan-assets/contents/${path}`;
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch contents for ${path}`);
+    }
+
+    const items = await res.json();
+    let files = [];
+
+    for (const item of items) {
+      if (item.type === 'file') {
+        files.push(item.path);
+      } else if (item.type === 'dir') {
+        const subFiles = await getAllFiles(item.path);
+        files = files.concat(subFiles);
+      }
+    }
+
+    return files;
+  };
+
   const handleLaunchGame = async () => {
     if (game.type === 'HTML') {
       setIsDownloading(true);
       try {
-        const response = await fetch('https://cyan-assets.vercel.app/api/cache-game', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ gameLink: game.link, gameTitle: game.title }),
+        const folder = game.link.replace(/^cyan-assets\//, '').replace(/\/[^/]+$/, '');
+        const allFiles = await getAllFiles(folder);
+        console.log(`Loaded files for ${game.title}:`, allFiles);
+
+        const htmlPath = game.link.replace(/^cyan-assets\//, '');
+        const htmlResponse = await fetch(`https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${htmlPath}`);
+        if (!htmlResponse.ok) {
+          throw new Error('Failed to fetch HTML');
+        }
+
+        let htmlContent = await htmlResponse.text();
+
+        // Modify HTML to use absolute URLs for relative paths
+        htmlContent = htmlContent.replace(/(src|href)="([^"]*)"/g, (match, attr, url) => {
+          if (url.startsWith('http') || url.startsWith('//') || url.startsWith('data:')) {
+            return match;
+          }
+          const absoluteUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${folder}/${url}`;
+          return `${attr}="${absoluteUrl}"`;
         });
-         if (response.ok) {
-           const { htmlContent, assets } = await response.json();
-           setAssets(assets);
-           setHtmlContent(htmlContent);
-           setGameLaunched(true);
-         }
+
+        setAssets(allFiles);
+        setHtmlContent(htmlContent);
+        setGameLaunched(true);
       } catch (error) {
-        console.error('API error:', error);
+        console.error('Error loading game:', error);
         alert('Error loading game');
       } finally {
         setIsDownloading(false);

@@ -24,37 +24,22 @@ const GamePage = () => {
   const iframeRef = useRef(null);
 
   const [gameLaunched, setGameLaunched] = useState(false);
+  const [htmlContent, setHtmlContent] = useState('');
   const [isDownloading, setIsDownloading] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [animateControls, setAnimateControls] = useState(false);
 
   useEffect(() => {
-    if (!game || game.type !== 'HTML') return;
+    if (iframeRef.current && htmlContent) {
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      iframeRef.current.src = url;
 
-    const messageListener = (event) => {
-      if (event.data.type === 'GAME_CACHED_HTML' && event.data.gameLink === game.link) {
-        console.log('Game cached successfully from service worker:', game.title);
-        setGameLaunched(true);
-        setIsDownloading(false);
-      } else if (event.data.type === 'CACHE_ERROR' && event.data.gameLink === game.link) {
-        console.error('Service Worker caching error:', event.data.error);
-        alert(`Failed to load game: ${event.data.error}. Please try again.`);
-        setIsDownloading(false);
-      }
-    };
-
-    navigator.serviceWorker.addEventListener('message', messageListener);
-
-    return () => {
-      navigator.serviceWorker.removeEventListener('message', messageListener);
-    };
-  }, [game]);
-
-  useEffect(() => {
-    if (gameLaunched && game?.type === 'HTML' && iframeRef.current) {
-      iframeRef.current.src = `/cached-game/${encodeURIComponent(game.link)}`;
+      return () => {
+        URL.revokeObjectURL(url);
+      };
     }
-  }, [gameLaunched, game]);
+  }, [htmlContent]);
 
   useEffect(() => {
     const canvases = document.querySelectorAll('canvas');
@@ -62,7 +47,7 @@ const GamePage = () => {
 
     if (game) {
       if (game.type === 'HTML') {
-        // No longer needed: htmlContent cleared
+        setHtmlContent('');
       } else {
         // For EMULATOR or FLASH games, keep existing logic if any
       }
@@ -101,17 +86,26 @@ const GamePage = () => {
     return <div>Game not found</div>;
   }
 
-  const handleLaunchGame = () => {
+  const handleLaunchGame = async () => {
     if (game.type === 'HTML') {
       setIsDownloading(true);
-      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
-          type: 'CACHE_GAME',
-          gameLink: game.link,
-          gameTitle: game.title,
+      try {
+        const response = await fetch('/api/cache-game', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ gameLink: game.link, gameTitle: game.title }),
         });
-      } else {
-        alert('Service Worker not active. Please refresh the page.');
+        if (response.ok) {
+          const { htmlContent } = await response.json();
+          setHtmlContent(htmlContent);
+          setGameLaunched(true);
+        } else {
+          alert('Failed to cache game');
+        }
+      } catch (error) {
+        console.error('API error:', error);
+        alert('Error loading game');
+      } finally {
         setIsDownloading(false);
       }
     } else {

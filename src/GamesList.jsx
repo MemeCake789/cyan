@@ -232,7 +232,7 @@ const GamesList = () => {
           </div>
         )}
       </div>
-      <StatusBar />
+      {!isFullscreen && <StatusBar />}
     </>
   );
 };

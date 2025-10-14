@@ -128,6 +128,7 @@ canvas{
 .btop-container.fullscreen .btop-box {
   outline: none;
   border-radius: 0;
+  transition: outline 0.3s ease-out, border-radius 0.3s ease-out;
 }
 
 .btop-header {

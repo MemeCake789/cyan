@@ -85,15 +85,31 @@ const GamesList = () => {
   };
 
   const handleFullscreen = () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      containerRef.current.requestFullscreen();
+    try {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        if (window.top !== window) {
+          window.parent.document.documentElement.requestFullscreen();
+        } else {
+          containerRef.current.requestFullscreen();
+        }
+      }
+    } catch (e) {
+      alert('Fullscreen not supported in this context.');
     }
   };
 
   const handleClose = () => {
-    window.close();
+    try {
+      if (window.top !== window) {
+        window.top.close();
+      } else {
+        window.close();
+      }
+    } catch (e) {
+      alert('Close not supported in this context.');
+    }
   };
 
   const isNew = (gameDate) => {

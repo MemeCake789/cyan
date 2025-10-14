@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
     // Rewrite relative src/href/data-src and url() in CSS
     rewrittenHtml = rewrittenHtml.replace(
-      /(src|href|data-src)=(['\"])(?!https?:\/\/|data:)(.*?)\\2/gi,
+      /(src|href|data-src)=(['\"])(?!https?:\/\/|data:)(.*?)\2/gi,
       (match, attr, quote, url) => {
         let rewrittenUrl;
         if (url.startsWith('/')) {
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
     );
 
     rewrittenHtml = rewrittenHtml.replace(
-      /url\\((?!['\"]?https?:\\/\\/|['\"]?data:)(['\"]?)(.*?)\\1\\)/gi,
+      /url\((?!['\"]?https?:\/\/|['\"]?data:)(['\"]?)(.*?)\1\)/gi,
       (match, quote, url) => {
         let rewrittenUrl;
         if (url.startsWith('/')) {

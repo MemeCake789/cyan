@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './StatusBar.css';
+import React, { useState, useEffect } from "react";
+import "./StatusBar.css";
 
 const StatusBar = () => {
   const [dateTime, setDateTime] = useState(new Date());
@@ -15,9 +15,9 @@ const StatusBar = () => {
   }, []);
 
   const formattedDate = dateTime.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   const formattedTime = dateTime.toLocaleTimeString();
@@ -25,10 +25,11 @@ const StatusBar = () => {
   return (
     <div className="status-bar">
       <div className="status-left">
-      cyλn 2.0 BETA | {formattedDate} | {formattedTime}
+        cyλn 2.0 BETA | {formattedDate} | {formattedTime}
       </div>
       <div className="status-right">
-        v2.3g (New game status)
+        PSI : Most games are not loading right now as I am currently working on
+        a new loading system, pls check back in a day :P
       </div>
     </div>
   );

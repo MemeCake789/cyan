@@ -24,6 +24,7 @@ const GamePage = () => {
   const iframeRef = useRef(null);
 
    const [gameLaunched, setGameLaunched] = useState(false);
+    const [htmlContent, setHtmlContent] = useState('');
     const [isFullScreen, setIsFullScreen] = useState(false);
     const [animateControls, setAnimateControls] = useState(false);
 
@@ -33,6 +34,18 @@ const GamePage = () => {
      const canvases = document.querySelectorAll('canvas');
      canvases.forEach(canvas => { canvas.remove(); });
    }, [game]);
+
+   useEffect(() => {
+     if (iframeRef.current && htmlContent) {
+       const blob = new Blob([htmlContent], { type: 'text/html' });
+       const url = URL.createObjectURL(blob);
+       iframeRef.current.src = url;
+
+       return () => {
+         URL.revokeObjectURL(url);
+       };
+     }
+   }, [htmlContent]);
 
    useEffect(() => {
      if (iframeRef.current && gameLaunched && game.type === 'HTML') {
@@ -73,11 +86,74 @@ const GamePage = () => {
   }
 
   const handleLaunchGame = async () => {
-    if (game.type === 'HTML') {
-      setGameLaunched(true);
-    } else {
-      // For EMULATOR or FLASH games, keep existing logic if any, or set launched directly
-      setGameLaunched(true);
+    let content = '';
+    const title = game.title;
+
+    switch (game.type) {
+      case 'HTML':
+        setGameLaunched(true);
+        break;
+      case 'FLASH':
+        content = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <base href="/">
+            <title>${title}</title>
+            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+            <style>
+              body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+              #ruffle-player { width: 100%; height: 100%; }
+            </style>
+            <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+          </head>
+          <body>
+            <div id="ruffle-player"></div>
+            <script>
+              window.RufflePlayer = window.RufflePlayer || {};
+              window.RufflePlayer.config = {
+                  "scale": "exactfit",
+              };
+              var ruffle = window.RufflePlayer.newest();
+              var player = ruffle.createPlayer();
+              player.id = "player";
+              player.style.width = "100%";
+              player.style.height = "100%";
+              document.getElementById("ruffle-player").appendChild(player);
+               player.load("${game.link}");
+            </script>
+          </body>
+          </html>`;
+        setHtmlContent(content);
+        setGameLaunched(true);
+        break;
+      case 'EMULATOR':
+        content = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+              #game { width: 100%; height: 100%; }
+            </style>
+          </head>
+          <body>
+            <div id="game"></div>
+            <script>
+              window.EJS_pathtodata = "https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/";
+              window.EJS_core = "${game.core}";
+              window.EJS_gameUrl = "${game.link}";
+              window.EJS_player = "#game";
+            </script>
+            <script src="https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js"></script>
+          </body>
+          </html>`;
+        setHtmlContent(content);
+        setGameLaunched(true);
+        break;
+      default:
+        setGameLaunched(true);
     }
   };
 

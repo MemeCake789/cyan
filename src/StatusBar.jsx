@@ -28,7 +28,7 @@ const StatusBar = () => {
         cyλn 2.0 BETA | {formattedDate} | {formattedTime}
       </div>
       <div className="status-right">
-        PSI : Most games are not loading right now as I am currently working on
+        PSA : Most games are not loading right now as I am currently working on
         a new loading system, pls check back in a day :P
       </div>
     </div>

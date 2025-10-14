@@ -665,13 +665,14 @@
        "imageSrc": "cyan-assets/HTML/deltarune/logo.png",
        "genre": "RPG",
        "type": "HTML",
-       "link": "https://cyan-assets.vercel.app/HTML/deltarune/index.html",
+       "link": "https://cyan-assets.vercel.app/HTML/deltarune-main/index.html",
        "description": "",
        "status": [
          "Working",
          "This game has no issues :D"
        ],
-       "date": "2025-10-07"
+       "date": "2025-10-07",
+       "fixedDate": "2025-10-14"
     },
     {
       "title": "Endoparasitic",

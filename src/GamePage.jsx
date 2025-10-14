@@ -24,36 +24,21 @@ const GamePage = () => {
   const iframeRef = useRef(null);
 
    const [gameLaunched, setGameLaunched] = useState(false);
-   const [htmlContent, setHtmlContent] = useState('');
-   const [isDownloading, setIsDownloading] = useState(false);
-   const [isFullScreen, setIsFullScreen] = useState(false);
-   const [animateControls, setAnimateControls] = useState(false);
-   const [assets, setAssets] = useState([]);
+    const [isFullScreen, setIsFullScreen] = useState(false);
+    const [animateControls, setAnimateControls] = useState(false);
 
-  useEffect(() => {
-    if (iframeRef.current && htmlContent) {
-      const blob = new Blob([htmlContent], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      iframeRef.current.src = url;
 
-      return () => {
-        URL.revokeObjectURL(url);
-      };
-    }
-  }, [htmlContent]);
 
-  useEffect(() => {
-    const canvases = document.querySelectorAll('canvas');
-    canvases.forEach(canvas => { canvas.remove(); });
+   useEffect(() => {
+     const canvases = document.querySelectorAll('canvas');
+     canvases.forEach(canvas => { canvas.remove(); });
+   }, [game]);
 
-    if (game) {
-      if (game.type === 'HTML') {
-        setHtmlContent('');
-      } else {
-        // For EMULATOR or FLASH games, keep existing logic if any
-      }
-    }
-  }, [game]);
+   useEffect(() => {
+     if (iframeRef.current && gameLaunched && game.type === 'HTML') {
+       iframeRef.current.src = game.link;
+     }
+   }, [gameLaunched, game]);
 
   useEffect(() => {
     if (gameLaunched) {
@@ -87,62 +72,9 @@ const GamePage = () => {
     return <div>Game not found</div>;
   }
 
-  const getAllFiles = async (path) => {
-    const url = `https://api.github.com/repos/MemeCake789/cyan-assets/contents/${path}`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error(`Failed to fetch contents for ${path}`);
-    }
-
-    const items = await res.json();
-    let files = [];
-
-    for (const item of items) {
-      if (item.type === 'file') {
-        files.push(item.path);
-      } else if (item.type === 'dir') {
-        const subFiles = await getAllFiles(item.path);
-        files = files.concat(subFiles);
-      }
-    }
-
-    return files;
-  };
-
   const handleLaunchGame = async () => {
     if (game.type === 'HTML') {
-      setIsDownloading(true);
-      try {
-        const folder = game.link.replace(/^cyan-assets\//, '').replace(/\/[^/]+$/, '');
-        const allFiles = await getAllFiles(folder);
-        console.log(`Loaded files for ${game.title}:`, allFiles);
-
-        const htmlPath = game.link.replace(/^cyan-assets\//, '');
-        const htmlResponse = await fetch(`https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${htmlPath}`);
-        if (!htmlResponse.ok) {
-          throw new Error('Failed to fetch HTML');
-        }
-
-        let htmlContent = await htmlResponse.text();
-
-        // Modify HTML to use absolute URLs for relative paths
-        htmlContent = htmlContent.replace(/(src|href)="([^"]*)"/g, (match, attr, url) => {
-          if (url.startsWith('http') || url.startsWith('//') || url.startsWith('data:')) {
-            return match;
-          }
-          const absoluteUrl = `https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/${folder}/${url}`;
-          return `${attr}="${absoluteUrl}"`;
-        });
-
-        setAssets(allFiles);
-        setHtmlContent(htmlContent);
-        setGameLaunched(true);
-      } catch (error) {
-        console.error('Error loading game:', error);
-        alert('Error loading game');
-      } finally {
-        setIsDownloading(false);
-      }
+      setGameLaunched(true);
     } else {
       // For EMULATOR or FLASH games, keep existing logic if any, or set launched directly
       setGameLaunched(true);
@@ -179,28 +111,20 @@ const GamePage = () => {
           ) : (
             <iframe ref={iframeRef} title={game.title} className="game-iframe" allowFullScreen />
           )
-        ) : (
-          <div className="launch-screen">
-            <div className='launch-controls'>
-              <button className="launch-button-game" onClick={handleLaunchGame} disabled={isDownloading}>
-                {isDownloading ? 'Downloading...' : '> Launch'}
-              </button>
-               <p className="cdn-loaded-text">
-                 Game: {game.title} <br></br>
-                 Type: {game.type} <br></br>
-                 Status: {isDownloading ? 'Downloading from Vercel...' : game.link}
-               </p>
-               {assets.length > 0 && (
-                 <div className="loaded-files">
-                   <p>Loaded files:</p>
-                   {assets.map((url, index) => (
-                     <div key={index}>{url}</div>
-                   ))}
-                 </div>
-               )}
-             </div>
-          </div>
-        )}
+         ) : (
+           <div className="launch-screen">
+             <div className='launch-controls'>
+               <button className="launch-button-game" onClick={handleLaunchGame}>
+                 > Launch
+               </button>
+                <p className="cdn-loaded-text">
+                  Game: {game.title} <br></br>
+                  Type: {game.type} <br></br>
+                  Status: Ready to launch
+                </p>
+              </div>
+           </div>
+         )}
       </div>
 
       <div className="game-page-footer">

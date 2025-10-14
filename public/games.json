@@ -5,7 +5,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/2048/2048.png",
       "genre": "Puzzle",
       "type": "HTML",
-      "link": "cyan-assets/HTML/2048/2048.html",
+      "link": "https://cyan-assets.vercel.app/HTML/2048/2048.html",
       "description": "",
       "status": [
         "Working",
@@ -30,7 +30,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek1/derek1.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek1/derek1.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek1/derek1.html",
       "description": "",
       "status": [
         "Working",
@@ -42,7 +42,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek2/derek2.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek2/derek2.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek2/derek2.html",
       "description": "",
       "status": [
         "Working",
@@ -54,7 +54,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek3/derek3.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek3/derek3.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek3/derek3.html",
       "description": "",
       "status": [
         "Working",
@@ -66,7 +66,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek4/derek4.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek4/derek4.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek4/derek4.html",
       "description": "",
       "status": [
         "Working",
@@ -78,7 +78,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek5/derek5.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek5/derek5.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek5/derek5.html",
       "description": "",
       "status": [
         "Working",
@@ -90,7 +90,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek6/derek6.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek6/derek6.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek6/derek6.html",
       "description": "",
       "status": [
         "Working",
@@ -102,7 +102,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek7/derek7.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek7/derek7.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek7/derek7.html",
       "description": "",
       "status": [
         "Working",
@@ -114,7 +114,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/derek8/derek8.jpg",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/derek8/derek8.html",
+      "link": "https://cyan-assets.vercel.app/HTML/derek8/derek8.html",
       "description": "",
       "status": [
         "Working",
@@ -126,7 +126,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/minecraft/minecraft.jpg",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "cyan-assets/HTML/minecraft/minecraft.html",
+      "link": "https://cyan-assets.vercel.app/HTML/minecraft/minecraft.html",
       "description": "",
       "status": [
         "Working",
@@ -256,7 +256,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/EMULATORS/images/earthbound.jpg",
       "genre": "Action-RPG",
       "type": "EMULATOR",
-      "link": "cyan-assets/EMULATORS/Earthbound/Earthbound.smc",
+      "link": "https://cyan-assets.vercel.app/EMULATORS/Earthbound/Earthbound.smc",
       "description": "",
       "status": [
         "Broken",
@@ -268,7 +268,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Papa'sBurgeria/papasburgeria_300x300.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Papa'sBurgeria/papasburgeria.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Papa'sBurgeria/papasburgeria.swf",
       "description": "",
       "status": [
         "Working",
@@ -280,7 +280,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Papa'sFreezeria/papasfreezeria_300x300.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Papa'sFreezeria/papasfreezeria.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Papa'sFreezeria/papasfreezeria.swf",
       "description": "",
       "status": [
         "Working",
@@ -292,7 +292,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Papa'sPizzeria/papaspizzeria_100x100.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Papa'sPizzeria/papaspizzeria_v2.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Papa'sPizzeria/papaspizzeria_v2.swf",
       "description": "",
       "status": [
         "Working",
@@ -304,7 +304,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Papa'sSushiria/icon_300x300_papassushiria.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Papa'sSushiria/papassushiria.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Papa'sSushiria/papassushiria.swf",
       "description": "",
       "status": [
         "Working",
@@ -316,7 +316,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Duck Life/ducklife.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Duck Life/ducklife.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Duck Life/ducklife.swf",
       "description": "",
       "status": [
         "Working",
@@ -328,7 +328,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Duck%20Life%202/ducklife2.jpg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Duck%20Life%202/Duck%20Life%202%20-%20World%20Champion.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Duck%20Life%202/Duck%20Life%202%20-%20World%20Champion.swf",
       "description": "",
       "status": [
         "Working",
@@ -340,7 +340,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Duck%20Life%203/ducklife3.jfif",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Duck%20Life%203/Duck%20Life%203%20-%20Evolution.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Duck%20Life%203/Duck%20Life%203%20-%20Evolution.swf",
       "description": "",
       "status": [
         "Working",
@@ -352,7 +352,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Duck%20Life%204/ducklife4.png",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Duck%20Life%204/Duck%20Life%204.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Duck%20Life%204/Duck%20Life%204.swf",
       "description": "",
       "status": [
         "Working",
@@ -364,7 +364,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Learn%20to%20Fly/learntofly.jfif",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Learn%20to%20Fly/learn-to-fly.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Learn%20to%20Fly/learn-to-fly.swf",
       "description": "",
       "status": [
         "Working",
@@ -376,7 +376,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Learn%202%20Fly/learn2fly.png",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Learn%202%20Fly/learn-to-fly-2-11967.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Learn%202%20Fly/learn-to-fly-2-11967.swf",
       "description": "",
       "status": [
         "Working",
@@ -388,7 +388,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Learn%20to%20Fly%203/learn-to-fly3.jfif",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Learn%20to%20Fly%203/learntofly3.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Learn%20to%20Fly%203/learntofly3.swf",
       "description": "",
       "status": [
         "Bugged",
@@ -400,7 +400,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Escaping%20The%20Prison/etp.png",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Escaping%20The%20Prison/533001_PrisonNG.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Escaping%20The%20Prison/533001_PrisonNG.swf",
       "description": "",
       "status": [
         "Working",
@@ -412,7 +412,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Happy%20Wheels/hw.jpeg",
       "genre": "Platformer",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Happy%20Wheels/547504_hw_demo.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Happy%20Wheels/547504_hw_demo.swf",
       "description": "",
       "status": [
         "Working",
@@ -424,7 +424,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Mutilate%20A%20Doll%202/mad2.png",
       "genre": "Sandbox",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Mutilate%20A%20Doll%202/164481_mutilate-a-doll-2_v4.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Mutilate%20A%20Doll%202/164481_mutilate-a-doll-2_v4.swf",
       "description": "",
       "status": [
         "Working",
@@ -436,7 +436,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/One%20Chance/oc.webp",
       "genre": "Story",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/One%20Chance/One%20Chance.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/One%20Chance/One%20Chance.swf",
       "description": "",
       "status": [
         "Working",
@@ -448,7 +448,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/QWOP/qwop.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/QWOP/qwop.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/QWOP/qwop.swf",
       "description": "",
       "status": [
         "Working",
@@ -460,7 +460,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Run%202/r2.jpeg",
       "genre": "Racing",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Run%202/run_2.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Run%202/run_2.swf",
       "description": "",
       "status": [
         "Working",
@@ -472,7 +472,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Simpsons%20Home/sh.jpeg",
       "genre": "Sandbox",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Simpsons%20Home/simphome.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Simpsons%20Home/simphome.swf",
       "description": "",
       "status": [
         "Working",
@@ -484,7 +484,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Stealing%20The%20Diamond/std.jpeg",
       "genre": "Story",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/Stealing%20The%20Diamond/Stealing_the_Diamond.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/Stealing%20The%20Diamond/Stealing_the_Diamond.swf",
       "description": "",
       "status": [
         "Working",
@@ -496,7 +496,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/BTD5/btd5.jpeg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/BTD5/Bloons%20Tower%20Defense%205%20(BTD5).swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/BTD5/Bloons%20Tower%20Defense%205%20(BTD5).swf",
       "description": "",
       "status": [
         "Working",
@@ -508,7 +508,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/DIgToChina/dtc.png",
       "genre": "Simulation",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/DIgToChina/Dig%20to%20China%20-%20Unblocked%20Adventures.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/DIgToChina/Dig%20to%20China%20-%20Unblocked%20Adventures.swf",
       "description": "",
       "status": [
         "Bugged",
@@ -532,7 +532,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/csgo-clicker/230x0w.webp",
       "genre": "Clicker",
       "type": "HTML",
-      "link": "cyan-assets/HTML/csgo-clicker/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/csgo-clicker/index.html",
       "description": "",
       "status": [
         "Working",
@@ -544,7 +544,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/cell-machine/cm_icon.png",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "cyan-assets/HTML/cell-machine/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/cell-machine/index.html",
       "description": "",
       "status": [
         "Working",
@@ -556,7 +556,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/achievementunlocked/achievementunlocked.png",
       "genre": "Platformer",
       "type": "FLASH",
-      "link": "cyan-assets/HTML/achievementunlocked/achievementunlocked.swf",
+      "link": "https://cyan-assets.vercel.app/HTML/achievementunlocked/achievementunlocked.swf",
       "description": "there are more achivements in this game than there are games in this site",
       "status": [
         "Working",
@@ -568,7 +568,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/doodle-jump/doodle.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/doodle-jump/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/doodle-jump/index.html",
       "description": "",
       "status": [
         "Working",
@@ -580,7 +580,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/gimme-the-airpod/img/logo.png",
       "genre": "Two-Player",
       "type": "HTML",
-      "link": "cyan-assets/HTML/gimme-the-airpod/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/gimme-the-airpod/index.html",
       "description": "",
       "status": [
         "Working",
@@ -592,7 +592,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/rooftop-snipers/img/thumb.png",
       "genre": "Two-Player",
       "type": "HTML",
-      "link": "cyan-assets/HTML/rooftop-snipers/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/rooftop-snipers/index.html",
       "description": "360 no scope mlg water bucket hell yeah we are going back to 2010 baby",
       "status": [
         "Working",
@@ -604,7 +604,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/circlo/img/download.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/circlo/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/circlo/index.html",
       "description": "circle, thats it.",
       "status": [
         "Working",
@@ -616,7 +616,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/theheist/theheist.jpg",
       "genre": "Action",
       "type": "HTML",
-      "link": "cyan-assets/HTML/theheist/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/theheist/index.html",
       "description": "u drive car and get away from ops, simple.",
       "status": [
         "Working",
@@ -629,7 +629,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/EMULATORS/Pokemon%20Unbound/Unbound.png",
       "genre": "Action-Adventure",
       "type": "EMULATOR",
-      "link": "cyan-assets/EMULATORS/Pokemon%20Unbound/POKEMON_UNBOUND.gba",
+      "link": "https://cyan-assets.vercel.app/EMULATORS/Pokemon%20Unbound/POKEMON_UNBOUND.gba",
       "description": "",
       "status": [
         "Broken",
@@ -641,7 +641,7 @@
       "imageSrc": "",
       "genre": "Racing",
       "type": "HTML",
-      "link": "cyan-assets/HTML/CC3D/Crazy%20Cattle%203D.html",
+      "link": "https://cyan-assets.vercel.app/HTML/CC3D/Crazy%20Cattle%203D.html",
       "description": "this game got a game of the year award 3 times in a row, it be stupid to not incude this game.",
       "status": [
         "Working",
@@ -653,7 +653,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Buckshot%20Roulette/buckshot-roulette-feature-image.jpg",
       "genre": "Strategy",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Buckshot%20Roulette/Buckshot%20Roulette.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Buckshot%20Roulette/Buckshot%20Roulette.html",
       "description": "suicide but cooler ( jk pls love urself :) )",
       "status": [
         "Working",
@@ -665,7 +665,7 @@
        "imageSrc": "cyan-assets/HTML/deltarune/logo.png",
        "genre": "RPG",
        "type": "HTML",
-       "link": "cyan-assets/HTML/deltarune/index.html",
+       "link": "https://cyan-assets.vercel.app/HTML/deltarune/index.html",
        "description": "",
        "status": [
          "Working",
@@ -678,7 +678,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Endoparasitic/endo.png",
       "genre": "Horror",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Endoparasitic/Endoparasitic.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Endoparasitic/Endoparasitic.html",
       "description": "dawg ur a amputee with one arm, id call it quits bro.",
       "status": [
         "Working",
@@ -690,7 +690,7 @@
        "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Half%20Life/half.jpg",
        "genre": "Shooter",
        "type": "HTML",
-       "link": "cyan-assets/HTML/hl/xash.html",
+       "link": "https://cyan-assets.vercel.app/HTML/hl/xash.html",
        "description": "gooordon freeemannnn....",
        "status": [
          "Working",
@@ -703,7 +703,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Hotline%20Miami/hotline.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "cyan-assets/HTML/hotlineMiami/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/hotlineMiami/index.html",
       "description": "",
       "status": [
         "Broken",
@@ -715,7 +715,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/People%20Playground/pp.jpg",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "cyan-assets/HTML/People%20Playground/People%20Playground.html",
+      "link": "https://cyan-assets.vercel.app/HTML/People%20Playground/People%20Playground.html",
       "description": "human torture game :P",
       "status": [
         "Working",
@@ -727,7 +727,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Ultrakill/ultrakill-l6f-logo.png",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Ultrakill/ULTRAKILL.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Ultrakill/ULTRAKILL.html",
       "description": "Humanity is ded and hell is real D:",
       "status": [
         "Bugged",
@@ -739,7 +739,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Undertale/Untitled.png",
       "genre": "RPG",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Undertale/Undertale.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Undertale/Undertale.html",
       "description": "Game where u dont have to kill people (yawn)",
       "status": [
         "Working",
@@ -751,7 +751,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Balatro/bala.png",
       "genre": "Rougelike",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Balatro/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Balatro/index.html",
       "description": "joker poker balala",
       "status": [
         "Bugged",
@@ -763,7 +763,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Hollow_Night/hn.webp",
       "genre": "Metroidvania",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Hollow_Night/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Hollow_Night/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -775,7 +775,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Poke_Rouge/pr.png",
       "genre": "Rougelike",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Poke_Rouge/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Poke_Rouge/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -787,7 +787,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Poke_Rouge/pr.png",
       "genre": "Rougelike",
       "type": "ZIP",
-      "link": "cyan-assets/HTML/pokerouge/pokerouge.zip",
+      "link": "https://cyan-assets.vercel.app/HTML/pokerouge/pokerouge.zip",
       "htmlFile": "index.html",
       "description": "Pokemon, but as a roguelike. Loaded from a zip file.",
       "status": [
@@ -800,7 +800,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/RiddleSchool/riddleschool1.jpg",
       "genre": "Strategy",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/RiddleSchool/flash.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/RiddleSchool/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -812,7 +812,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/RiddleSchool2/riddleschool2.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/RiddleSchool2/flash.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/RiddleSchool2/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -824,7 +824,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/RiddleSchool3/riddleschool3.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/RiddleSchool3/flash.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/RiddleSchool3/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -836,7 +836,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/RiddleSchool4/riddleschool4.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/RiddleSchool4/flash.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/RiddleSchool4/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -848,7 +848,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/RiddleSchool5/riddleschool5.jpg",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/RiddleSchool5/flash.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/RiddleSchool5/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -860,7 +860,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/BTTS/btts.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/BananaSaber/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/BananaSaber/index.html",
       "description": "",
       "status": [
         "Working",
@@ -872,7 +872,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Baldi/unnamed.png",
       "genre": "Horror",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Baldi/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Baldi/index.html",
       "description": "",
       "status": [
         "Working",
@@ -886,7 +886,7 @@
       "imageSrc": "",
       "genre": "Social",
       "type": "HTML",
-      "link": "cyan-assets/HTML/WebFishing/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/WebFishing/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -900,7 +900,7 @@
       "imageSrc": "cyan-assets/HTML/BTTS/images.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/BTTS/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/BTTS/index.html",
       "description": "",
       "status": [
         "Working",
@@ -913,7 +913,7 @@
       "imageSrc": "cyan-assets/HTML/RetroBowl/img/icon.jpg",
       "genre": "Simulation",
       "type": "HTML",
-      "link": "cyan-assets/HTML/RetroBowl/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/RetroBowl/index.html",
       "description": "",
       "status": [
         "Working",
@@ -926,7 +926,7 @@
       "imageSrc": "cyan-assets/HTML/PixelGunSurvival/image.avif",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "cyan-assets/HTML/PixelGunSurvival/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/PixelGunSurvival/index.html",
       "description": "",
       "status": [
         "Working",
@@ -939,7 +939,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/JustOneBoss/pv1Gr5.png",
       "genre": "Action",
       "type": "HTML",
-      "link": "cyan-assets/HTML/JustOneBoss/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/JustOneBoss/index.html",
       "description": "",
       "status": [
         "Working",
@@ -952,7 +952,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Bitlife/logo.png",
       "genre": "Simulation",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Bitlife/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Bitlife/index.html",
       "description": "",
       "status": [
         "Working",
@@ -965,7 +965,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/BasketRandom/image.png",
       "genre": "Two-Player",
       "type": "HTML",
-      "link": "cyan-assets/HTML/BasketRandom/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/BasketRandom/index.html",
       "description": "",
       "status": [
         "Working",
@@ -978,7 +978,7 @@
       "imageSrc": "cyan-assets/HTML/getaway-shootout/img/index.jpg",
       "genre": "Two-Player",
       "type": "HTML",
-      "link": "cyan-assets/HTML/getaway-shootout/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/getaway-shootout/index.html",
       "description": "",
       "status": [
         "Working",
@@ -991,7 +991,7 @@
       "imageSrc": "cyan-assets/HTML/vex3/assets/images/vex-logo.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/vex3/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/vex3/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1004,7 +1004,7 @@
       "imageSrc": "cyan-assets/HTML/vex4/vex4.png",
       "genre": "Platformer",
       "type": "HTML",
-      "link": "cyan-assets/HTML/vex4/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/vex4/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1017,7 +1017,7 @@
       "imageSrc": "cyan-assets/HTML/Antimatter Dimensions/icon.png",
       "genre": "Incremental",
       "type": "HTML",
-      "link": "cyan-assets/HTML/Antimatter%20Dimensions/public/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/Antimatter%20Dimensions/public/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1030,7 +1030,7 @@
       "imageSrc": "cyan-assets/HTML/ropepolice/amazing-strange-rope-police-vice-spider-vegas.jpg",
       "genre": "Open-World",
       "type": "HTML",
-      "link": "cyan-assets/HTML/ropepolice/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/ropepolice/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1043,7 +1043,7 @@
       "imageSrc": "cyan-assets/HTML/cookieclicker/img/icon.png",
       "genre": "Clicker",
       "type": "HTML",
-      "link": "cyan-assets/HTML/cookieclicker/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/cookieclicker/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1056,7 +1056,7 @@
       "imageSrc": "cyan-assets/HTML/superhot/hot.jpg",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "cyan-assets/HTML/superhot/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/superhot/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1069,7 +1069,7 @@
       "imageSrc": "cyan-assets/HTML/idle-breakout/img/thumbnail.png",
       "genre": "Incremental",
       "type": "HTML",
-      "link": "cyan-assets/HTML/idle-breakout/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/idle-breakout/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -1082,7 +1082,7 @@
       "imageSrc": "cyan-assets/HTML/worlds-hardest-game/images/splash.jpg",
       "genre": "Adventure",
       "type": "HTML",
-      "link": "cyan-assets/HTML/worlds-hardest-game/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/worlds-hardest-game/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -1095,7 +1095,7 @@
       "imageSrc": "cyan-assets/HTML/worlds-hardest-game-2/the-worlds-hardest-game-2.jpg",
       "genre": "Adventure",
       "type": "HTML",
-      "link": "cyan-assets/HTML/worlds-hardest-game-2/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/worlds-hardest-game-2/index.html",
       "description": "",
       "status": [
         "Bugged",
@@ -1108,7 +1108,7 @@
       "imageSrc": "cyan-assets/HTML/ages-of-conflict/splash.jpg",
       "genre": "Sandbox",
       "type": "HTML",
-      "link": "cyan-assets/HTML/ages-of-conflict/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/ages-of-conflict/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1121,7 +1121,7 @@
       "imageSrc": "https://th.bing.com/th?&id=OVP.1bvbf_Eyw928bCFWgMApowHgFo&w=318&h=178&c=7&pid=2.1&rs=1",
       "genre": "Open-World",
       "type": "HTML",
-      "link": "cyan-assets/HTML/crime-city-2-3d/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/crime-city-2-3d/index.html",
       "description": "",
       "status": [
         "Working",
@@ -1134,7 +1134,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.Jdl4dtzllf1xiZ-RALjAIAHaHa?w=164&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Co-Op",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/fireboywatergirl2/flash.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/fireboywatergirl2/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -1147,7 +1147,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.C5m1MhpAKpWXmo0qyUQq0QHaFj?w=193&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Co-Op",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/fireboywatergirl3/flash.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/fireboywatergirl3/flash.swf",
       "description": "",
       "status": [
         "Working",
@@ -1160,7 +1160,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/wheely.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/wheely.swf",
       "description": "",
       "status": [
         "Working",
@@ -1173,7 +1173,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/Wheely2.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely2.swf",
       "description": "",
       "status": [
         "Working",
@@ -1186,7 +1186,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/Wheely3.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely3.swf",
       "description": "",
       "status": [
         "Working",
@@ -1199,7 +1199,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/Wheely4.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely4.swf",
       "description": "",
       "status": [
         "Working",
@@ -1212,7 +1212,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/Wheely5.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely5.swf",
       "description": "",
       "status": [
         "Working",
@@ -1225,7 +1225,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/Wheely6.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely6.swf",
       "description": "",
       "status": [
         "Working",
@@ -1238,7 +1238,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/Wheely7.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely7.swf",
       "description": "",
       "status": [
         "Working",
@@ -1251,7 +1251,7 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.58a4Cv0jcYNlMaCEa4XDOgAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Puzzle",
       "type": "FLASH",
-      "link": "cyan-assets/FLASH/wheely/Wheely8.swf",
+      "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely8.swf",
       "description": "",
       "status": [
         "Working",

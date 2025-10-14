@@ -91,7 +91,7 @@ const GamePage = () => {
     if (game.type === 'HTML') {
       setIsDownloading(true);
       try {
-        const response = await fetch('/api/cache-game', {
+        const response = await fetch('https://cyan-assets.vercel.app/api/cache-game', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ gameLink: game.link, gameTitle: game.title }),

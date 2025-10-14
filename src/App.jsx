@@ -6,11 +6,11 @@ import GamesList from "./GamesList";
 import GamePage from "./GamePage";
 
 function App() {
-  useEffect(() => {
-    alert(
-      "PSA : Most of the games on this site are not working becuase I am currently working on a new loading system. check back in a day :P",
-    );
-  }, []);
+  // useEffect(() => {
+  //   alert(
+  //     "PSA : Most of the games on this site are not working becuase I am currently working on a new loading system. check back in a day :P",
+  //   );
+  // }, []);
   return (
     <Router>
       <div className="App">

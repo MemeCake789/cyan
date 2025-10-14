@@ -120,7 +120,6 @@ const GamePage = () => {
                 <p className="cdn-loaded-text">
                   Game: {game.title} <br></br>
                   Type: {game.type} <br></br>
-                  Status: Ready to launch
                 </p>
               </div>
            </div>

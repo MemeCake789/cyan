@@ -13,28 +13,92 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing gameLink or gameTitle' });
   }
 
-  const GITHUB_REPO = 'MemeCake789/cyan-assets';
-  const CACHE_NAME = 'cyan-game-cache-v1'; // Not used server-side, but for consistency
+  const gameRepoPath = gameLink.startsWith('cyan-assets/') ? gameLink.substring('cyan-assets/'.length) : gameLink;
+  const gameFolderPath = gameRepoPath.substring(0, gameRepoPath.lastIndexOf('/'));
+  const rawBaseUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/`;
 
-  // Helper function to determine MIME type based on file extension
-  function getMimeType(filePath) {
-    const ext = filePath.split('.').pop().toLowerCase();
-    switch (ext) {
-      case 'js': return 'application/javascript';
-      case 'css': return 'text/css';
-      case 'html': return 'text/html';
-      case 'json': return 'application/json';
-      case 'png': return 'image/png';
-      case 'jpg': return 'image/jpeg';
-      case 'jpeg': return 'image/jpeg';
-      case 'gif': return 'image/gif';
-      case 'svg': return 'image/svg+xml';
-      case 'wasm': return 'application/wasm';
-      case 'unityweb': return 'application/octet-stream'; // Unity specific binary
-      case 'zip': return 'application/zip';
-      // Add more as needed
-      default: return 'application/octet-stream';
+  try {
+    // Fetch only the main HTML file
+    const mainHtmlGithubUrl = `${rawBaseUrl}${gameRepoPath}`;
+    const fileResponse = await fetch(mainHtmlGithubUrl);
+
+    if (!fileResponse.ok) {
+      console.error(`Failed to fetch main HTML ${mainHtmlGithubUrl}: ${fileResponse.status}`);
+      return res.status(fileResponse.status).json({ error: `Failed to fetch main HTML: ${fileResponse.statusText}` });
     }
+
+    let htmlContent = await fileResponse.text();
+    let rewrittenHtml = htmlContent;
+
+    // Inject <base> tag
+    const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
+    if (rewrittenHtml.includes('<head>')) {
+      rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
+    } else {
+      rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
+    }
+
+    // Rewrite relative src/href/data-src and url() in CSS
+    rewrittenHtml = rewrittenHtml.replace(
+      /(src|href|data-src)=(['\"])(?!https?:\/\/|data:)(.*?)\\2/gi,
+      (match, attr, quote, url) => {
+        let rewrittenUrl;
+        if (url.startsWith('/')) {
+          rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;
+        } else {
+          rewrittenUrl = `${rawBaseUrl}${gameFolderPath}/${url}`;
+        }
+        return `${attr}=${quote}${rewrittenUrl}${quote}`;
+      },
+    );
+
+    rewrittenHtml = rewrittenHtml.replace(
+      /url\\((?!['\"]?https?:\\/\\/|['\"]?data:)(['\"]?)(.*?)\\1\\)/gi,
+      (match, quote, url) => {
+        let rewrittenUrl;
+        if (url.startsWith('/')) {
+          rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;
+        } else {
+          rewrittenUrl = `${rawBaseUrl}${gameFolderPath}/${url}`;
+        }
+        return `url(${quote}${rewrittenUrl}${quote})`;
+      },
+    );
+
+    // Special handling for UnityLoader.instantiate script execution timing and jsonUrl
+    const unityScriptBlockRegex = /(<script>\s*var unityInstance = UnityLoader\.instantiate\(\s*"gameContainer"\s*,\s*"([^"]+)"\s*,\s*{onProgress: UnityProgress}\);\s*<\/script>)/i;
+    const unityScriptMatch = rewrittenHtml.match(unityScriptBlockRegex);
+
+    if (unityScriptMatch) {
+      const fullScriptBlock = unityScriptMatch[1]; // The entire <script>...</script> block
+      const jsonPath = unityScriptMatch[2]; // The JSON path from the instantiate call
+
+      let absoluteJson = jsonPath.startsWith('/') ? `${rawBaseUrl}${jsonPath.substring(1)}` : `${rawBaseUrl}${gameFolderPath}/${jsonPath}`;
+
+      // Replace the relative jsonPath with the absolute one within the script block
+      let modifiedScriptContent = fullScriptBlock.replace(
+        `"${jsonPath}"`,
+        `"${absoluteJson}"`
+      );
+
+      // Wrap the content of the script block in window.onload
+      const scriptContentInnerRegex = /<script>([\s\S]*?)<\/script>/i;
+      const contentMatch = modifiedScriptContent.match(scriptContentInnerRegex);
+      if (contentMatch && contentMatch[1]) {
+        const originalContent = contentMatch[1];
+        const wrappedContent = `window.onload = function() {\n${originalContent}\n};`;
+        modifiedScriptContent = `<script>${wrappedContent}<\/script>`;
+      }
+
+      rewrittenHtml = rewrittenHtml.replace(fullScriptBlock, modifiedScriptContent);
+      console.log(`Rewrote UnityLoader script block for jsonUrl: ${absoluteJson} and wrapped in window.onload`);
+    }
+
+    return res.status(200).json({ htmlContent: rewrittenHtml });
+  } catch (error) {
+    console.error('Error in cache-game API:', error);
+    return res.status(500).json({ error: error.message });
+  }
   }
 
   // Adjust gameLink to be relative to the repo root (e.g., 'HTML/Bitlife/index.html')

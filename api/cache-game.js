@@ -1,106 +1,70 @@
-// src/pages/api/cache-game.js (Next.js API route)
+export default async function handler(request, response) {
+  // Add CORS headers
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-import { Octokit } from '@octokit/rest';
-
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end();
   }
 
-  const { gameLink, gameTitle } = req.body;
+  if (request.method !== 'POST') {
+    return response.status(405).json({ message: 'Method Not Allowed' });
+  }
+
+  const { gameLink, gameTitle } = request.body;
 
   if (!gameLink || !gameTitle) {
-    return res.status(400).json({ error: 'Missing gameLink or gameTitle' });
+    return response.status(400).json({ message: 'gameLink and gameTitle are required' });
   }
-
-  const gameRepoPath = gameLink.startsWith('cyan-assets/') ? gameLink.substring('cyan-assets/'.length) : gameLink;
-  const gameFolderPath = gameRepoPath.substring(0, gameRepoPath.lastIndexOf('/'));
-  const rawBaseUrl = 'https://cyan-assets.vercel.app/';
 
   try {
-    // Fetch only the main HTML file
-    const mainHtmlUrl = `${rawBaseUrl}${gameRepoPath}`;
-    const fileResponse = await fetch(mainHtmlUrl);
+    const folder = gameLink.replace(/^cyan-assets\//, '').replace(/\/[^/]+$/, '');
+    const allFiles = await getAllFiles(folder);
+    console.log(`Loaded files for ${gameTitle}:`, allFiles);
 
-    if (!fileResponse.ok) {
-      console.error(`Failed to fetch main HTML ${mainHtmlUrl}: ${fileResponse.status}`);
-      return res.status(fileResponse.status).json({ error: `Failed to fetch main HTML: ${fileResponse.statusText}` });
+    const htmlPath = gameLink;
+    const htmlResponse = await fetch(`https://cyan-assets.vercel.app/${htmlPath}`);
+    if (!htmlResponse.ok) {
+      throw new Error('Failed to fetch HTML');
     }
 
-    let htmlContent = await fileResponse.text();
-    let rewrittenHtml = htmlContent;
-    const assets = [];
+    let htmlContent = await htmlResponse.text();
 
-    // Inject <base> tag
-    const baseHref = `${rawBaseUrl}${gameFolderPath}/`;
-    if (rewrittenHtml.includes('<head>')) {
-      rewrittenHtml = rewrittenHtml.replace('<head>', `<head><base href="${baseHref}">`);
-    } else {
-      rewrittenHtml = `<head><base href="${baseHref}"></head>${rewrittenHtml}`;
-    }
-
-    // Rewrite relative src/href/data-src and url() in CSS
-    rewrittenHtml = rewrittenHtml.replace(
-      /(src|href|data-src)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi,
-      (match, attr, quote, url) => {
-        let rewrittenUrl;
-        if (url.startsWith('/')) {
-          rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;
-        } else {
-          rewrittenUrl = `${rawBaseUrl}${gameFolderPath}/${url}`;
-        }
-        assets.push(rewrittenUrl);
-        return `${attr}=${quote}${rewrittenUrl}${quote}`;
-      },
-    );
-
-    rewrittenHtml = rewrittenHtml.replace(
-      /url\((?!['"]?https?:\/\/|['"]?data:)(['"]?)(.*?)\1\)/gi,
-      (match, quote, url) => {
-        let rewrittenUrl;
-        if (url.startsWith('/')) {
-          rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;
-        } else {
-          rewrittenUrl = `${rawBaseUrl}${gameFolderPath}/${url}`;
-        }
-        assets.push(rewrittenUrl);
-        return `url(${quote}${rewrittenUrl}${quote})`;
-      },
-    );
-
-    // Special handling for UnityLoader.instantiate script execution timing and jsonUrl
-    const unityScriptBlockRegex = /(<script>\s*var unityInstance = UnityLoader\.instantiate\(\s*"gameContainer"\s*,\s*"([^"]+)"\s*,\s*{onProgress: UnityProgress}\);\s*<\/script>)/i;
-    const unityScriptMatch = rewrittenHtml.match(unityScriptBlockRegex);
-
-    if (unityScriptMatch) {
-      const fullScriptBlock = unityScriptMatch[1]; // The entire <script>...</script> block
-      const jsonPath = unityScriptMatch[2]; // The JSON path from the instantiate call
-
-      let absoluteJson = jsonPath.startsWith('/') ? `${rawBaseUrl}${jsonPath.substring(1)}` : `${rawBaseUrl}${gameFolderPath}/${jsonPath}`;
-      assets.push(absoluteJson);
-
-      // Replace the relative jsonPath with the absolute one within the script block
-      let modifiedScriptContent = fullScriptBlock.replace(
-        `"${jsonPath}"`,
-        `"${absoluteJson}"`
-      );
-
-      // Wrap the content of the script block in window.onload
-      const scriptContentInnerRegex = /<script>([\s\S]*?)<\/script>/i;
-      const contentMatch = modifiedScriptContent.match(scriptContentInnerRegex);
-      if (contentMatch && contentMatch[1]) {
-        const originalContent = contentMatch[1];
-        const wrappedContent = `window.onload = function() {\n${originalContent}\n};`;
-        modifiedScriptContent = `<script>${wrappedContent}<\/script>`;
+    // Modify HTML to use absolute URLs for relative paths
+    htmlContent = htmlContent.replace(/(src|href)="([^"]*)"/g, (match, attr, url) => {
+      if (url.startsWith('http') || url.startsWith('//') || url.startsWith('data:')) {
+        return match;
       }
+      const absoluteUrl = `https://cyan-assets.vercel.app/${folder}/${url}`;
+      return `${attr}="${absoluteUrl}"`;
+    });
 
-      rewrittenHtml = rewrittenHtml.replace(fullScriptBlock, modifiedScriptContent);
-      console.log(`Rewrote UnityLoader script block for jsonUrl: ${absoluteJson} and wrapped in window.onload`);
-    }
-
-    return res.status(200).json({ htmlContent: rewrittenHtml, assets });
+    return response.status(200).json({ htmlContent, assets: allFiles });
   } catch (error) {
-    console.error('Error in cache-game API:', error);
-    return res.status(500).json({ error: error.message });
+    console.error(error);
+    return response.status(500).json({ message: 'Error loading game' });
   }
+}
+
+async function getAllFiles(path) {
+  const url = `https://api.github.com/repos/MemeCake789/cyan-assets/contents/${path}`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch contents for ${path}`);
   }
+
+  const items = await res.json();
+  let files = [];
+
+  for (const item of items) {
+    if (item.type === 'file') {
+      files.push(item.path);
+    } else if (item.type === 'dir') {
+      const subFiles = await getAllFiles(item.path);
+      files = files.concat(subFiles);
+    }
+  }
+
+  return files;
+}

@@ -23,11 +23,12 @@ const GamePage = () => {
   const game = gamesData.games.find((g) => g.title === decodeURIComponent(title));
   const iframeRef = useRef(null);
 
-  const [gameLaunched, setGameLaunched] = useState(false);
-  const [htmlContent, setHtmlContent] = useState('');
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const [animateControls, setAnimateControls] = useState(false);
+   const [gameLaunched, setGameLaunched] = useState(false);
+   const [htmlContent, setHtmlContent] = useState('');
+   const [isDownloading, setIsDownloading] = useState(false);
+   const [isFullScreen, setIsFullScreen] = useState(false);
+   const [animateControls, setAnimateControls] = useState(false);
+   const [assets, setAssets] = useState([]);
 
   useEffect(() => {
     if (iframeRef.current && htmlContent) {
@@ -95,13 +96,12 @@ const GamePage = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ gameLink: game.link, gameTitle: game.title }),
         });
-        if (response.ok) {
-          const { htmlContent } = await response.json();
-          setHtmlContent(htmlContent);
-          setGameLaunched(true);
-        } else {
-          alert('Failed to cache game');
-        }
+         if (response.ok) {
+           const { htmlContent, assets } = await response.json();
+           setAssets(assets);
+           setHtmlContent(htmlContent);
+           setGameLaunched(true);
+         }
       } catch (error) {
         console.error('API error:', error);
         alert('Error loading game');
@@ -150,12 +150,20 @@ const GamePage = () => {
               <button className="launch-button-game" onClick={handleLaunchGame} disabled={isDownloading}>
                 {isDownloading ? 'Downloading...' : '> Launch'}
               </button>
-              <p className="cdn-loaded-text">
-                Game: {game.title} <br></br>
-                Type: {game.type} <br></br>
-                Status: {isDownloading ? 'Downloading from GitHub...' : game.link}
-              </p>
-            </div>
+               <p className="cdn-loaded-text">
+                 Game: {game.title} <br></br>
+                 Type: {game.type} <br></br>
+                 Status: {isDownloading ? 'Downloading from Vercel...' : game.link}
+               </p>
+               {assets.length > 0 && (
+                 <div className="loaded-files">
+                   <p>Loaded files:</p>
+                   {assets.map((url, index) => (
+                     <div key={index}>{url}</div>
+                   ))}
+                 </div>
+               )}
+             </div>
           </div>
         )}
       </div>

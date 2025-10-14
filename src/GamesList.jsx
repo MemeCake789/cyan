@@ -15,9 +15,10 @@ const GamesList = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const location = useLocation();
-  
-  
-  const [activeView, setActiveView] = useState('floride'); 
+  const containerRef = useRef(null);
+
+  const [activeView, setActiveView] = useState('floride');
+  const [isFullscreen, setIsFullscreen] = useState(false); 
 
   useEffect(() => {
     fetch('/games.json')
@@ -28,6 +29,15 @@ const GamesList = () => {
       setActiveView('games');
     }, 400);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
 
@@ -74,6 +84,18 @@ const GamesList = () => {
     setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
+  const handleFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      containerRef.current.requestFullscreen();
+    }
+  };
+
+  const handleClose = () => {
+    window.close();
+  };
+
   const isNew = (gameDate) => {
     if (!gameDate) return false;
     const gameAddedDate = new Date(gameDate);
@@ -107,14 +129,20 @@ const GamesList = () => {
 
   return (
     <>
-      <div className="btop-container" onMouseMove={handleMouseMove}>
-        
-        <Nav 
+      <div ref={containerRef} className={`btop-container ${isFullscreen ? 'fullscreen' : ''}`} onMouseMove={handleMouseMove}>
+
+        <Nav
           activeView={activeView}
           onCyanideClick={() => handleNavClick('games')}
           onSulfurClick={() => handleNavClick('proxy')}
           onFlorideClick={() => handleNavClick('floride')}
+          className={isFullscreen ? 'hidden' : ''}
         />
+
+        <div className={`top-buttons ${isFullscreen ? 'hidden' : ''}`}>
+          <button onClick={handleFullscreen} className="top-fullscreen-button" title="Fullscreen"><span class="material-symbols-outlined">fullscreen</span></button>
+          <button onClick={handleClose} className="top-close-button" title="Close"><span class="material-symbols-outlined">power_settings_new</span></button>
+        </div>
 
         <div className="btop-box">
           <div className={`sliding-container ${activeView} `}>

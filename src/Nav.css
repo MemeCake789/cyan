@@ -1,20 +1,18 @@
 .navbar {
-    /* position: fixed; */
-    /* top: 120px; */
-    /* left: 50%; */
-    /* transform: translateY(-50%); */
-    width: auto;
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 25em;
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 15px;
+    justify-content: center;
+    border-radius: 32px;
     background-color: #00000057;
     backdrop-filter: blur(10px);
     outline: 2px solid rgb(128, 106, 55);
-    outline-offset: -6px;
     z-index: 10000;
-    margin-top: -3em;
+    margin-top: -1.3rem;
+    padding: 4px;
     box-shadow: rgba(23, 23, 23, 0.25) 0px 25px 50px -12px;
     background-image: url("data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='0.5' fill-opacity='0.3' fill='%23ffedc7'/%3E%3C/svg%3E");
     background-size: 15px 15px;
@@ -26,13 +24,18 @@
 .nav-sulfur-button,
 .nav-floride-button {
     text-decoration: none;
-    
-    padding: 8px 15px;
-    border-radius: 7px;
+
+    padding: 6px 10px;
+    border-radius: 32px;
     font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'monospace';
     font-weight: bold;
     color: #ffedc7;
     transition: background-color 0.3s, color 0.3s;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+    font-size: 24px;
 }
 
 .nav-cyanide-button {
@@ -52,4 +55,9 @@
 .nav-floride-button:hover {
     background-color: #ffedc7;
     color: #000000;
+}
+
+.navbar.hidden {
+    transform: translateY(-100px);
+    transition: transform 0.3s ease-out;
 }

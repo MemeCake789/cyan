@@ -112,7 +112,7 @@ export default async function handler(req, res) {
 
     // Rewrite relative src/href
     rewrittenHtml = rewrittenHtml.replace(
-      /(src|href)=(['"])(?!https?:\/\/|data:)(.*?)\2/gi,
+      /(src|href|data-src)=(['\"])(?!https?:\/\/|data:)(.*?)\\2/gi,\n      (match, attr, quote, url) => {\n        let rewrittenUrl;\n        if (url.startsWith('/')) {\n          rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;\n        } else {\n          rewrittenUrl = `${rawBaseUrl}${gameFolderPath}/${url}`;\n        }\n        return `${attr}=${quote}${rewrittenUrl}${quote}`;\n      },\n    );\n\n    // Rewrite relative URLs in CSS url() functions\n    rewrittenHtml = rewrittenHtml.replace(\n      /url\\((?!['\"]?https?:\\/\\/|['\"]?data:)(['\"]?)(.*?)\\1\\)/gi,\n      (match, quote, url) => {\n        let rewrittenUrl;\n        if (url.startsWith('/')) {\n          rewrittenUrl = `${rawBaseUrl}${url.substring(1)}`;\n        } else {\n          rewrittenUrl = `${rawBaseUrl}${gameFolderPath}/${url}`;\n        }\n        return `url(${quote}${rewrittenUrl}${quote})`;\n      },
       (match, attr, quote, url) => {
         let rewrittenUrl;
         if (url.startsWith('/')) {
@@ -124,15 +124,33 @@ export default async function handler(req, res) {
       },
     );
 
-    // Special for UnityLoader jsonUrl
-    const instantiateMatch = rewrittenHtml.match(/UnityLoader\.instantiate\(\s*"gameContainer"\s*,\s*"([^"]+)"\s*,/);
-    if (instantiateMatch) {
-      const jsonPath = instantiateMatch[1];
+    // Special handling for UnityLoader.instantiate script execution timing and jsonUrl
+    const unityScriptBlockRegex = /(<script>\s*var unityInstance = UnityLoader\.instantiate\(\s*"gameContainer"\s*,\s*"([^"]+)"\s*,\s*{onProgress: UnityProgress}\);\s*<\/script>)/i;
+    const unityScriptMatch = rewrittenHtml.match(unityScriptBlockRegex);
+
+    if (unityScriptMatch) {
+      const fullScriptBlock = unityScriptMatch[1]; // The entire <script>...</script> block
+      const jsonPath = unityScriptMatch[2]; // The JSON path from the instantiate call
+
       let absoluteJson = jsonPath.startsWith('/') ? `${rawBaseUrl}${jsonPath.substring(1)}` : `${rawBaseUrl}${gameFolderPath}/${jsonPath}`;
-      rewrittenHtml = rewrittenHtml.replace(
-        instantiateMatch[0],
-        `UnityLoader.instantiate("gameContainer", "${absoluteJson}", `,
+
+      // Replace the relative jsonPath with the absolute one within the script block
+      let modifiedScriptContent = fullScriptBlock.replace(
+        `"${jsonPath}"`,
+        `"${absoluteJson}"`
       );
+
+      // Wrap the content of the script block in window.onload
+      const scriptContentInnerRegex = /<script>([\s\S]*?)<\/script>/i;
+      const contentMatch = modifiedScriptContent.match(scriptContentInnerRegex);
+      if (contentMatch && contentMatch[1]) {
+        const originalContent = contentMatch[1];
+        const wrappedContent = `window.onload = function() {\n${originalContent}\n};`;
+        modifiedScriptContent = `<script>${wrappedContent}<\/script>`;
+      }
+
+      rewrittenHtml = rewrittenHtml.replace(fullScriptBlock, modifiedScriptContent);
+      console.log(`Rewrote UnityLoader script block for jsonUrl: ${absoluteJson} and wrapped in window.onload`);
     }
 
     return res.status(200).json({ htmlContent: rewrittenHtml });

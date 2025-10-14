@@ -42,8 +42,6 @@ const GamePage = () => {
           "Game cached successfully from service worker:",
           game.title,
         );
-        // Set iframe src to SW-intercepted path instead of blob
-        iframeRef.current.src = `/cached-game/${encodeURIComponent(game.link)}`;
         setGameLaunched(true);
         setIsDownloading(false);
       } else if (
@@ -62,6 +60,12 @@ const GamePage = () => {
       navigator.serviceWorker.removeEventListener("message", messageListener);
     };
   }, [game]);
+
+  useEffect(() => {
+    if (gameLaunched && game?.type === "HTML" && iframeRef.current) {
+      iframeRef.current.src = `/cached-game/${encodeURIComponent(game.link)}`;
+    }
+  }, [gameLaunched, game]);
 
   useEffect(() => {
     const canvases = document.querySelectorAll("canvas");
@@ -217,4 +221,3 @@ const GamePage = () => {
 };
 
 export default GamePage;
-

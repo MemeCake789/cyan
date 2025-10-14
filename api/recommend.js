@@ -15,13 +15,11 @@ export default async function handler(request, response) {
     return response.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  let body = request.body;
-  if (typeof body === 'string') {
-    try {
-      body = JSON.parse(body);
-    } catch (error) {
-      return response.status(400).json({ message: 'Invalid JSON' });
-    }
+  let body;
+  try {
+    body = JSON.parse(request.body);
+  } catch (error) {
+    return response.status(400).json({ message: 'Invalid JSON' });
   }
   const { gameName } = body;
 
@@ -30,8 +28,8 @@ export default async function handler(request, response) {
   }
 
   try {
-    const { url } = await put(`recommendations/${gameName}.txt`, gameName, { access: 'public' });
-    return response.status(200).json({ message: 'Recommendation received!', url });
+    const blob = await put(`recommendations/${gameName}.txt`, gameName, { access: 'public' });
+    return response.status(200).json({ message: 'Recommendation received!', url: blob.url });
   } catch (error) {
     console.error(error);
     return response.status(500).json({ message: 'Error saving recommendation' });

@@ -360,6 +360,18 @@
       ]
     },
     {
+      "title": "Duck Life 5",
+      "imageSrc": "https://th.bing.com/th/id/OIP.6oCYpU1voiXpzBFTgC399wAAAA?w=177&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Racing",
+      "type": "FLASH",
+      "link": "https://cyan-assets.vercel.app/FLASH/Duck%20Life%205/ducklife5.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ]
+    },
+    {
       "title": "Learn To Fly",
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/Learn%20to%20Fly/learntofly.jfif",
       "genre": "Simulation",
@@ -1122,7 +1134,7 @@
       "imageSrc": "https://th.bing.com/th?&id=OVP.1bvbf_Eyw928bCFWgMApowHgFo&w=318&h=178&c=7&pid=2.1&rs=1",
       "genre": "Open-World",
       "type": "HTML",
-      "link": "https://cyan-assets.vercel.app/HTML/crime-city-2-3d/index.html",
+      "link": "https://cyan-assets.vercel.app/HTML/crime-city-2-3d-webgl/index.html",
       "description": "",
       "status": [
         "Working",

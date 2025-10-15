@@ -82,6 +82,26 @@ const GamesList = () => {
     }
   };
 
+  const handleReportBugClick = async () => {
+    const bugDescription = prompt('Describe the bug:');
+    if (bugDescription) {
+      try {
+        const response = await fetch('/api/report', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ bugDescription }),
+        });
+        const result = await response.json();
+        alert(result.message);
+      } catch (error) {
+        console.error('Error reporting bug:', error);
+        alert('Failed to report bug.');
+      }
+    }
+  };
+
   const handleSort = () => {
     setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
@@ -174,14 +194,22 @@ const GamesList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr onClick={handleRecommendClick} className="recommend-row">
-                      <td className="game-title recommend-title">
-                        <span style={{ color: 'white', marginRight: '5px' }}>[+]</span>
-                        Recommend a game
-                      </td>
-                      <td className="game-genre"></td>
-                      <td className="game-status-text unknown"></td>
-                    </tr>
+                     <tr onClick={handleRecommendClick} className="recommend-row">
+                       <td className="game-title recommend-title">
+                         <span style={{ color: 'white', marginRight: '5px' }}>[+]</span>
+                         Recommend a game
+                       </td>
+                       <td className="game-genre"></td>
+                       <td className="game-status-text unknown"></td>
+                     </tr>
+                     <tr onClick={handleReportBugClick} className="report-row">
+                       <td className="game-title report-title">
+                         <span style={{ color: 'white', marginRight: '5px' }}>[x]</span>
+                         Report a bug
+                       </td>
+                       <td className="game-genre"></td>
+                       <td className="game-status-text unknown"></td>
+                     </tr>
                     {sortedAndFilteredGames.map((game, index) => (
                       <tr key={index} onClick={() => handleGameClick(game)}>
                          <td

@@ -363,5 +363,7 @@ canvas{
 }
 
 .recommend-row .recommend-title {
-  text-shadow: none;
+  text-shadow:
+  0 0 4px #ffc95580, /* Inner, subtle glow */
+  0 0 30px #ffc955b8; /* Outer, softer glow */
 }

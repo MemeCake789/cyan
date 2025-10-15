@@ -21,7 +21,8 @@ export default async function handler(request, response) {
   }
 
   try {
-    const blob = await put(`bugs/${Date.now()}.txt`, bugDescription, { access: 'public', token: 'vercel_blob_rw_WJA6h46rd9DG68JT_sZ3r0sJ1LghydSfCs6CAm8lChSrCia' });
+    const sanitized = bugDescription.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_').slice(0, 50);
+    const blob = await put(`bugs/${sanitized}.txt`, bugDescription, { access: 'public', token: 'vercel_blob_rw_WJA6h46rd9DG68JT_sZ3r0sJ1LghydSfCs6CAm8lChSrCia' });
     return response.status(200).json({ message: 'Bug report received!', url: blob.url });
   } catch (error) {
     console.error(error);

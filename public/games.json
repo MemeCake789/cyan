@@ -1376,6 +1376,58 @@
         "This game has no issues :D"
       ],
       "date": "2025-10-10"
+    },
+    {
+      "title": "Granny",
+      "imageSrc": "https://th.bing.com/th/id/OIP.cc4dM53KejOd8osDzKoUMQHaHa?w=180&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Horror",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/HTML/granny/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-10"
+    },
+    {
+      "title": "Revolution Idle",
+      "imageSrc": "https://www.bing.com/th/id/OIP.MYWQxxApFSV2MnvMtCWVSAHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&cb=12&dpr=1.5&pid=3.1&rm=2",
+      "genre": "Incremental",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/HTML/revolution-idle/index.html",
+      "description": "",
+      "status": [
+        "Bugged",
+        "This game has iframe issues"
+      ],
+      "date": "2025-10-10"
+    },
+    {
+      "title": "Basketball Legends",
+      "imageSrc": "https://th.bing.com/th/id/OIP.Hf6Mz9li-rEiQvXW73KFwgAAAA?w=142&h=150&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Two-Player",
+      "type": "FLASH",
+      "link": "https://cyan-assets.vercel.app/FLASH/Basketball_legends/basketball_legends.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-10"
+    },
+    {
+      "title": "Fire Emblem",
+      "imageSrc": "https://th.bing.com/th/id/OIP.cJ8Bs-vhv7KbPw8WDfECGAHaDt?w=329&h=175&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Action-RPG",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/HTML/fire-emblem/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-10"
     }
     
   ]

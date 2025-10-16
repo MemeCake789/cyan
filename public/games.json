@@ -1415,6 +1415,19 @@
         "This game has no issues :D"
       ],
       "date": "2025-10-10"
+    },
+    {
+      "title": "Fire Emblem",
+      "imageSrc": "https://th.bing.com/th/id/OIP.cJ8Bs-vhv7KbPw8WDfECGAHaDt?w=329&h=175&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Action-RPG",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/HTML/fire-emblem/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-10"
     }
     
   ]

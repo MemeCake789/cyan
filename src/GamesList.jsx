@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './GamesList.css';
 import StatusBar from './StatusBar';
+import MessageTicker from './MessageTicker';
 import Nav from './Nav'
 
 import Floride from './Floride';
@@ -102,6 +103,27 @@ const GamesList = () => {
     }
   };
 
+  const handleAddMessageClick = async () => {
+    const message = prompt('Enter a message too add to the ticker (top of page):');
+    if (message) {
+      const name = prompt('Enter a name (optional):') || '';
+      try {
+        const response = await fetch('/api/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message, name }),
+        });
+        const result = await response.json();
+        alert(result.message);
+      } catch (error) {
+        console.error('Error adding message:', error);
+        alert('Failed to add message.');
+      }
+    }
+  };
+
   const handleSort = () => {
     setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
@@ -148,9 +170,7 @@ const GamesList = () => {
       }
     });
 
-  const initalSlidingContainerStyle = {
-    transform: 'translateX(66.666%)',
-  };
+
 
 
   return (
@@ -202,14 +222,22 @@ const GamesList = () => {
                        <td className="game-genre"></td>
                        <td className="game-status-text unknown"></td>
                      </tr>
-                     <tr onClick={handleReportBugClick} className="report-row">
-                       <td className="game-title report-title">
-                         <span style={{ color: 'white', marginRight: '5px' }}>[x]</span>
-                         Report a bug
-                       </td>
-                       <td className="game-genre"></td>
-                       <td className="game-status-text unknown"></td>
-                     </tr>
+                      <tr onClick={handleReportBugClick} className="report-row">
+                        <td className="game-title report-title">
+                          <span style={{ color: 'white', marginRight: '5px' }}>[x]</span>
+                          Report a bug
+                        </td>
+                        <td className="game-genre"></td>
+                        <td className="game-status-text unknown"></td>
+                      </tr>
+                      <tr onClick={handleAddMessageClick} className="message-row">
+                        <td className="game-title message-title">
+                          <span style={{ color: 'white', marginRight: '5px' }}>[>]</span>
+                          Add a message
+                        </td>
+                        <td className="game-genre"></td>
+                        <td className="game-status-text unknown"></td>
+                      </tr>
                     {sortedAndFilteredGames.map((game, index) => (
                       <tr key={index} onClick={() => handleGameClick(game)}>
                          <td
@@ -260,6 +288,7 @@ const GamesList = () => {
           </div>
         )}
       </div>
+      {!isFullscreen && <MessageTicker />}
       {!isFullscreen && <StatusBar />}
     </>
   );

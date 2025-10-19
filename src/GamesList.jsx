@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './GamesList.css';
 import StatusBar from './StatusBar';
-import MessageTicker from './MessageTicker';
 import Nav from './Nav'
 
 import Floride from './Floride';
@@ -288,7 +287,6 @@ const GamesList = () => {
           </div>
         )}
       </div>
-      {!isFullscreen && <MessageTicker />}
       {!isFullscreen && <StatusBar />}
     </>
   );

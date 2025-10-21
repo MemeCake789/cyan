@@ -28,7 +28,7 @@ const StatusBar = () => {
         cyλn 2.0 BETA | {formattedDate} | {formattedTime}
       </div>
       <div className="status-right">
-         2.4b (Recommend & Bug Report Buttons)
+         2.4c (Floride (AI) Fix (Using Gemini 2.5 Fash))
       </div>
     </div>
   );

@@ -5,9 +5,9 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import './Floride.css';
-import { PollinationsAI } from '/public/client.js';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const client = new PollinationsAI();
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
 
 const Floride = () => {
   const generateTimestamp = () => {
@@ -42,7 +42,6 @@ const Floride = () => {
     if (!input.trim()) return;
 
     const userMessage = { role: 'user', name: 'You', content: input, timestamp: generateTimestamp() };
-    const apiMessages = [...messages, userMessage];
 
     setMessages(prev => [...prev, userMessage, { role: 'assistant', name: 'Floride', content: '', timestamp: generateTimestamp() }]);
     setInput('');
@@ -66,7 +65,7 @@ const Floride = () => {
                   **Example 2:**
 
                   *   **User:** how do i get better at studying
-                  *   **Assistant:** try the pomodoro technique, it's a game changer. you just work for like 25 mins straight, then take a 5 min break. it really helps you stay focused. also, put your phone on silent and in another room. it's the biggest distraction. you got this.
+                   *   **Assistant:** try the pomodoro technique, it's a game changer. you just work for like 25 mins straight, then take a 5 min break. it really helps you stay focused. also, put your phone on silent and in another room. it's the biggest distraction. you got this.
 
                   **Example 3:**
 
@@ -80,32 +79,29 @@ const Floride = () => {
                   For **inline** mathematics, wrap the expression in single dollar signs. Example: \`The equation is $E=mc^2$.\`. 
                   For **block** mathematics, wrap the expression in double dollar signs. Example: 
                   \`
-                   $$ \sum_{i=1}^{n} i = \frac{n(n+1)}{2} $$
+                   $$ \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2} $$
                   \`. 
                   Do not use brackets like \`\\[ ... \\]\` or \`\\( ... \\)\`. Do not use plain text for math. For example, instead of writing x^2, write \`$x^2$\``
     };
 
     try {
-      const stream = await client.chat.completions.create({
-        model: 'deepseek-v3',
-        messages: [systemPrompt, ...apiMessages],
-        stream: true,
-      });
+      const model = genAI.getGenerativeModel({ model: 'models/gemini-flash-lite-latest', systemInstruction: systemPrompt.content });
+      const history = messages.slice(1).filter(msg => msg.content).map(msg => ({ role: msg.role === 'user' ? 'user' : 'model', parts: [{ text: msg.content }] }));
+      const chat = model.startChat({ history });
+      const result = await chat.sendMessageStream(input);
 
       let botMessageContent = '';
-      for await (const chunk of stream) {
-        const content = chunk.choices[0]?.delta?.content;
-        if (content) {
-          botMessageContent += content;
-          setMessages(prev => {
-            const updatedMessages = [...prev];
-            updatedMessages[updatedMessages.length - 1].content = botMessageContent;
-            return updatedMessages;
-          });
-        }
+      for await (const chunk of result.stream) {
+        const chunkText = chunk.text();
+        botMessageContent += chunkText;
+        setMessages(prev => {
+          const updatedMessages = [...prev];
+          updatedMessages[updatedMessages.length - 1].content = botMessageContent;
+          return updatedMessages;
+        });
       }
     } catch (error) {
-      console.error(`API Error: ${error}`);
+      console.error('API Error:', error);
       const errorMessage = `Error: ${error.message || 'Failed to fetch response.'}`;
       setMessages(prev => {
         const updatedMessages = [...prev];

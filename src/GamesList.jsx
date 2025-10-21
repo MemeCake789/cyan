@@ -185,8 +185,8 @@ const GamesList = () => {
         />
 
         <div className={`top-buttons ${isFullscreen ? 'hidden' : ''}`}>
-          <button onClick={handleFullscreen} className="top-fullscreen-button" title="Fullscreen"><span class="material-symbols-outlined">fullscreen</span></button>
-          <button onClick={handleClose} className="top-close-button" title="Close"><span class="material-symbols-outlined">power_settings_new</span></button>
+          <button onClick={handleFullscreen} className="top-fullscreen-button" title="Fullscreen"><span className="material-symbols-outlined">fullscreen</span></button>
+          <button onClick={handleClose} className="top-close-button" title="Close"><span className="material-symbols-outlined">power_settings_new</span></button>
         </div>
 
         <div className="btop-box">

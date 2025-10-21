@@ -1444,6 +1444,45 @@
         "This game has no issues :D"
       ],
       "date": "2025-10-10"
+    },
+    {
+      "title": "Cluster Rush",
+      "imageSrc": "https://tse4.mm.bing.net/th/id/OIP._nzZGXNPMv9cTvPF77RWTwAAAA?cb=12ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
+      "genre": "Runner",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/HTML/clusterrush/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-21"
+    },
+    {
+      "title": "Slope",
+      "imageSrc": "https://slope-play.com/data/image/game/slope-logo-1.jpg",
+      "genre": "Runner",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/HTML/slope/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-21"
+    },
+    {
+      "title": "Slope 2",
+      "imageSrc": "https://thvnext.bing.com/th/id/OIP.yJ31evfzJSioHzllLrb-JQAAAA?w=166&h=169&c=7&r=0&o=7&cb=12&pid=1.7&rm=3&ucfimg=1",
+      "genre": "Runner",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/HTML/slope2/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-10-21"
     }
     
   ]

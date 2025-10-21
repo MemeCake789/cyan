@@ -741,12 +741,13 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Ultrakill/ultrakill-l6f-logo.png",
       "genre": "Shooter",
       "type": "HTML",
-      "link": "https://cyan-assets.vercel.app/HTML/Ultrakill/ULTRAKILL.html",
+      "link": "https://cyan-assets.vercel.app/HTML/ultrakill/index.html",
       "description": "Humanity is ded and hell is real D:",
       "status": [
-        "Bugged",
-        "funky movement ( press f to fix ) and movement gets even more buggy after 1st level"
-      ]
+        "Working",
+        "This game has no issues!"
+      ],
+      "fixedDate": "2025-10-21"
     },
     {
       "title": "Undertale",

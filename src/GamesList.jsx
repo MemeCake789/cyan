@@ -229,14 +229,7 @@ const GamesList = () => {
                         <td className="game-genre"></td>
                         <td className="game-status-text unknown"></td>
                       </tr>
-                      <tr onClick={handleAddMessageClick} className="message-row">
-                        <td className="game-title message-title">
-                          <span style={{ color: 'white', marginRight: '5px' }}>[>]</span>
-                          Add a message
-                        </td>
-                        <td className="game-genre"></td>
-                        <td className="game-status-text unknown"></td>
-                      </tr>
+
                     {sortedAndFilteredGames.map((game, index) => (
                       <tr key={index} onClick={() => handleGameClick(game)}>
                          <td

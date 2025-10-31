@@ -259,9 +259,10 @@
       "link": "https://cyan-assets.vercel.app/EMULATORS/Earthbound/Earthbound.smc",
       "description": "",
       "status": [
-        "Broken",
-        "This game has a network issue"
-      ]
+        "Working",
+        "This game has no issues :D"
+      ],
+      "fixedDate": "2025-10-31"
     },
     {
       "title": "Papa's Burgeria",
@@ -645,9 +646,10 @@
       "link": "https://cyan-assets.vercel.app/EMULATORS/Pokemon%20Unbound/POKEMON_UNBOUND.gba",
       "description": "",
       "status": [
-        "Broken",
-        "This game has a network issue"
-      ]
+        "Working",
+        "This game has no issues :D"
+      ],
+      "fixedDate": "2025-10-31"
     },
     {
       "title": "Crazy Cattle 3D",
@@ -1399,13 +1401,14 @@
       "imageSrc": "https://th.bing.com/th/id/OIP.cc4dM53KejOd8osDzKoUMQHaHa?w=180&h=180&c=7&r=0&o=7&cb=12&dpr=1.5&pid=1.7&rm=3",
       "genre": "Horror",
       "type": "HTML",
-      "link": "https://cyan-assets.vercel.app/HTML/granny/index.html",
+      "link": "https://sulfur-cyanide.vercel.app/a/hvtrs8%2F-1eaoeq.ko-gcmg%2Fercnly%2Fhmrpop%2F",
       "description": "",
       "status": [
-        "Broken",
-        "This game has issues"
+        "Unknown",
+        "This game has unknown working capabilities"
       ],
-      "date": "2025-10-10"
+      "date": "2025-10-10",
+      "fixedDate": "2025-10-31"
     },
     {
       "title": "Revolution Idle",

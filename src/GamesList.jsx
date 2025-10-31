@@ -255,7 +255,7 @@ const GamesList = () => {
               </div>
             </div>
             <div className="proxy-page">
-              <iframe src="https://sulfur-cyanide.vercel.app/rx" title="Sulfur Proxy" width="100%" height="100%" style={{ border: 'none' }} />
+              <iframe src="https://cyan-sulfur.vercel.app/" title="Sulfur Proxy" width="100%" height="100%" style={{ border: 'none' }} />
             </div>
             <div className="floride-page">
               <Floride />

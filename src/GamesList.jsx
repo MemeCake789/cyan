@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './GamesList.css';
 import StatusBar from './StatusBar';
 import Nav from './Nav'
-
+import Browser from './Browser';
 import Floride from './Floride';
 import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
 
@@ -255,7 +255,7 @@ const GamesList = () => {
               </div>
             </div>
             <div className="proxy-page">
-              <iframe src="https://sulfur-cyanide.vercel.app/rx" title="Sulfur Proxy" width="100%" height="100%" style={{ border: 'none' }} />
+              <Browser />
             </div>
             <div className="floride-page">
               <Floride />

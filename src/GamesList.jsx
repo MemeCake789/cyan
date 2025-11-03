@@ -255,7 +255,7 @@ const GamesList = () => {
               </div>
             </div>
             <div className="proxy-page">
-              <Browser />
+              <iframe src="https://uvonvercel-alpha.vercel.app/"></iframe>
             </div>
             <div className="floride-page">
               <Floride />

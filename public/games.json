@@ -793,26 +793,15 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Poke_Rouge/pr.png",
       "genre": "Rougelike",
       "type": "HTML",
-      "link": "https://cyan-assets.vercel.app/HTML/Poke_Rouge/index.html",
+      "link": "https://pokerogue-cyan.vercel.app",
       "description": "",
       "status": [
         "Bugged",
         "game can sometimes freeze when loading"
-      ]
+      ],
+      "fixedDate":"2025-11-3"
     },
-    {
-      "title": "PokeRouge (ZIP)",
-      "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Poke_Rouge/pr.png",
-      "genre": "Rougelike",
-      "type": "ZIP",
-      "link": "https://cyan-assets.vercel.app/HTML/pokerouge/pokerouge.zip",
-      "htmlFile": "index.html",
-      "description": "Pokemon, but as a roguelike. Loaded from a zip file.",
-      "status": [
-        "Working",
-        "This game is loaded from a zip file."
-      ]
-    },
+
     {
       "title": "Riddle School 1",
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/RiddleSchool/riddleschool1.jpg",

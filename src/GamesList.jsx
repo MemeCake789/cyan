@@ -259,11 +259,11 @@ const GamesList = () => {
               <iframe src="https://sulfur-cyanide.vercel.app/a/hvtrs8%2F-sgapcj.%60rcvg.aoo%2F"></iframe>
             </div>
             <div className="floride-page">
-              {/* <Floride /> */}
-              <WidgetBot
+              <Floride />
+              {/* <WidgetBot
     server="299881420891881473"
     channel="355719584830980096"
-  />
+  /> */}
             </div>
           </div>
         </div>

@@ -4,7 +4,6 @@ import "./App.css";
 import { Analytics } from "@vercel/analytics/react";
 import GamesList from "./GamesList";
 import GamePage from "./GamePage";
-import Browser from "./Browser";
 
 function App() {
   // useEffect(() => {
@@ -18,7 +17,6 @@ function App() {
         <Routes>
           <Route path="/" element={<GamesList />} />
           <Route path="/game/:title" element={<GamePage />} />
-          <Route path="/browser" element={<Browser />} />
         </Routes>
         <Analytics />
       </div>

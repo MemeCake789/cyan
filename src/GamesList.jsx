@@ -3,9 +3,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './GamesList.css';
 import StatusBar from './StatusBar';
 import Nav from './Nav'
-import Browser from './Browser';
 import Floride from './Floride';
 import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
+import WidgetBot from '@widgetbot/react-embed'
+
 
 const GamesList = () => {
   const [games, setGames] = useState([]);
@@ -258,7 +259,11 @@ const GamesList = () => {
               <iframe src="https://sulfur-cyanide.vercel.app/a/hvtrs8%2F-sgapcj.%60rcvg.aoo%2F"></iframe>
             </div>
             <div className="floride-page">
-              <Floride />
+              {/* <Floride /> */}
+              <WidgetBot
+    server="299881420891881473"
+    channel="355719584830980096"
+  />
             </div>
           </div>
         </div>

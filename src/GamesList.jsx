@@ -1,58 +1,85 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import './GamesList.css';
-import StatusBar from './StatusBar';
-import Nav from './Nav'
-import Floride from './Floride';
-import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
-import WidgetBot from '@widgetbot/react-embed'
-
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import "./GamesList.css";
+import StatusBar from "./StatusBar";
+import Nav from "./Nav";
+import Floride from "./Floride";
+import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 const GamesList = () => {
   const [games, setGames] = useState([]);
   const [previewData, setPreviewData] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
-  const location = useLocation();
   const containerRef = useRef(null);
+  const widgetbotContainerRef = useRef(null);
 
-  const [activeView, setActiveView] = useState('floride');
-  const [isFullscreen, setIsFullscreen] = useState(false); 
+  const [activeView, setActiveView] = useState("floride");
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-    fetch('/games.json')
-      .then(response => response.json())
-      .then(data => setGames(data.games));
+    fetch("/games.json")
+      .then((response) => response.json())
+      .then((data) => setGames(data.games));
 
     const timer = setTimeout(() => {
-      setActiveView('games');
+      setActiveView("games");
     }, 400);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isFullscreen) {
+      if (e.key === "Escape" && isFullscreen) {
         setIsFullscreen(false);
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isFullscreen]);
 
+  useEffect(() => {
+    // Load WidgetBot script and create element after it loads
+    const existingScript = document.querySelector(
+      'script[src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"]',
+    );
 
+    const initializeWidget = () => {
+      if (
+        widgetbotContainerRef.current &&
+        !widgetbotContainerRef.current.hasChildNodes()
+      ) {
+        const widgetbot = document.createElement("widgetbot");
+        widgetbot.setAttribute("server", "1435267632692461618");
+        widgetbot.setAttribute("channel", "1435267640540270694");
+        widgetbot.setAttribute("width", "100%");
+        widgetbot.setAttribute("height", "100%");
+        widgetbotContainerRef.current.appendChild(widgetbot);
+      }
+    };
 
-  
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/@widgetbot/html-embed";
+      script.async = true;
+      script.onload = initializeWidget;
+      document.body.appendChild(script);
+    } else {
+      initializeWidget();
+    }
+  }, []);
 
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
   const getPreviewTopPosition = () => {
-    return mousePosition.y > window.innerHeight * 0.6 ? mousePosition.y - 220 : mousePosition.y + 15; 
+    return mousePosition.y > window.innerHeight * 0.6
+      ? mousePosition.y - 220
+      : mousePosition.y + 15;
   };
 
   const handleGameClick = (game) => {
@@ -64,68 +91,70 @@ const GamesList = () => {
   };
 
   const handleRecommendClick = async () => {
-    const gameName = prompt('What game would you like to recommend?');
+    const gameName = prompt("What game would you like to recommend?");
     if (gameName) {
       try {
-        const response = await fetch('/api/recommend', {
-          method: 'POST',
+        const response = await fetch("/api/recommend", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ gameName }),
         });
         const result = await response.json();
         alert(result.message);
       } catch (error) {
-        console.error('Error recommending game:', error);
-        alert('Failed to recommend game.');
+        console.error("Error recommending game:", error);
+        alert("Failed to recommend game.");
       }
     }
   };
 
   const handleReportBugClick = async () => {
-    const bugDescription = prompt('Describe the bug:');
+    const bugDescription = prompt("Describe the bug:");
     if (bugDescription) {
       try {
-        const response = await fetch('/api/report', {
-          method: 'POST',
+        const response = await fetch("/api/report", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ bugDescription }),
         });
         const result = await response.json();
         alert(result.message);
       } catch (error) {
-        console.error('Error reporting bug:', error);
-        alert('Failed to report bug.');
+        console.error("Error reporting bug:", error);
+        alert("Failed to report bug.");
       }
     }
   };
 
-  const handleAddMessageClick = async () => {
-    const message = prompt('Enter a message too add to the ticker (top of page):');
+  const _handleAddMessageClick = async () => {
+    const message = prompt(
+      "Enter a message too add to the ticker (top of page):",
+    );
     if (message) {
-      const name = prompt('Enter a name (optional):') || '';
+      const name = prompt("Enter a name (optional):") || "";
       try {
-        const response = await fetch('/api/messages', {
-          method: 'POST',
+        const response = await fetch("/api/messages", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ message, name }),
         });
         const result = await response.json();
         alert(result.message);
       } catch (error) {
-        console.error('Error adding message:', error);
-        alert('Failed to add message.');
+        console.error("Error adding message:", error);
+        alert("Failed to add message.");
       }
     }
   };
 
   const handleSort = () => {
-    setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
   };
 
   const handleFullscreen = () => {
@@ -139,8 +168,8 @@ const GamesList = () => {
       } else {
         window.close();
       }
-    } catch (e) {
-      alert('Close not supported in this context.');
+    } catch {
+      alert("Close not supported in this context.");
     }
   };
 
@@ -149,7 +178,7 @@ const GamesList = () => {
     const gameAddedDate = new Date(gameDate);
     const time = 13 * 24 * 60 * 60 * 1000;
     const now = new Date();
-    return (now - gameAddedDate) < time;
+    return now - gameAddedDate < time;
   };
 
   const isFixed = (gameFixedDate) => {
@@ -157,37 +186,54 @@ const GamesList = () => {
     const gameFixedDateObj = new Date(gameFixedDate);
     const time = 13 * 24 * 60 * 60 * 1000;
     const now = new Date();
-    return (now - gameFixedDateObj) < time;
+    return now - gameFixedDateObj < time;
   };
 
   const sortedAndFilteredGames = games
-    .filter(game => game.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter((game) =>
+      game.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
     .sort((a, b) => {
-      if (sortOrder === 'asc') {
+      if (sortOrder === "asc") {
         return a.title.localeCompare(b.title);
       } else {
         return b.title.localeCompare(a.title);
       }
     });
 
-
-
-
   return (
     <>
-      <div ref={containerRef} className={`btop-container ${isFullscreen ? 'fullscreen' : ''}`} onMouseMove={handleMouseMove}>
-
+      <div
+        ref={containerRef}
+        className={`btop-container ${isFullscreen ? "fullscreen" : ""}`}
+        onMouseMove={handleMouseMove}
+      >
         <Nav
           activeView={activeView}
-          onCyanideClick={() => handleNavClick('games')}
-          onSulfurClick={() => handleNavClick('proxy')}
-          onFlorideClick={() => handleNavClick('floride')}
-          className={isFullscreen ? 'hidden' : ''}
+          onCyanideClick={() => handleNavClick("games")}
+          onSulfurClick={() => handleNavClick("proxy")}
+          onFlorideClick={() => handleNavClick("floride")}
+          onChromiumClick={() => handleNavClick("chromium")}
+          className={isFullscreen ? "hidden" : ""}
         />
 
-        <div className={`top-buttons ${isFullscreen ? 'hidden' : ''}`}>
-          <button onClick={handleFullscreen} className="top-fullscreen-button" title="Fullscreen"><span className="material-symbols-outlined">fullscreen</span></button>
-          <button onClick={handleClose} className="top-close-button" title="Close"><span className="material-symbols-outlined">power_settings_new</span></button>
+        <div className={`top-buttons ${isFullscreen ? "hidden" : ""}`}>
+          <button
+            onClick={handleFullscreen}
+            className="top-fullscreen-button"
+            title="Fullscreen"
+          >
+            <span className="material-symbols-outlined">fullscreen</span>
+          </button>
+          <button
+            onClick={handleClose}
+            className="top-close-button"
+            title="Close"
+          >
+            <span className="material-symbols-outlined">
+              power_settings_new
+            </span>
+          </button>
         </div>
 
         <div className="btop-box">
@@ -206,49 +252,75 @@ const GamesList = () => {
                 <table className="btop-table">
                   <thead>
                     <tr>
-                      <th onClick={handleSort} style={{ cursor: 'pointer' }}>
-                        Title: {sortOrder === 'asc' ? <FaSortUp /> : <FaSortDown />}
+                      <th onClick={handleSort} style={{ cursor: "pointer" }}>
+                        Title:{" "}
+                        {sortOrder === "asc" ? <FaSortUp /> : <FaSortDown />}
                       </th>
                       <th>Genre:</th>
                       <th>Status:</th>
                     </tr>
                   </thead>
                   <tbody>
-                     <tr onClick={handleRecommendClick} className="recommend-row">
-                       <td className="game-title recommend-title">
-                         <span style={{ color: 'white', marginRight: '5px' }}>[+]</span>
-                         Recommend a game
-                       </td>
-                       <td className="game-genre"></td>
-                       <td className="game-status-text unknown"></td>
-                     </tr>
-                      <tr onClick={handleReportBugClick} className="report-row">
-                        <td className="game-title report-title">
-                          <span style={{ color: 'white', marginRight: '5px' }}>[x]</span>
-                          Report a bug
-                        </td>
-                        <td className="game-genre"></td>
-                        <td className="game-status-text unknown"></td>
-                      </tr>
+                    <tr
+                      onClick={handleRecommendClick}
+                      className="recommend-row"
+                    >
+                      <td className="game-title recommend-title">
+                        <span style={{ color: "white", marginRight: "5px" }}>
+                          [+]
+                        </span>
+                        Recommend a game
+                      </td>
+                      <td className="game-genre"></td>
+                      <td className="game-status-text unknown"></td>
+                    </tr>
+                    <tr onClick={handleReportBugClick} className="report-row">
+                      <td className="game-title report-title">
+                        <span style={{ color: "white", marginRight: "5px" }}>
+                          [x]
+                        </span>
+                        Report a bug
+                      </td>
+                      <td className="game-genre"></td>
+                      <td className="game-status-text unknown"></td>
+                    </tr>
 
                     {sortedAndFilteredGames.map((game, index) => (
                       <tr key={index} onClick={() => handleGameClick(game)}>
-                         <td
-                           onMouseEnter={() => setPreviewData({
-                             src: game.imageSrc,
-                             title: game.title,
-                             description: game.description,
-                             genre: game.genre
-                           })}
-                           onMouseLeave={() => setPreviewData(null)}
-                           className="game-title"
-                         >
-                           {isFixed(game.fixedDate) && <span style={{ color: 'white', marginRight: '5px' }}>[FIXED]</span>}
-                           {isNew(game.date) && <span style={{ color: 'white', marginRight: '5px' }}>[NEW]</span>}
-                           {game.title}
-                         </td>
+                        <td
+                          onMouseEnter={() =>
+                            setPreviewData({
+                              src: game.imageSrc,
+                              title: game.title,
+                              description: game.description,
+                              genre: game.genre,
+                            })
+                          }
+                          onMouseLeave={() => setPreviewData(null)}
+                          className="game-title"
+                        >
+                          {isFixed(game.fixedDate) && (
+                            <span
+                              style={{ color: "white", marginRight: "5px" }}
+                            >
+                              [FIXED]
+                            </span>
+                          )}
+                          {isNew(game.date) && (
+                            <span
+                              style={{ color: "white", marginRight: "5px" }}
+                            >
+                              [NEW]
+                            </span>
+                          )}
+                          {game.title}
+                        </td>
                         <td className="game-genre">{game.genre}</td>
-                        <td className={`game-status-text ${game.status[0].toLowerCase()}`}>{game.status[0]}</td>
+                        <td
+                          className={`game-status-text ${game.status[0].toLowerCase()}`}
+                        >
+                          {game.status[0]}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -260,10 +332,12 @@ const GamesList = () => {
             </div>
             <div className="floride-page">
               <Floride />
-              {/* <WidgetBot
-    server="299881420891881473"
-    channel="355719584830980096"
-  /> */}
+            </div>
+            <div className="chromium-page">
+              <div
+                ref={widgetbotContainerRef}
+                style={{ width: "100%", height: "100%" }}
+              />
             </div>
           </div>
         </div>
@@ -273,10 +347,14 @@ const GamesList = () => {
             className="game-preview"
             style={{
               top: `${getPreviewTopPosition()}px`,
-              left: `${mousePosition.x + 15}px`
+              left: `${mousePosition.x + 15}px`,
             }}
           >
-            <img src={previewData.src} alt="Game Preview" className="preview-image" />
+            <img
+              src={previewData.src}
+              alt="Game Preview"
+              className="preview-image"
+            />
             <div className="preview-details">
               <p className="preview-title">{previewData.title}</p>
               <p className="preview-genre">{previewData.genre}</p>

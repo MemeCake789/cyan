@@ -23,15 +23,18 @@
 
 .nav-cyanide-button,
 .nav-sulfur-button,
-.nav-floride-button {
+.nav-floride-button,
+.nav-chromium-button {
     text-decoration: none;
 
     padding: 6px 10px;
     border-radius: 32px;
-    font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'monospace';
+    font-family: "JetBrains Mono", "Consolas", "Monaco", "monospace";
     font-weight: bold;
     color: #ffedc7;
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
 .material-symbols-outlined {
@@ -51,9 +54,22 @@
     /* background-color: #336600; */
 }
 
+.nav-chromium-button {
+    /* background-color: #663300; */
+}
+
 .nav-cyanide-button:hover,
 .nav-sulfur-button:hover,
-.nav-floride-button:hover {
+.nav-floride-button:hover,
+.nav-chromium-button:hover {
+    background-color: #ffedc7;
+    color: #000000;
+}
+
+.nav-cyanide-button.active,
+.nav-sulfur-button.active,
+.nav-floride-button.active,
+.nav-chromium-button.active {
     background-color: #ffedc7;
     color: #000000;
 }

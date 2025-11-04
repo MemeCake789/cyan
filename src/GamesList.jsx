@@ -52,12 +52,30 @@ const GamesList = () => {
         widgetbotContainerRef.current &&
         !widgetbotContainerRef.current.hasChildNodes()
       ) {
-        const widgetbot = document.createElement("widgetbot");
-        widgetbot.setAttribute("server", "1435267632692461618");
-        widgetbot.setAttribute("channel", "1435267640540270694");
-        widgetbot.setAttribute("width", "100%");
-        widgetbot.setAttribute("height", "100%");
-        widgetbotContainerRef.current.appendChild(widgetbot);
+        try {
+          const widgetbot = document.createElement("widgetbot");
+          widgetbot.setAttribute("server", "1435267632692461618");
+          widgetbot.setAttribute("channel", "1435267640540270694");
+          widgetbot.setAttribute("width", "100%");
+          widgetbot.setAttribute("height", "100%");
+          widgetbotContainerRef.current.appendChild(widgetbot);
+          console.log("WidgetBot element created successfully");
+        } catch (error) {
+          console.error("Error initializing WidgetBot:", error);
+          // Fallback: show iframe directly
+          const iframe = document.createElement("iframe");
+          iframe.src =
+            "https://e.widgetbot.io/channels/1435267632692461618/1435267640540270694";
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframe.style.border = "none";
+          iframe.setAttribute("allowTransparency", "true");
+          iframe.setAttribute(
+            "sandbox",
+            "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts",
+          );
+          widgetbotContainerRef.current.appendChild(iframe);
+        }
       }
     };
 
@@ -65,10 +83,18 @@ const GamesList = () => {
       const script = document.createElement("script");
       script.src = "https://cdn.jsdelivr.net/npm/@widgetbot/html-embed";
       script.async = true;
-      script.onload = initializeWidget;
+      script.crossOrigin = "anonymous";
+      script.onload = () => {
+        console.log("WidgetBot script loaded");
+        setTimeout(initializeWidget, 100);
+      };
+      script.onerror = (error) => {
+        console.error("Error loading WidgetBot script:", error);
+        initializeWidget(); // Try fallback iframe
+      };
       document.body.appendChild(script);
     } else {
-      initializeWidget();
+      setTimeout(initializeWidget, 100);
     }
   }, []);
 

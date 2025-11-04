@@ -28,6 +28,10 @@
       "source": "/(.*)",
       "headers": [
         {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
           "key": "Content-Security-Policy",
           "value": "frame-ancestors 'self' https://cyan-ide.vercel.app https://cyan-embed.vercel.app; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; frame-src 'self' https://e.widgetbot.io https://cyan-embed.vercel.app https://sulfur-cyanide.vercel.app *;"
         },

@@ -14,7 +14,6 @@ const GamesList = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const containerRef = useRef(null);
-  const widgetbotContainerRef = useRef(null);
 
   const [activeView, setActiveView] = useState("floride");
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -42,60 +41,14 @@ const GamesList = () => {
   }, [isFullscreen]);
 
   useEffect(() => {
-    // Load WidgetBot script and create element after it loads
-    const existingScript = document.querySelector(
-      'script[src="/widgetbot.js"]',
-    );
-
-    const initializeWidget = () => {
-      if (
-        widgetbotContainerRef.current &&
-        !widgetbotContainerRef.current.hasChildNodes()
-      ) {
-        try {
-          const widgetbot = document.createElement("widgetbot");
-          widgetbot.setAttribute("server", "1435267632692461618");
-          widgetbot.setAttribute("channel", "1435267640540270694");
-          widgetbot.setAttribute("width", "100%");
-          widgetbot.setAttribute("height", "100%");
-          widgetbotContainerRef.current.appendChild(widgetbot);
-          console.log("WidgetBot element created successfully");
-        } catch (error) {
-          console.error("Error initializing WidgetBot:", error);
-          // Fallback: show iframe directly
-          const iframe = document.createElement("iframe");
-          iframe.src =
-            "https://e.widgetbot.io/channels/1435267632692461618/1435267640540270694";
-          iframe.style.width = "100%";
-          iframe.style.height = "100%";
-          iframe.style.border = "none";
-          iframe.setAttribute("allowTransparency", "true");
-          iframe.setAttribute(
-            "sandbox",
-            "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts",
-          );
-          widgetbotContainerRef.current.appendChild(iframe);
-        }
+    if (activeView === 'chromium') {
+      if (window.widgetbot && typeof window.widgetbot.register === 'function') {
+        setTimeout(() => {
+          window.widgetbot.register();
+        }, 100);
       }
-    };
-
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.src = "/widgetbot.js";
-      script.async = true;
-      script.onload = () => {
-        console.log("WidgetBot script loaded");
-        setTimeout(initializeWidget, 100);
-      };
-      script.onerror = (error) => {
-        console.error("Error loading WidgetBot script:", error);
-        initializeWidget(); // Try fallback iframe
-      };
-      document.body.appendChild(script);
-    } else {
-      setTimeout(initializeWidget, 100);
     }
-  }, []);
+  }, [activeView]);
 
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
@@ -224,15 +177,14 @@ const GamesList = () => {
       } else {
         return b.title.localeCompare(a.title);
       }
-});
+    });
 
   return (
     <>
       <div
         ref={containerRef}
         className={`btop-container ${isFullscreen ? "fullscreen" : ""}`}
-        onMouseMove={handleMouseMove}
-      >
+        onMouseMove={handleMouseMove}>
         <Nav
           activeView={activeView}
           onCyanideClick={() => handleNavClick("games")}
@@ -342,8 +294,7 @@ const GamesList = () => {
                         </td>
                         <td className="game-genre">{game.genre}</td>
                         <td
-                          className={`game-status-text ${game.status[0].toLowerCase()}`}
-                        >
+                          className={`game-status-text ${game.status[0].toLowerCase()}`}>
                           {game.status[0]}
                         </td>
                       </tr>
@@ -359,9 +310,11 @@ const GamesList = () => {
               <Floride />
             </div>
             <div className="chromium-page">
-              <div
-                ref={widgetbotContainerRef}
-                style={{ width: "100%", height: "100%" }}
+              <widgetbot
+                server="1435267632692461618"
+                channel="1435267640540270694"
+                width="100%"
+                height="100%"
               />
             </div>
           </div>
@@ -373,8 +326,7 @@ const GamesList = () => {
             style={{
               top: `${getPreviewTopPosition()}px`,
               left: `${mousePosition.x + 15}px`,
-            }}
-          >
+            }}>
             <img
               src={previewData.src}
               alt="Game Preview"

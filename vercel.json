@@ -13,18 +13,14 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/bare/(.*)",
-      "dest": "/server.js"
+      "source": "/bare/(.*)",
+      "destination": "/server.js"
     },
     {
-      "src": "/uv/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/$1"
+      "source": "/uv/(.*)",
+      "destination": "/server.js"
     }
   ],
   "headers": [

@@ -44,7 +44,7 @@ const GamesList = () => {
   useEffect(() => {
     // Load WidgetBot script and create element after it loads
     const existingScript = document.querySelector(
-      'script[src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"]',
+      'script[src="/widgetbot.js"]',
     );
 
     const initializeWidget = () => {
@@ -81,9 +81,8 @@ const GamesList = () => {
 
     if (!existingScript) {
       const script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/@widgetbot/html-embed";
+      script.src = "/widgetbot.js";
       script.async = true;
-      script.crossOrigin = "anonymous";
       script.onload = () => {
         console.log("WidgetBot script loaded");
         setTimeout(initializeWidget, 100);
@@ -225,7 +224,7 @@ const GamesList = () => {
       } else {
         return b.title.localeCompare(a.title);
       }
-    });
+});
 
   return (
     <>

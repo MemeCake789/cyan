@@ -129,26 +129,41 @@ const GamePage = () => {
         break;
       case 'EMULATOR':
         content = `
-          <!DOCTYPE html>
           <html>
-          <head>
-            <title>${title}</title>
-            <style>
-              body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-              #game { width: 100%; height: 100%; }
-            </style>
-          </head>
-          <body>
-            <div id="game"></div>
-            <script>
-              window.EJS_pathtodata = "https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/";
-              window.EJS_core = "${game.core}";
-              window.EJS_gameUrl = "${game.link}";
-              window.EJS_player = "#game";
-            </script>
-            <script src="https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js"></script>
-          </body>
-          </html>`;
+<div class="game">
+    <div id='game'></div>
+</div>
+  
+<script type='text/javascript'>
+  
+EJS_player = '#game';
+EJS_core = '${game.core}';
+EJS_gameUrl = '${game.link}';
+EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/';
+  
+</script>
+<script src='https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js'></script>
+
+<style>
+    .game {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+    
+    #game {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+</style>
+</html>`;
         setHtmlContent(content);
         setGameLaunched(true);
         break;
@@ -191,7 +206,7 @@ const GamePage = () => {
            <div className="launch-screen">
              <div className='launch-controls'>
                <button className="launch-button-game" onClick={handleLaunchGame}>
-                 > Launch
+                 &gt; Launch
                </button>
                 <p className="cdn-loaded-text">
                   Game: {game.title} <br></br>

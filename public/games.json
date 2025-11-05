@@ -570,7 +570,7 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/achievementunlocked/achievementunlocked.png",
       "genre": "Platformer",
       "type": "FLASH",
-      "link": "https://cyan-assets.vercel.app/HTML/achievementunlocked/achievementunlocked.swf",
+        "link": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/AchivementUnlocked/Achievement%20Unlocked%201.swf",
       "description": "there are more achivements in this game than there are games in this site",
       "status": [
         "Working",

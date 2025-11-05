@@ -105,7 +105,7 @@ const GamePage = () => {
               body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
               #ruffle-player { width: 100%; height: 100%; }
             </style>
-            <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+            <script src="/ruffle.js"></script>
           </head>
           <body>
             <div id="ruffle-player"></div>
@@ -141,12 +141,12 @@ const GamePage = () => {
           <body>
             <div id="game"></div>
             <script>
-              window.EJS_pathtodata = "/emulator/";
+              window.EJS_pathtodata = "https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/";
               window.EJS_core = "${game.core}";
               window.EJS_gameUrl = "${game.link}";
               window.EJS_player = "#game";
             </script>
-            <script src="/emulator/loader.js"></script>
+            <script src="https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js"></script>
           </body>
           </html>`;
         setHtmlContent(content);

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { URL } from 'url';
+import javascriptObfuscator from 'vite-plugin-javascript-obfuscator';
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
@@ -10,6 +11,22 @@ export default defineConfig(({ command }) => ({
   },
   plugins: [
     react(),
+    command === 'build' && javascriptObfuscator({
+        options: {
+            compact: true,
+            controlFlowFlattening: true,
+            deadCodeInjection: true,
+            debugProtection: false,
+            disableConsoleOutput: false,
+            numbersToExpressions: true,
+            renameGlobals: false,
+            selfDefending: false,
+            stringArray: true,
+            stringArrayEncoding: ['base64'],
+            stringArrayThreshold: 0.75,
+            unicodeEscapeSequence: false
+        }
+    }),
     {
       name: 'handle-api',
       configureServer(server) {
@@ -35,7 +52,7 @@ export default defineConfig(({ command }) => ({
         });
       }
     }
-  ],
+  ].filter(Boolean),
   server: {
     proxy: {
       '/g4f': {

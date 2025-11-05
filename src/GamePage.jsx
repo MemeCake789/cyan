@@ -141,12 +141,12 @@ const GamePage = () => {
           <body>
             <div id="game"></div>
             <script>
-              window.EJS_pathtodata = "https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/";
+              window.EJS_pathtodata = "/emulator/";
               window.EJS_core = "${game.core}";
               window.EJS_gameUrl = "${game.link}";
               window.EJS_player = "#game";
             </script>
-            <script src="https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js"></script>
+            <script src="/emulator/loader.js"></script>
           </body>
           </html>`;
         setHtmlContent(content);

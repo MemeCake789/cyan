@@ -793,15 +793,26 @@
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Poke_Rouge/pr.png",
       "genre": "Rougelike",
       "type": "HTML",
-      "link": "https://pokerogue-cyan.vercel.app",
+      "link": "https://cyan-assets.vercel.app/HTML/Poke_Rouge/index.html",
       "description": "",
       "status": [
         "Bugged",
         "game can sometimes freeze when loading"
-      ],
-      "fixedDate":"2025-11-3"
+      ]
     },
-
+    {
+      "title": "PokeRouge (ZIP)",
+      "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/HTML/Poke_Rouge/pr.png",
+      "genre": "Rougelike",
+      "type": "ZIP",
+      "link": "https://cyan-assets.vercel.app/HTML/pokerouge/pokerouge.zip",
+      "htmlFile": "index.html",
+      "description": "Pokemon, but as a roguelike. Loaded from a zip file.",
+      "status": [
+        "Working",
+        "This game is loaded from a zip file."
+      ]
+    },
     {
       "title": "Riddle School 1",
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/FLASH/RiddleSchool/riddleschool1.jpg",
@@ -1230,7 +1241,7 @@
     },
     {
       "title": "Wheely 6",
-      "imageSrc": "https://www.bing.com/ck/a?!&&p=39c1ddffbd867ac9f18f730b173a102baf779a7077e1fa76dc7119f079f9f4fbJmltdHM9MTc2MDY1OTIwMA&ptn=3&ver=2&hsh=4&fclid=3613145b-06a2-6c99-1349-021207eb6d17&u=a1L2ltYWdlcy9zZWFyY2g_cT13aGVlbHkrNitpbWFnZStsb2dvJmlkPUYwNzY1MjI4MDI4MTE0RDEzOEUwODFFMjI0RUNCMDBDMjc3QTFCMTMmRk9STT1JUUZSQkE",
+      "imageSrc": "https://assets.humoq.com/cdn-cgi/image/quality=78,fit=cover,f=auto,width=3840/images/h512/wheely-6.webp",
       "genre": "Puzzle",
       "type": "FLASH",
       "link": "https://cyan-assets.vercel.app/FLASH/wheely/Wheely6.swf",
@@ -1478,6 +1489,32 @@
       "date": "2025-10-21"
     },
     {
+      "title": "Super Smash Flash 2",
+      "imageSrc": "https://tse2.mm.bing.net/th/id/OIP.rFFd4MOapako6P2ELHvfXgHaDd?rs=1&pid=ImgDetMain&o=7&rm=3",
+      "genre": "Two-Player",
+      "type": "FLASH",
+      "link": "https://cyan-assets2.vercel.app/FLASH/supersmashflash2/supersmashflash2.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-4"
+    },
+    {
+      "title": "Papa's Cheeseria",
+      "imageSrc": "https://th.bing.com/th/id/OIP.EoPwOxIMzTyZjkr8HvTbPgHaDt?w=300&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3",
+      "genre": "Strategy",
+      "type": "FLASH",
+      "link": "https://cyan-assets2.vercel.app/FLASH/papascheeseria/papascheeseria_102.swf",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-4"
+    },
+    {
       "title": "n-gon",
       "imageSrc": "data:image/jpeg;base64,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",
       "genre": "Shooter-Platformer",
@@ -1490,5 +1527,6 @@
       ],
       "date": "2025-11-3"
     }
+    
   ]
 }

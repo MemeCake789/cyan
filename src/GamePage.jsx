@@ -197,11 +197,7 @@ EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/
 
       <div className="game-content-container">
         {gameLaunched ? (
-          game.type === 'HTML' ? (
             <iframe ref={iframeRef} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
-          ) : (
-            <iframe ref={iframeRef} title={game.title} className="game-iframe" allowFullScreen />
-          )
          ) : (
            <div className="launch-screen">
              <div className='launch-controls'>

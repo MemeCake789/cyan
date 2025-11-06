@@ -36,18 +36,6 @@ const GamePage = () => {
    }, [game]);
 
    useEffect(() => {
-     if (iframeRef.current && htmlContent) {
-       const blob = new Blob([htmlContent], { type: 'text/html' });
-       const url = URL.createObjectURL(blob);
-       iframeRef.current.src = url;
-
-       return () => {
-         URL.revokeObjectURL(url);
-       };
-     }
-   }, [htmlContent]);
-
-   useEffect(() => {
      if (iframeRef.current && gameLaunched && game.type === 'HTML') {
        iframeRef.current.src = game.link;
      }
@@ -197,7 +185,11 @@ EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/
 
       <div className="game-content-container">
         {gameLaunched ? (
+          game.type === 'HTML' ? (
             <iframe ref={iframeRef} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+          ) : (
+            <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+          )
          ) : (
            <div className="launch-screen">
              <div className='launch-controls'>

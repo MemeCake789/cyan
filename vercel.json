@@ -33,7 +33,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' blob: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://cdn.jsdelivr.net https://rawcdn.githack.com; frame-src 'self' blob: https://e.widgetbot.io https://cyan-embed.vercel.app https://sulfur-cyanide.vercel.app *; connect-src *; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;"
+          "value": "frame-ancestors *; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://cdn.jsdelivr.net https://rawcdn.githack.com *; worker-src *; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src *; img-src * data: blob:;"
         },
         {
           "key": "X-Content-Type-Options",

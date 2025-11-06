@@ -1539,6 +1539,19 @@
         "This game has no issues :D"
       ],
       "date": "2025-11-5"
+    },
+        {
+      "title": "Level 13",
+      "imageSrc": "https://preview.redd.it/complete-the-game-2-times-on-version-0-6-xx-v0-2t5k1mc97dff1.png?width=793&format=png&auto=webp&s=f32c92c3330f418c888e0eeeae562b0e08ae96a9",
+      "genre": "Incremental",
+      "type": "HTML",
+      "link": "https://level13.vercel.app/",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-6"
     }
     
   ]

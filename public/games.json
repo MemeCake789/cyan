@@ -1513,6 +1513,32 @@
         "This game has no issues :D"
       ],
       "date": "2025-11-3"
+    },
+    {
+      "title": "Space Company",
+      "imageSrc": "https://www.bing.com/th/id/OIP.V5YnFcgeg0MNdCD31nFRjQHaEK?w=253&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "genre": "Incremental",
+      "type": "HTML",
+      "link": "https://cyan-assets2.vercel.app/HTML/SpaceCompany/index.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-5"
+    },
+    {
+      "title": "Drift Hunters",
+      "imageSrc": "https://www.bing.com/th/id/OIP.bhY8XOZF6gshHwli88nmMgHaHa?w=186&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "genre": "Racing",
+      "type": "HTML",
+      "link": "https://sulfur-cyanide.vercel.app/a/hvtrs8%2F-jcsmneaoeqdgv%2Cgktju%60.ko-dpidt%2Fhwnveps-",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-5"
     }
     
   ]

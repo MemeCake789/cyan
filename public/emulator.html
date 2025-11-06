@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emulator</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        #game { width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const core = urlParams.get('core');
+        const gameUrl = urlParams.get('gameUrl');
+
+        if (core && gameUrl) {
+            EJS_player = '#game';
+            EJS_core = core;
+            EJS_gameUrl = gameUrl;
+            EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/';
+
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js';
+            document.body.appendChild(script);
+        } else {
+            document.getElementById('game').innerText = 'Error: Core and gameUrl are required.';
+        }
+    </script>
+</body>
+</html>

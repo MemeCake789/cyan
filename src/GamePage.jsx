@@ -23,23 +23,16 @@ const GamePage = () => {
   const game = gamesData.games.find((g) => g.title === decodeURIComponent(title));
   const iframeRef = useRef(null);
 
-   const [gameLaunched, setGameLaunched] = useState(false);
-    const [htmlContent, setHtmlContent] = useState('');
-    const [isFullScreen, setIsFullScreen] = useState(false);
-    const [animateControls, setAnimateControls] = useState(false);
+  const [gameLaunched, setGameLaunched] = useState(false);
+  const [iframeSrc, setIframeSrc] = useState('');
+  const [htmlContent, setHtmlContent] = useState('');
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [animateControls, setAnimateControls] = useState(false);
 
-
-
-   useEffect(() => {
-     const canvases = document.querySelectorAll('canvas');
-     canvases.forEach(canvas => { canvas.remove(); });
-   }, [game]);
-
-   useEffect(() => {
-     if (iframeRef.current && gameLaunched && game.type === 'HTML') {
-       iframeRef.current.src = game.link;
-     }
-   }, [gameLaunched, game]);
+  useEffect(() => {
+    const canvases = document.querySelectorAll('canvas');
+    canvases.forEach(canvas => { canvas.remove(); });
+  }, [game]);
 
   useEffect(() => {
     if (gameLaunched) {
@@ -74,20 +67,17 @@ const GamePage = () => {
   }
 
   const handleLaunchGame = async () => {
-    let content = '';
-    const title = game.title;
-
     switch (game.type) {
       case 'HTML':
-        setGameLaunched(true);
+        setIframeSrc(game.link);
         break;
       case 'FLASH':
-        content = `
+        setHtmlContent(`
           <!DOCTYPE html>
           <html>
           <head>
             <base href="/">
-            <title>${title}</title>
+            <title>${game.title}</title>
             <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
             <style>
               body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
@@ -111,53 +101,15 @@ const GamePage = () => {
                player.load("${game.link}");
             </script>
           </body>
-          </html>`;
-        setHtmlContent(content);
-        setGameLaunched(true);
+          </html>`);
         break;
       case 'EMULATOR':
-        content = `
-          <html>
-<div class="game">
-    <div id='game'></div>
-</div>
-  
-<script type='text/javascript'>
-  
-EJS_player = '#game';
-EJS_core = '${game.core}';
-EJS_gameUrl = '${game.link}';
-EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/';
-  
-</script>
-<script src='https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/loader.js'></script>
-
-<style>
-    .game {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-    }
-    
-    #game {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-    }
-</style>
-</html>`;
-        setHtmlContent(content);
-        setGameLaunched(true);
+        setIframeSrc(`/emulator.html?core=${game.core}&gameUrl=${encodeURIComponent(game.link)}`);
         break;
       default:
-        setGameLaunched(true);
+        break;
     }
+    setGameLaunched(true);
   };
 
   return (
@@ -185,10 +137,10 @@ EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@main/data/
 
       <div className="game-content-container">
         {gameLaunched ? (
-          game.type === 'HTML' ? (
-            <iframe ref={iframeRef} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
-          ) : (
+          game.type === 'FLASH' ? (
             <iframe ref={iframeRef} srcDoc={htmlContent} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
+          ) : (
+            <iframe ref={iframeRef} src={iframeSrc} title={game.title} className="game-iframe" allowFullScreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-presentation allow-downloads allow-top-navigation-by-user-activation allow-top-navigation" />
           )
          ) : (
            <div className="launch-screen">

@@ -17,8 +17,8 @@
       "core": "mgba",
       "imageSrc": "https://cdn.jsdelivr.net/gh/MemeCake789/cyan-assets@main/EMULATORS/images/advancewars.jpg",
       "genre": "Action-Adventure",
-      "type": "EMULATOR",
-      "link": "https://cdn.jsdelivr.net/gh/vbaemulator/GBA-Roms@main/Advance%20Wars%20(USA)%20(Rev%201).zip",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/EMULATORS/index%20(4).html",
       "description": "",
       "status": [
         "Working",

@@ -4,8 +4,6 @@ import express from "express";
 import { createServer } from "node:http";
 import { publicPath } from "ultraviolet-static";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
-import { join } from "node:path";
-import { hostname } from "node:os";
 
 const app = express();
 
@@ -14,7 +12,7 @@ app.use("/uv/", express.static(uvPath));
 
 const bare = createBareServer("/bare/");
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   if (bare.shouldRoute(req)) {
     bare.routeRequest(req, res);
   } else {

@@ -4,6 +4,7 @@ import "./GamesList.css";
 import StatusBar from "./StatusBar";
 import Nav from "./Nav";
 import Floride from "./Floride";
+import WidgetBot from "./WidgetBot";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 const GamesList = () => {
@@ -39,16 +40,6 @@ const GamesList = () => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isFullscreen]);
-
-  useEffect(() => {
-    if (activeView === 'chromium') {
-      if (window.widgetbot && typeof window.widgetbot.register === 'function') {
-        setTimeout(() => {
-          window.widgetbot.register();
-        }, 100);
-      }
-    }
-  }, [activeView]);
 
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
@@ -294,8 +285,13 @@ const GamesList = () => {
                         </td>
                         <td className="game-genre">{game.genre}</td>
                         <td
-                          className={`game-status-text ${game.status[0].toLowerCase()}`}>
-                          {game.status[0]}
+                          className={`game-status-text ${game.status && game.status.length > 0
+                              ? game.status[0].toLowerCase()
+                              : "unknown"
+                            }`}>
+                          {game.status && game.status.length > 0
+                            ? game.status[0]
+                            : "Unknown"}
                         </td>
                       </tr>
                     ))}
@@ -310,7 +306,7 @@ const GamesList = () => {
               <Floride />
             </div>
             <div className="chromium-page">
-              <widgetbot
+              <WidgetBot
                 server="1435267632692461618"
                 channel="1435267640540270694"
                 width="100%"

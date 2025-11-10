@@ -1,9 +1,8 @@
 import WidgetBot from '@widgetbot/react-embed'
 
-const App = () => (
+const App = (props) => (
   <WidgetBot
-    server="299881420891881473"
-    channel="355719584830980096"
+    {...props}
   />
 )
 

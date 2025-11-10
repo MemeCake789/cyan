@@ -24,7 +24,7 @@ const Nav = ({
         className={`nav-sulfur-button ${activeView === "proxy" ? "active" : ""}`}
         title="Proxy"
       >
-        <span class="material-symbols-outlined">public</span> sµlfur
+        <span class="material-symbols-outlined">public</span> chrθmium
       </a>
       <a
         href="#"
@@ -40,7 +40,7 @@ const Nav = ({
         className={`nav-chromium-button ${activeView === "chromium" ? "active" : ""}`}
         title="Discord"
       >
-        <span class="material-symbols-outlined">chat</span> chrθmium
+        <span class="material-symbols-outlined">chat</span> sµlfur
       </a>
     </nav>
   );

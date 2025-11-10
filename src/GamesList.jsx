@@ -276,7 +276,7 @@ const GamesList = () => {
                           )}
                           {isNew(game.date) && (
                             <span
-                              style={{ color: "white", marginRight: "5px" }}
+                              style={{ color: "white", marginRight: "5ix" }}
                             >
                               [NEW]
                             </span>

@@ -4,7 +4,6 @@ import "./GamesList.css";
 import StatusBar from "./StatusBar";
 import Nav from "./Nav";
 import Floride from "./Floride";
-import WidgetBot from "./WidgetBot";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 const GamesList = () => {
@@ -306,12 +305,13 @@ const GamesList = () => {
               <Floride />
             </div>
             <div className="chromium-page">
-              <WidgetBot
-                server="1435267632692461618"
-                channel="1435267640540270694"
-                width="100%"
+              <iframe 
+                src="/discord/channels/1435267632692461618/1435267640540270694" 
+                width="100%" 
                 height="100%"
-              />
+                allow="clipboard-write; autoplay; encrypted-media"
+                style={{ border: 'none' }}
+              ></iframe>
             </div>
           </div>
         </div>

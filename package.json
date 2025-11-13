@@ -31,6 +31,7 @@
     "cheerio": "^1.1.2",
     "express": "^4.18.2",
     "fflate": "^0.8.2",
+    "http-proxy-middleware": "^3.0.5",
     "katex": "^0.16.22",
     "mui-color-input": "^7.0.0",
     "node-fetch": "^3.3.2",

@@ -4,11 +4,20 @@ import express from "express";
 import { createServer } from "node:http";
 import { publicPath } from "ultraviolet-static";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 
 app.use(express.static(publicPath));
 app.use("/uv/", express.static(uvPath));
+
+app.use("/discord", createProxyMiddleware({ 
+    target: "https://e.widgetbot.io", 
+    changeOrigin: true,
+    pathRewrite: {
+        '^/discord': ''
+    }
+}));
 
 const bare = createBareServer("/bare/");
 

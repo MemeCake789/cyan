@@ -59,6 +59,11 @@ export default defineConfig(({ command }) => ({
         target: 'https://g4f.dev/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/g4f/, '')
+      },
+      '/discord': {
+        target: 'https://e.widgetbot.io',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/discord/, '')
       }
     }
   }

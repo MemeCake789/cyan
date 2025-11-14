@@ -992,6 +992,32 @@
       "date": "2025-10-01"
     },
     {
+      "title": "Vex",
+      "imageSrc": "https://th.bing.com/th/id/OIP.irCqiSdQgiQLYFSDhmI5jwHaHa?w=168&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/UGS/UGS%20Files/clvex.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-13"
+    },
+    {
+      "title": "Vex 2",
+      "imageSrc": "https://thvnext.bing.com/th/id/OIP.a8RvXdIxOs8TFBUGniXRIwHaHa?w=149&h=180&c=7&r=0&o=7&cb=12&pid=1.7&rm=3&ucfimg=1",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/UGS/UGS%20Files/clvex2.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-13"
+    },
+    {
       "title": "Vex 3",
       "imageSrc": "https://thvnext.bing.com/th/id/OIP.a8RvXdIxOs8TFBUGniXRIwHaHa?w=149&h=180&c=7&r=0&o=7&cb=12&pid=1.7&rm=3&ucfimg=1",
       "genre": "Platformer",
@@ -1016,6 +1042,58 @@
         "This game has no issues :D"
       ],
       "date": "2025-10-01"
+    },
+    {
+      "title": "Vex 5",
+      "imageSrc": "https://thvnext.bing.com/th/id/OIP.a8RvXdIxOs8TFBUGniXRIwHaHa?w=149&h=180&c=7&r=0&o=7&cb=12&pid=1.7&rm=3&ucfimg=1",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/UGS/UGS%20Files/clvex5.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-13"
+    },
+    {
+      "title": "Vex 6",
+      "imageSrc": "https://th.bing.com/th/id/OIP.wAMh0AC79CnjZTu9MdM0_gHaD4?w=319&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/UGS/UGS%20Files/clvex6.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-13"
+    },
+    {
+      "title": "Vex 7",
+      "imageSrc": "https://th.bing.com/th/id/OIP.QU1JK0RHbd1GetELvbV5WAHaEU?w=275&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/UGS/UGS%20Files/clvex7.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-13"
+    },
+    {
+      "title": "Vex 8",
+      "imageSrc": "https://th.bing.com/th/id/OIP.4XqpeZFWXeioDa5bWaav0gHaHa?w=175&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1",
+      "genre": "Platformer",
+      "type": "HTML",
+      "link": "https://cyan-assets.vercel.app/UGS/UGS%20Files/clvex8.html",
+      "description": "",
+      "status": [
+        "Working",
+        "This game has no issues :D"
+      ],
+      "date": "2025-11-13"
     },
     {
       "title": "Antimatter Dimensions",

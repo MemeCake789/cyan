@@ -14,6 +14,7 @@ const GamesList = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const containerRef = useRef(null);
+  const chromiumRef = useRef(null);
 
   const [activeView, setActiveView] = useState("floride");
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -28,6 +29,31 @@ const GamesList = () => {
     }, 400);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (activeView === 'chromium' && chromiumRef.current) {
+      const widget = document.createElement('widgetbot');
+      widget.setAttribute('server', '1435267632692461618');
+      widget.setAttribute('channel', '1435267640540270694');
+      widget.setAttribute('width', '100%');
+      widget.setAttribute('height', '100%');
+      
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@widgetbot/html-embed';
+      script.async = true;
+
+      chromiumRef.current.appendChild(widget);
+      chromiumRef.current.appendChild(script);
+
+      return () => {
+        if (chromiumRef.current) {
+          while (chromiumRef.current.firstChild) {
+            chromiumRef.current.removeChild(chromiumRef.current.firstChild);
+          }
+        }
+      };
+    }
+  }, [activeView]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -287,7 +313,8 @@ const GamesList = () => {
                           className={`game-status-text ${game.status && game.status.length > 0
                               ? game.status[0].toLowerCase()
                               : "unknown"
-                            }`}>
+                            }`}
+                        >
                           {game.status && game.status.length > 0
                             ? game.status[0]
                             : "Unknown"}
@@ -304,14 +331,7 @@ const GamesList = () => {
             <div className="floride-page">
               <Floride />
             </div>
-            <div className="chromium-page">
-              <iframe 
-                src="/discord/channels/1435267632692461618/1435267640540270694" 
-                width="100%" 
-                height="100%"
-                allow="clipboard-write; autoplay; encrypted-media"
-                style={{ border: 'none' }}
-              ></iframe>
+            <div className="chromium-page" ref={chromiumRef}>
             </div>
           </div>
         </div>

@@ -42,8 +42,8 @@ const GamesList = () => {
   useEffect(() => {
     if (activeView === 'chromium' && chromiumRef.current) {
       const widget = document.createElement('widgetbot');
-      widget.setAttribute('server', '1435267632692461618');
-      widget.setAttribute('channel', '1435267640540270694');
+      widget.setAttribute('server', '299881420891881473');
+      widget.setAttribute('channel', '355719584830980096');
       widget.setAttribute('width', '100%');
       widget.setAttribute('height', '100%');
 

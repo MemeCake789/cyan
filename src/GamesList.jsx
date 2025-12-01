@@ -4,6 +4,7 @@ import "./GamesList.css";
 import StatusBar from "./StatusBar";
 import Nav from "./Nav";
 import Floride from "./Floride";
+import TerminalPopup from "./TerminalPopup";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 const GamesList = () => {
@@ -18,6 +19,14 @@ const GamesList = () => {
 
   const [activeView, setActiveView] = useState("floride");
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Popup State
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupConfig, setPopupConfig] = useState({
+    type: "", // 'recommend' or 'report'
+    title: "",
+    placeholder: "",
+  });
 
   useEffect(() => {
     fetch("/games.json")
@@ -37,7 +46,7 @@ const GamesList = () => {
       widget.setAttribute('channel', '1435267640540270694');
       widget.setAttribute('width', '100%');
       widget.setAttribute('height', '100%');
-      
+
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/@widgetbot/html-embed';
       script.async = true;
@@ -84,16 +93,35 @@ const GamesList = () => {
     setActiveView(view);
   };
 
-  const handleRecommendClick = async () => {
-    const gameName = prompt("What game would you like to recommend?");
-    if (gameName) {
+  const handleRecommendClick = () => {
+    setPopupConfig({
+      type: "recommend",
+      title: "Recommend a Game",
+      placeholder: "Enter the name of the game you'd like to see...",
+    });
+    setIsPopupOpen(true);
+  };
+
+  const handleReportBugClick = () => {
+    setPopupConfig({
+      type: "report",
+      title: "Report a Bug",
+      placeholder: "Describe the bug you encountered...",
+    });
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupSubmit = async (inputValue) => {
+    setIsPopupOpen(false); // Close immediately or wait? Let's close first.
+
+    if (popupConfig.type === "recommend") {
       try {
         const response = await fetch("/api/recommend", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ gameName }),
+          body: JSON.stringify({ gameName: inputValue }),
         });
         const result = await response.json();
         alert(result.message);
@@ -101,48 +129,20 @@ const GamesList = () => {
         console.error("Error recommending game:", error);
         alert("Failed to recommend game.");
       }
-    }
-  };
-
-  const handleReportBugClick = async () => {
-    const bugDescription = prompt("Describe the bug:");
-    if (bugDescription) {
+    } else if (popupConfig.type === "report") {
       try {
         const response = await fetch("/api/report", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ bugDescription }),
+          body: JSON.stringify({ bugDescription: inputValue }),
         });
         const result = await response.json();
         alert(result.message);
       } catch (error) {
         console.error("Error reporting bug:", error);
         alert("Failed to report bug.");
-      }
-    }
-  };
-
-  const _handleAddMessageClick = async () => {
-    const message = prompt(
-      "Enter a message too add to the ticker (top of page):",
-    );
-    if (message) {
-      const name = prompt("Enter a name (optional):") || "";
-      try {
-        const response = await fetch("/api/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message, name }),
-        });
-        const result = await response.json();
-        alert(result.message);
-      } catch (error) {
-        console.error("Error adding message:", error);
-        alert("Failed to add message.");
       }
     }
   };
@@ -311,8 +311,8 @@ const GamesList = () => {
                         <td className="game-genre">{game.genre}</td>
                         <td
                           className={`game-status-text ${game.status && game.status.length > 0
-                              ? game.status[0].toLowerCase()
-                              : "unknown"
+                            ? game.status[0].toLowerCase()
+                            : "unknown"
                             }`}
                         >
                           {game.status && game.status.length > 0
@@ -357,6 +357,14 @@ const GamesList = () => {
         )}
       </div>
       {!isFullscreen && <StatusBar />}
+
+      <TerminalPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        onSubmit={handlePopupSubmit}
+        title={popupConfig.title}
+        placeholder={popupConfig.placeholder}
+      />
     </>
   );
 };

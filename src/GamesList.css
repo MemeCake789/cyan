@@ -28,7 +28,8 @@
     gap: 5px;
     position: absolute;
     top: 26px;
-    right: 50px; /* match container padding */
+    right: 50px;
+    /* match container padding */
     padding: 4px;
     border-radius: 32px;
     background-color: #00000057;
@@ -189,14 +190,18 @@ canvas {
     color: #ffc955;
     text-shadow:
         0 0 4px #ffc95580,
-        /* Inner, subtle glow */ 0 0 30px #ffc955b8; /* Outer, softer glow */
+        /* Inner, subtle glow */
+        0 0 30px #ffc955b8;
+    /* Outer, softer glow */
 }
 
 .game-genre {
     color: #ffc955;
     text-shadow:
         0 0 4px #ffc95580,
-        /* Inner, subtle glow */ 0 0 30px #ffc955b8; /* Outer, softer glow */
+        /* Inner, subtle glow */
+        0 0 30px #ffc955b8;
+    /* Outer, softer glow */
 }
 
 .btop-footer {
@@ -325,7 +330,7 @@ canvas {
     align-items: center;
 }
 
-.chromium-page > div {
+.chromium-page>div {
     width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -349,7 +354,7 @@ canvas {
 }
 
 .search-bar {
-    
+
     width: 100%;
     padding: 8px 15px;
     background-color: #00000057;
@@ -406,5 +411,128 @@ canvas {
 .recommend-row .recommend-title {
     text-shadow:
         0 0 4px #ffc95580,
-        /* Inner, subtle glow */ 0 0 30px #ffc955b8; /* Outer, softer glow */
+        /* Inner, subtle glow */
+        0 0 30px #ffc955b8;
+    /* Outer, softer glow */
+}
+
+/* Terminal Popup Styles */
+.terminal-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.terminal-popup-box {
+    width: 500px;
+    max-width: 90%;
+    background-color: #000000;
+    border: 2px solid rgb(128, 106, 55);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 201, 85, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: popupFadeIn 0.2s ease-out;
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.terminal-popup-box .btop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid rgb(128, 106, 55);
+    color: #ffc955;
+}
+
+.terminal-popup-close {
+    background: none;
+    border: none;
+    color: #ffc955;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.terminal-popup-close:hover {
+    color: #fff;
+}
+
+.terminal-popup-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.terminal-popup-input {
+    width: 100%;
+    background-color: #111;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #ffedc7;
+    padding: 10px;
+    font-family: "JetBrains Mono", "Consolas", "Monaco", "monospace";
+    resize: vertical;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.terminal-popup-input:focus {
+    border-color: #ffc955;
+    box-shadow: 0 0 5px rgba(255, 201, 85, 0.3);
+}
+
+.terminal-popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.terminal-popup-button {
+    padding: 8px 16px;
+    border: 1px solid rgb(128, 106, 55);
+    border-radius: 5px;
+    background-color: #222;
+    color: #ffc955;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.terminal-popup-button:hover {
+    background-color: #ffc955;
+    color: #000;
+}
+
+.terminal-popup-button.cancel {
+    background-color: transparent;
+    border-color: #555;
+    color: #aaa;
+}
+
+.terminal-popup-button.cancel:hover {
+    background-color: #333;
+    color: #fff;
 }

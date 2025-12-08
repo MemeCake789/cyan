@@ -79,6 +79,13 @@ const Floride = () => {
 
       // Use the global puter.ai.chat function
       const response = await puter.ai.chat(chatHistoryForPuter);
+
+      // Check if the response or its content is valid
+      if (!response || typeof response.content !== 'string') {
+        const responseStr = JSON.stringify(response) || "undefined";
+        throw new Error(`Invalid response structure from AI: ${responseStr}`);
+      }
+
       const aiMessage = {
         role: 'assistant',
         name: 'Floride',
@@ -88,11 +95,28 @@ const Floride = () => {
       setMessages([...newMessages, aiMessage]);
 
     } catch (error) {
-      console.error("Error fetching AI response:", error);
+      console.error("--- DETAILED ERROR ---");
+      console.error(error);
+      console.error("--- END DETAILED ERROR ---");
+      
+      let errorText = "An unknown error occurred.";
+
+      if (error && error.message) {
+          errorText = error.message;
+      } else if (error) {
+          try {
+              errorText = JSON.stringify(error, null, 2);
+          } catch (e) {
+              errorText = String(error);
+          }
+      } else {
+          errorText = "The AI service returned an empty or undefined error.";
+      }
+
       const errorMessage = {
         role: 'assistant',
         name: 'Floride',
-        content: `Sorry, something went wrong. Please try again. Error: ${error.message}`,
+        content: `Sorry, something went wrong. Please try again. \n\n**Details:**\n\`\`\`\n${errorText}\n\`\`\``,
         timestamp: generateTimestamp()
       };
       setMessages([...newMessages, errorMessage]);

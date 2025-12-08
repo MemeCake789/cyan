@@ -56,7 +56,7 @@ const Floride = () => {
   };
 
   // State for messages, user input, and loading status
-  const [messages, setMessages] = useState([{ role: 'assistant', name: 'Floride', content: `Hi :D`, timestamp: generateTimestamp() }]);
+  const [messages, setMessages] = useState([{ role: 'assistant', name: 'Floride', content: `Heyo, to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() }]);
   const [input, setInput] = useState('');
   const [isReplying, setIsReplying] = useState(false);
   const messagesEndRef = useRef(null);

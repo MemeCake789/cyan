@@ -329,7 +329,7 @@ const GamesList = () => {
               <iframe src="https://sulfur-cyanide.vercel.app/rx"></iframe>
             </div>
             <div className="floride-page">
-              <Floride />
+              <iframe src="https://www.google.com/search?udm=50&aep=46&source=25q2-US-SearchSites-Site-CTA&surl=1&safe=active&ssui=on&ved=2ahUKEwjQ57KC3a6RAxWOmSYFHRcGOvQQoo4PegYIAQgAEAA"></iframe>
             </div>
             <div className="chromium-page" ref={chromiumRef}>
             </div>

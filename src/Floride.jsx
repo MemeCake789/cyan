@@ -71,8 +71,8 @@ const Floride = () => {
     setIsReplying(true);
 
     try {
-      // Format messages for the puter.ai.chat API
-      const chatHistoryForPuter = newMessages.map(msg => ({
+      // Format messages for the puter.ai.chat API, excluding the initial assistant message
+      const chatHistoryForPuter = newMessages.slice(1).map(msg => ({
         role: msg.role,
         content: msg.content
       }));
@@ -92,7 +92,7 @@ const Floride = () => {
       const errorMessage = {
         role: 'assistant',
         name: 'Floride',
-        content: "Sorry, something went wrong. Please try again.",
+        content: `Sorry, something went wrong. Please try again. Error: ${error.message}`,
         timestamp: generateTimestamp()
       };
       setMessages([...newMessages, errorMessage]);

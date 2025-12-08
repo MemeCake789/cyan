@@ -81,7 +81,7 @@ const Floride = () => {
       const response = await puter.ai.chat(chatHistoryForPuter);
 
       // Check if the response or its content is valid
-      if (!response || typeof response.content !== 'string') {
+      if (!response || !response.message || typeof response.message.content !== 'string') {
         const responseStr = JSON.stringify(response) || "undefined";
         throw new Error(`Invalid response structure from AI: ${responseStr}`);
       }
@@ -89,7 +89,7 @@ const Floride = () => {
       const aiMessage = {
         role: 'assistant',
         name: 'Floride',
-        content: response.content,
+        content: response.message.content,
         timestamp: generateTimestamp()
       };
       setMessages([...newMessages, aiMessage]);

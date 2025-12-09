@@ -117,28 +117,36 @@ You must also use lenny faces in your responses, but not too often. Use them spa
     setIsReplying(true);
 
     try {
-      // Format messages for the puter.ai.chat API, excluding the initial assistant message
       const chatHistoryForPuter = [
         systemPrompt,
         ...newMessages.slice(1).map(msg => ({ role: msg.role, content: msg.content }))
       ];
       
-      // Use the global puter.ai.chat function
-      const response = await puter.ai.chat(chatHistoryForPuter);
+      const responseStream = await window.puter.ai.chat(chatHistoryForPuter, { stream: true });
 
-      // Check if the response or its content is valid
-      if (!response || !response.message || typeof response.message.content !== 'string') {
-        const responseStr = JSON.stringify(response) || "undefined";
-        throw new Error(`Invalid response structure from AI: ${responseStr}`);
-      }
-
-      const aiMessage = {
+      const assistantMessage = {
         role: 'assistant',
         name: 'Floride',
-        content: response.message.content,
+        content: '',
         timestamp: generateTimestamp()
       };
-      setMessages([...newMessages, aiMessage]);
+      setMessages(currentMessages => [...currentMessages, assistantMessage]);
+
+      let fullContent = '';
+      for await (const part of responseStream) {
+        const chunk = part?.text || '';
+        if (chunk) {
+          fullContent += chunk;
+          setMessages(currentMessages => {
+            const updatedMessages = [...currentMessages];
+            const lastMessage = updatedMessages[updatedMessages.length - 1];
+            if (lastMessage.role === 'assistant') {
+              lastMessage.content = fullContent;
+            }
+            return updatedMessages;
+          });
+        }
+      }
 
     } catch (error) {
       console.error("--- DETAILED ERROR ---");
@@ -165,7 +173,11 @@ You must also use lenny faces in your responses, but not too often. Use them spa
         content: `Sorry, something went wrong. Please try again. \n\n**Details:**\n\`\`\`\n${errorText}\n\`\`\``,
         timestamp: generateTimestamp()
       };
-      setMessages([...newMessages, errorMessage]);
+      setMessages(currentMessages => {
+          const updatedMessages = [...currentMessages];
+          updatedMessages[updatedMessages.length - 1] = errorMessage;
+          return updatedMessages;
+      });
     } finally {
       setIsReplying(false);
     }

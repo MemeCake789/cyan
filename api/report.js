@@ -42,7 +42,8 @@ export default async function (req, res) {
       return;
     }
 
-    const filename = `reports/${Date.now()}-bug.txt`;
+    const bugSnippet = bugDescription.substring(0, 30).replace(/[^a-zA-Z0-9]/g, '_');
+    const filename = `reports/${Date.now()}-${bugSnippet}-bug.txt`;
     await put(filename, `Bug reported: ${bugDescription}`, {
       access: 'public',
       token: process.env.BLOB_READ_WRITE_TOKEN,

@@ -4,10 +4,9 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
-import './Floride.css'; // Assuming you have this CSS file in the same directory
+import './Floride.css';
 
 const Floride = () => {
-  // Helper function to generate a detailed timestamp
   const systemPrompt = {
     role: 'system',
     content: `You're a helpful assistant. 
@@ -65,13 +64,12 @@ You must also use lenny faces in your responses, but not too often. Use them spa
     return `${mm}:${dd}:${hh}:${min}:${ss}:${ms}`;
   };
 
-  // State for messages, user input, and loading status
   const [messages, setMessages] = useState([{ role: 'assistant', name: 'Floride', content: `Heyo, to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() }]);
   const [input, setInput] = useState('');
   const [isReplying, setIsReplying] = useState(false);
   const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
 
-  // Load puter.js and require login
   useEffect(() => {
     const initPuter = async () => {
       if (window.puter) {
@@ -85,8 +83,6 @@ You must also use lenny faces in your responses, but not too often. Use them spa
     initPuter();
   }, []);
 
-
-  // Auto-scroll to the latest message
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -95,12 +91,17 @@ You must also use lenny faces in your responses, but not too often. Use them spa
     scrollToBottom();
   }, [messages]);
 
-  // Clear chat history
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [input]);
+
   const handleClearChat = () => {
     setMessages([{ role: 'assistant', name: 'Floride', content: `Hi :D`, timestamp: generateTimestamp() }]);
   };
 
-  // Handle sending a message
   const handleSend = async () => {
     if (!input.trim() || isReplying) return;
 
@@ -183,7 +184,13 @@ You must also use lenny faces in your responses, but not too often. Use them spa
     }
   };
 
-  // Render the chat component
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && !isReplying) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
     <div className="floride-container">
       <button className="clear-chat-button" onClick={handleClearChat}>Clear</button>
@@ -221,13 +228,14 @@ You must also use lenny faces in your responses, but not too often. Use them spa
         <div ref={messagesEndRef} />
       </div>
       <div className="chat-input-container">
-        <input
-          type="text"
+        <textarea
+          ref={textareaRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && !isReplying && handleSend()}
+          onKeyPress={handleKeyPress}
           placeholder="> Type your message..."
           disabled={isReplying}
+          rows="1"
         />
         <button onClick={handleSend} disabled={isReplying}>Send</button>
       </div>

@@ -5,13 +5,22 @@ import StatusBar from "./StatusBar";
 import Nav from "./Nav";
 import Floride from "./Floride";
 import TerminalPopup from "./TerminalPopup";
-import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+import { FaSort, FaSortUp, FaSortDown, FaStar, FaRegStar } from "react-icons/fa";
 
 const GamesList = () => {
   const [games, setGames] = useState([]);
   const [previewData, setPreviewData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const savedFavorites = localStorage.getItem("favoriteGames");
+      return savedFavorites ? JSON.parse(savedFavorites) : [];
+    } catch (error) {
+      console.error("Error reading favorites from localStorage", error);
+      return [];
+    }
+  });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const containerRef = useRef(null);
@@ -38,6 +47,10 @@ const GamesList = () => {
     }, 400);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favoriteGames", JSON.stringify(favorites));
+  }, [favorites]);
 
   useEffect(() => {
     if (activeView === 'chromium' && chromiumRef.current) {
@@ -183,11 +196,28 @@ const GamesList = () => {
     return now - gameFixedDateObj < time;
   };
 
+  const toggleFavorite = (gameTitle, e) => {
+    e.stopPropagation();
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.includes(gameTitle)) {
+        return prevFavorites.filter((title) => title !== gameTitle);
+      } else {
+        return [...prevFavorites, gameTitle];
+      }
+    });
+  };
+
   const sortedAndFilteredGames = games
     .filter((game) =>
       game.title.toLowerCase().includes(searchTerm.toLowerCase()),
     )
     .sort((a, b) => {
+      const aIsFavorite = favorites.includes(a.title);
+      const bIsFavorite = favorites.includes(b.title);
+
+      if (aIsFavorite && !bIsFavorite) return -1;
+      if (!aIsFavorite && bIsFavorite) return 1;
+
       if (sortOrder === "asc") {
         return a.title.localeCompare(b.title);
       } else {
@@ -245,6 +275,7 @@ const GamesList = () => {
                 <table className="btop-table">
                   <thead>
                     <tr>
+                      <th style={{ width: "30px" }}></th>
                       <th onClick={handleSort} style={{ cursor: "pointer" }}>
                         Title:{" "}
                         {sortOrder === "asc" ? <FaSortUp /> : <FaSortDown />}
@@ -258,6 +289,7 @@ const GamesList = () => {
                       onClick={handleRecommendClick}
                       className="recommend-row"
                     >
+                      <td></td>
                       <td className="game-title recommend-title">
                         <span style={{ color: "white", marginRight: "5px" }}>
                           [+]
@@ -268,6 +300,7 @@ const GamesList = () => {
                       <td className="game-status-text unknown"></td>
                     </tr>
                     <tr onClick={handleReportBugClick} className="report-row">
+                      <td></td>
                       <td className="game-title report-title">
                         <span style={{ color: "white", marginRight: "5px" }}>
                           [x]
@@ -280,7 +313,10 @@ const GamesList = () => {
 
                     {sortedAndFilteredGames.map((game, index) => (
                       <tr key={index} onClick={() => handleGameClick(game)}>
-                        <td
+                        <td onClick={(e) => toggleFavorite(game.title, e)} style={{ cursor: 'pointer', textAlign: 'center', width: '30px' }}>
+                          {favorites.includes(game.title) ? <FaStar color="gold" /> : <FaRegStar color="gold" />}
+                        </td>
+                         <td
                           onMouseEnter={() =>
                             setPreviewData({
                               src: game.imageSrc,

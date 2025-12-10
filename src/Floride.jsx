@@ -51,10 +51,14 @@ You must also use lenny faces in your responses, but not too often. Use them spa
               \`
                 $$ \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2} $$
               \`. 
-              Do not use brackets like \`\\[ ... \\]\` or \`\\( ... \\)\`. Do not use plain text for math. For example, instead of writing x^2, write \`$x^2$\``
-};
-  const generateTimestamp = () => {
-    const now = new Date();
+              Do not use brackets like \`\\[ ... \\]\` or \`\\( ... \\)\`. Do not use plain text for math. For example, instead of writing x^2, write \`$x^2$\`
+              
+              You MUST put all lenny faces in this exact format: \`{[lenny face]}\`
+              Example: \`hello, how are you today? {[(^o^)]}\`
+              Make sure there are no other brackets inside the lenny face curly braces.
+              Do not use this formatting for anything other than lenny faces.
+              `, systemPrompt`
+
     const mm = String(now.getMonth() + 1).padStart(2, '0');
     const dd = String(now.getDate()).padStart(2, '0');
     const hh = String(now.getHours()).padStart(2, '0');
@@ -202,15 +206,33 @@ You must also use lenny faces in your responses, but not too often. Use them spa
               <span className="message-timestamp">{msg.timestamp}</span>
             </div>
             <div className="message-content-wrapper">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm, remarkMath]}
-                rehypePlugins={[rehypeKatex]}
-              >
-                {msg.content}
-              </ReactMarkdown>
-              {isReplying && msg.role === 'assistant' && index === messages.length - 1 && !msg.content && (
-                <span className="typing-indicator"></span>
-              )}
+              {(() => {
+                const lennyFaceRegex = /{\[(.*?)]}/;
+                const match = msg.content.match(lennyFaceRegex);
+                const lennyFace = match ? match[1] : null;
+                const messageText = match ? msg.content.replace(lennyFaceRegex, '').trim() : msg.content;
+
+                return (
+                  <>
+                    {lennyFace && (
+                      <div className="lenny-face-column">
+                        {lennyFace}
+                      </div>
+                    )}
+                    <div className="message-text-column">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm, remarkMath]}
+                        rehypePlugins={[rehypeKatex]}
+                      >
+                        {messageText}
+                      </ReactMarkdown>
+                    </div>
+                    {isReplying && msg.role === 'assistant' && index === messages.length - 1 && !msg.content && (
+                      <span className="typing-indicator"></span>
+                    )}
+                  </>
+                );
+              })()}
             </div>
           </div>
         ))}

@@ -73,7 +73,7 @@ const Floride = () => {
 
   const [messages, setMessages] = useState([
     { role: 'assistant', name: 'Floride', content: `{[(^o^)/]}Hey! to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() },
-    { role: 'assistant', name: 'Floride', content: `This is the first paragraph with a lenny face. {[(^o^)]}\\n\\nHere is the second paragraph, also with a lenny face. {[(XD)]}\\n\\nAnd a third one for good measure! {[(งツ)ง]}`, timestamp: generateTimestamp() }
+    // { role: 'assistant', name: 'Floride', content: `This is the first paragraph with a lenny face. {[(^o^)]}\\n\\nHere is the second paragraph, also with a lenny face. {[(XD)]}\\n\\nAnd a third one for good measure! {[(งツ)ง]}`, timestamp: generateTimestamp() }
   ]);
   const [input, setInput] = useState('');
   const [isReplying, setIsReplying] = useState(false);

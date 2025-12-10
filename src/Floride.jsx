@@ -72,6 +72,12 @@ You must also use lenny faces in your responses, but not too often. Use them spa
               `
   };
 
+  const [messages, setMessages] = useState([{ role: 'assistant', name: 'Floride', content: `Heyo, to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() }]);
+  const [input, setInput] = useState('');
+  const [isReplying, setIsReplying] = useState(false);
+  const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
+
   useEffect(() => {
     const initPuter = async () => {
       if (window.puter) {

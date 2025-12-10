@@ -222,6 +222,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.5em 0;
+  text-align: left;
 }
 
 .message hr{

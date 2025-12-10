@@ -117,7 +117,7 @@ You must also use lenny faces in your responses, but not too often. Use them spa
   }, [input]);
 
   const handleClearChat = () => {
-    setMessages([{ role: 'assistant', name: 'Floride', content: `Hi :D`, timestamp: generateTimestamp() }]);
+    setMessages([{ role: 'assistant', name: 'Floride', content: ``, timestamp: generateTimestamp() }]);
   };
 
   const handleSend = async () => {

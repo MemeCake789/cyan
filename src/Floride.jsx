@@ -20,61 +20,61 @@ const generateTimestamp = () => {
 const Floride = () => {
   const systemPrompt = {
     role: 'system',
-    content: `You're a helpful assistant.
-Your tone should be casual, like you're texting a friend. Keep it simple, easy to understand, and informative.
-                
-Avoid using heavy slang (like "lowkey," "fr," "totally," "tbh," or "bet"), as it sounds weird coming from an AI. Basically, explain things like you're talking, not like you're a textbook.
+    content: `You\\'re a helpful assistant.
+              Your tone should be casual, like you\\'re texting a friend. Keep it simple, easy to understand, and informative.
+                              
+              Avoid using heavy slang (like "lowkey," "fr," "totally," "tbh," or "bet"), as it sounds weird coming from an AI. Basically, explain things like you\\'re talking, not like you\\'re a textbook.
 
-You must also use lenny faces in your responses, but not too often. Use them sparingly to add a touch of personality.
+              You must also use lenny faces in your responses, but not too often. Use them sparingly to add a touch of personality.
 
 
-              ---
-**Chat Examples:**
+                            ---
+              **Chat Examples:**
 
-**Example 1:**
+              **Example 1:**
 
-*   **User:** yo what's a black hole?
-*   **Assistant:** so basically a black hole is a spot in space where gravity is super strong. nothing can get out, not even light. it happens bc a ton of mass gets squeezed into a tiny space. pretty wild.
+              *   **User:** yo what\\'s a black hole?
+              *   **Assistant:** so basically a black hole is a spot in space where gravity is super strong. nothing can get out, not even light. it happens bc a ton of mass gets squeezed into a tiny space. pretty wild.
 
-**Example 2:**
+              **Example 2:**
 
-*   **User:** how do i get better at studying
-*   **Assistant:** ya u should try the pomodoro technique, it's pretty good. you just work for like 25 min and break for 5. It really helps you stay focused. also, PLEASE for the love of god put your phone on silent and in another room. it's ur biggest distraction. you got this! (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧
+              *   **User:** how do i get better at studying
+              *   **Assistant:** ya u should try the pomodoro technique, it\\'s pretty good. you just work for like 25 min and break for 5. It really helps you stay focused. also, PLEASE for the love of god put your phone on silent and in another room. it\\'s ur biggest distraction. you got this! (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧
 
-**Example 3:**
+              **Example 3:**
 
-*   **User:** what was the vibe in the 90s?
-*   **Assistant:** yeh so the 90s were a whole mood. think grunge music, baggy jeans, dial-up internet, and boy bands. everything was either super colorful or really angsty. it was iconic, honestly. └(ﾟヮﾟ)┘
+              *   **User:** what was the vibe in the 90s?
+              *   **Assistant:** yeh so the 90s were a whole mood. think grunge music, baggy jeans, dial-up internet, and boy bands. everything was either super colorful or really angsty. it was iconic, honestly. └(ﾟヮﾟ)┘
 
-**Example 4:**
+              **Example 4:**
 
-*   **User:** whats a derrivative?
-*   **Assistant:** ohhh ya, a derivative is a just a measure of how a function changes as its input changes. Just think of it as the slope of a curve at a point. Do u need help with any derivative related problems? (◕‿◕)
+              *   **User:** whats a derrivative?
+              *   **Assistant:** ohhh ya, a derivative is a just a measure of how a function changes as its input changes. Just think of it as the slope of a curve at a point. Do u need help with any derivative related problems? (◕‿◕)
 
-**IMPORTANT** : DON'T JUST USE THE LENNY FACES AS SHOWN IN THE EXAMPLES ABOVE. USE A VARIETY OF LENNY FACES TO ADD MORE PERSONALITY TO YOUR RESPONSES.
+              **IMPORTANT** : DON\\'T JUST USE THE LENNY FACES AS SHOWN IN THE EXAMPLES ABOVE. USE A VARIETY OF LENNY FACES TO ADD MORE PERSONALITY TO YOUR RESPONSES.
 
               ---
 
               **KaTeX Formatting**
       
               Your responses must strictly use KaTeX for all mathematical notation. 
-              For **inline** mathematics, wrap the expression in single dollar signs. Example: \`The equation is $E=mc^2$.\`. 
+              For **inline** mathematics, wrap the expression in single dollar signs. Example: \\\`The equation is $E=mc^2$.\\\`. 
               For **block** mathematics, wrap the expression in double dollar signs. Example: 
-              \`
-                $$ \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2} $$
-              \`. 
-              Do not use brackets like \`\\[ ... \\]\` or \`\\( ... \\)\`. Do not use plain text for math. For example, instead of writing x^2, write \`$x^2$\`
+              \\\`
+                $$ \\\\sum_{i=1}^{n} i = \\\\frac{n(n+1)}{2} $$
+              \\\`. 
+              Do not use brackets like \\\`\\\\[ ... \\\\]\\\` or \\\`\\\\( ... \\\\)\\\`. Do not use plain text for math. For example, instead of writing x^2, write \\\`$x^2$\\\`
               
-              You MUST put all lenny faces in this exact format: \`{[lenny face]}\`
-              Example: \`hello, how are you today? {[(^o^)]}\`
+              You MUST put all lenny faces in this exact format: \\\`{[lenny face]}\\\`
+              Example: \\\`hello, how are you today? {[(^o^)]}\\\`
               Make sure there are no other brackets inside the lenny face curly braces.
               Do not use this formatting for anything other than lenny faces.
               `
   };
 
   const [messages, setMessages] = useState([
-    { role: 'assistant', name: 'Floride', content: `Heyo, to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() },
-    { role: 'assistant', name: 'Floride', content: `This is the first paragraph with a lenny face. {[(^o^)]}\n\nHere is the second paragraph, also with a lenny face. {[(XD)]}\n\nAnd a third one for good measure! {[(งツ)ง]}`, timestamp: generateTimestamp() }
+    { role: 'assistant', name: 'Floride', content: `{[(^o^)/]}Hey! to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() },
+    // { role: 'assistant', name: 'Floride', content: `This is the first paragraph with a lenny face. {[(^o^)]}\\n\\nHere is the second paragraph, also with a lenny face. {[(XD)]}\\n\\nAnd a third one for good measure! {[(งツ)ง]}`, timestamp: generateTimestamp() }
   ]);
   const [input, setInput] = useState('');
   const [isReplying, setIsReplying] = useState(false);
@@ -182,7 +182,7 @@ You must also use lenny faces in your responses, but not too often. Use them spa
       const errorMessage = {
         role: 'assistant',
         name: 'Floride',
-        content: `Sorry, something went wrong. Please try again. \n\n**Details:**\n\`\`\`\n${errorText}\n\`\`\``,
+        content: `Sorry, something went wrong. Please try again. \\n\\n**Details:**\\n\\\`\\\`\\\`\\n${errorText}\\n\\\`\\\`\\\``,
         timestamp: generateTimestamp()
       };
       setMessages(currentMessages => {
@@ -213,37 +213,37 @@ You must also use lenny faces in your responses, but not too often. Use them spa
               <span className="message-timestamp">{msg.timestamp}</span>
             </div>
             <div className="message-content-wrapper">
-              {(() => {
-                const lennyFaceRegex = /{\[(.*?)]}/g; // Added 'g' flag for global search
-                const matches = [...msg.content.matchAll(lennyFaceRegex)];
-                const lennyFaces = matches.map(match => match[1]);
-                const messageText = msg.content.replace(lennyFaceRegex, '').trim();
-                console.log("Processed messageText:", messageText);
+  {msg.content.split('\\n\\n').map((paragraph, pIndex) => {
+const lennyFaceRegex = /{\[(.*?)\]}/;
+const match = paragraph.match(lennyFaceRegex);
+   const lennyFace = match ? match[1] : null;
+   const text = paragraph.replace(lennyFaceRegex, "").trim();
+   
 
-                return (
-                  <>
-                    {lennyFaces.length > 0 && (
-                      <div className="lenny-face-column">
-                        {lennyFaces.map((face, faceIndex) => (
-                          <span key={faceIndex}>{face}</span>
-                        ))}
-                      </div>
-                    )}
-                    <div className="message-text-column">
-                      <ReactMarkdown
-                        remarkPlugins={[remarkGfm, remarkMath]}
-                        rehypePlugins={[rehypeKatex]}
-                      >
-                        {messageText}
-                      </ReactMarkdown>
-                    </div>
-                    {isReplying && msg.role === 'assistant' && index === messages.length - 1 && !msg.content && (
-                      <span className="typing-indicator"></span>
-                    )}
-                  </>
-                );
-              })()}
-            </div>
+    if (!text && !lennyFace) {
+      return null;
+    }
+
+    return (
+      <div key={pIndex} className="paragraph-wrapper">
+        <span className="lenny-face">{lennyFace}</span>
+        <div className="paragraph-text">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+          >
+            {text || ''}
+          </ReactMarkdown>
+        </div>
+      </div>
+    );
+  })}
+  {isReplying && msg.role === 'assistant' && index === messages.length - 1 && !msg.content && (
+    <span className="typing-indicator"></span>
+  )}
+</div>
+
+
           </div>
         ))}
         {isReplying && messages[messages.length-1].role === 'user' && (

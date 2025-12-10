@@ -28,7 +28,6 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  
 }
 
 .message {
@@ -44,9 +43,6 @@
   backdrop-filter: blur(10px);
   background-color: #00000053;
   outline: 1px solid #2d2d2d;
-
-
-  /* background-color: #000000; */
 }
 
 .message-header {
@@ -58,8 +54,6 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  /* padding: 2px 8px; */
-  /* border-radius: 5px; */
 }
 
 .message-name {
@@ -68,8 +62,6 @@
   font-size: 0.85em;
   background-color: #000000;
   padding: 0px 5px;
-
-
 }
 
 .message-timestamp {
@@ -77,30 +69,37 @@
   font-size: 0.75em;
   background-color: #000000;
   padding: 0px 5px;
-
-
 }
 
 .message-content-wrapper {
+  display: block;
+}
+
+.paragraph-wrapper {
   display: flex;
-  align-items: flex-start; /* Align items to the top */
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
-.lenny-face-column {
-  flex-shrink: 0; /* Prevent shrinking */
-  /* width: 60px; Removed fixed width */
-  text-align: center;
-  font-size: 2em; /* Slightly smaller font size */
+.paragraph-wrapper:last-of-type {
+  margin-bottom: 0;
+}
+
+.lenny-face {
+  flex-shrink: 0;
+  width: 80px;
+  text-align: left;
   padding-right: 10px;
-  margin-right: 10px; /* Add margin for separation */
-  line-height: 1; /* Adjust line height for better alignment */
-  margin-top: -5px; /* Adjust vertical alignment */
+  line-height: 1.4;
 }
 
-.message-text-column {
+.paragraph-text {
   flex-grow: 1;
   word-break: break-word;
-  padding-left: 10px; /* Add padding for separation from lenny faces */
+}
+
+.paragraph-text p {
+  margin: 0;
 }
 
 
@@ -110,12 +109,21 @@
 }
 
 .message.assistant {
-  
+  max-width: 100%;
+  background-color: transparent;
+  backdrop-filter: none;
+  outline: none;
+  border-radius: 0;
+  padding: 15px 0;
   align-self: flex-start;
-  min-width: 250px;
-
 }
 
+.message.assistant .message-header {
+  position: static;
+  transform: none;
+  padding: 0;
+  margin-bottom: 10px;
+}
 .chat-input-container {
   display: flex;
   padding: 20px;

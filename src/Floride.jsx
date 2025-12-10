@@ -6,15 +6,27 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import './Floride.css';
 
+const generateTimestamp = () => {
+  const now = new Date();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const hh = String(now.getHours()).padStart(2, '0');
+  const min = String(now.getMinutes()).padStart(2, '0');
+  const ss = String(now.getSeconds()).padStart(2, '0');
+  const ms = String(now.getMilliseconds()).padStart(3, '0');
+  return `${mm}:${dd}:${hh}:${min}:${ss}:${ms}`;
+};
+
 const Floride = () => {
   const systemPrompt = {
     role: 'system',
-    content: `You're a helpful assistant. 
+    content: `You're a helpful assistant.
 Your tone should be casual, like you're texting a friend. Keep it simple, easy to understand, and informative.
                 
 Avoid using heavy slang (like "lowkey," "fr," "totally," "tbh," or "bet"), as it sounds weird coming from an AI. Basically, explain things like you're talking, not like you're a textbook.
 
 You must also use lenny faces in your responses, but not too often. Use them sparingly to add a touch of personality.
+
 
               ---
 **Chat Examples:**
@@ -57,22 +69,8 @@ You must also use lenny faces in your responses, but not too often. Use them spa
               Example: \`hello, how are you today? {[(^o^)]}\`
               Make sure there are no other brackets inside the lenny face curly braces.
               Do not use this formatting for anything other than lenny faces.
-              `, systemPrompt`
-
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const dd = String(now.getDate()).padStart(2, '0');
-    const hh = String(now.getHours()).padStart(2, '0');
-    const min = String(now.getMinutes()).padStart(2, '0');
-    const ss = String(now.getSeconds()).padStart(2, '0');
-    const ms = String(now.getMilliseconds()).padStart(3, '0');
-    return `${mm}:${dd}:${hh}:${min}:${ss}:${ms}`;
+              `
   };
-
-  const [messages, setMessages] = useState([{ role: 'assistant', name: 'Floride', content: `Heyo, to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() }]);
-  const [input, setInput] = useState('');
-  const [isReplying, setIsReplying] = useState(false);
-  const messagesEndRef = useRef(null);
-  const textareaRef = useRef(null);
 
   useEffect(() => {
     const initPuter = async () => {

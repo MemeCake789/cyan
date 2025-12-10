@@ -88,10 +88,11 @@
 
 .lenny-face-column {
   flex-shrink: 0; /* Prevent shrinking */
-  width: 60px; /* Adjust as needed */
+  /* width: 60px; Removed fixed width */
   text-align: center;
-  font-size: 2.5em; /* Make lenny face larger */
+  font-size: 2em; /* Slightly smaller font size */
   padding-right: 10px;
+  margin-right: 10px; /* Add margin for separation */
   line-height: 1; /* Adjust line height for better alignment */
   margin-top: -5px; /* Adjust vertical alignment */
 }
@@ -99,6 +100,7 @@
 .message-text-column {
   flex-grow: 1;
   word-break: break-word;
+  padding-left: 10px; /* Add padding for separation from lenny faces */
 }
 
 

@@ -211,16 +211,19 @@ You must also use lenny faces in your responses, but not too often. Use them spa
             </div>
             <div className="message-content-wrapper">
               {(() => {
-                const lennyFaceRegex = /{\[(.*?)]}/;
-                const match = msg.content.match(lennyFaceRegex);
-                const lennyFace = match ? match[1] : null;
-                const messageText = match ? msg.content.replace(lennyFaceRegex, '').trim() : msg.content;
+                const lennyFaceRegex = /{\[(.*?)]}/g; // Added 'g' flag for global search
+                const matches = [...msg.content.matchAll(lennyFaceRegex)];
+                const lennyFaces = matches.map(match => match[1]);
+                const messageText = msg.content.replace(lennyFaceRegex, '').trim();
+                console.log("Processed messageText:", messageText);
 
                 return (
                   <>
-                    {lennyFace && (
+                    {lennyFaces.length > 0 && (
                       <div className="lenny-face-column">
-                        {lennyFace}
+                        {lennyFaces.map((face, faceIndex) => (
+                          <span key={faceIndex}>{face}</span>
+                        ))}
                       </div>
                     )}
                     <div className="message-text-column">

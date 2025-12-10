@@ -22,7 +22,7 @@ const Floride = () => {
     role: 'system',
     content: `You\\'re a helpful assistant.
               Your tone should be casual, like you\\'re texting a friend. Keep it simple, easy to understand, and informative.
-                              
+                          
               Avoid using heavy slang (like "lowkey," "fr," "totally," "tbh," or "bet"), as it sounds weird coming from an AI. Basically, explain things like you\\'re talking, not like you\\'re a textbook.
 
               You must also use lenny faces in your responses, but not too often. Use them sparingly to add a touch of personality.
@@ -54,16 +54,15 @@ const Floride = () => {
               **IMPORTANT** : DON\\'T JUST USE THE LENNY FACES AS SHOWN IN THE EXAMPLES ABOVE. USE A VARIETY OF LENNY FACES TO ADD MORE PERSONALITY TO YOUR RESPONSES.
 
               ---
-
               **KaTeX Formatting**
       
               Your responses must strictly use KaTeX for all mathematical notation. 
-              For **inline** mathematics, wrap the expression in single dollar signs. Example: \\\`The equation is $E=mc^2$.\\\`. 
+              For **inline** mathematics, wrap the expression in single dollar signs. Example: \`The equation is $E=mc^2$.\`. 
               For **block** mathematics, wrap the expression in double dollar signs. Example: 
-              \\\`
-                $$ \\\\sum_{i=1}^{n} i = \\\\frac{n(n+1)}{2} $$
-              \\\`. 
-              Do not use brackets like \\\`\\\\[ ... \\\\]\\\` or \\\`\\\\( ... \\\\)\\\`. Do not use plain text for math. For example, instead of writing x^2, write \\\`$x^2$\\\`
+              \`
+                $$ \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2} $$
+              \`. 
+              Do not use brackets like \`\\[ ... \\]\` or \`\\( ... \\)\`. Do not use plain text for math. For example, instead of writing x^2, write \`$x^2$\`
               
               You MUST put all lenny faces in this exact format: \\\`{[lenny face]}\\\`
               Example: \\\`hello, how are you today? {[(^o^)]}\\\`
@@ -74,7 +73,7 @@ const Floride = () => {
 
   const [messages, setMessages] = useState([
     { role: 'assistant', name: 'Floride', content: `{[(^o^)/]}Hey! to use this chat app, please send a message and wait to be signed in.`, timestamp: generateTimestamp() },
-    // { role: 'assistant', name: 'Floride', content: `This is the first paragraph with a lenny face. {[(^o^)]}\\n\\nHere is the second paragraph, also with a lenny face. {[(XD)]}\\n\\nAnd a third one for good measure! {[(งツ)ง]}`, timestamp: generateTimestamp() }
+    { role: 'assistant', name: 'Floride', content: `This is the first paragraph with a lenny face. {[(^o^)]}\\n\\nHere is the second paragraph, also with a lenny face. {[(XD)]}\\n\\nAnd a third one for good measure! {[(งツ)ง]}`, timestamp: generateTimestamp() }
   ]);
   const [input, setInput] = useState('');
   const [isReplying, setIsReplying] = useState(false);

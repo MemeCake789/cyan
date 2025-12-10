@@ -61,7 +61,7 @@
   color: #ccc;
   font-size: 0.85em;
   background-color: #000000;
-  padding: 0px 5px;
+  padding: 0px 0px;
 }
 
 .message-timestamp {
@@ -109,13 +109,13 @@
 }
 
 .message.assistant {
+  width: 100%;
   max-width: 100%;
   background-color: transparent;
   backdrop-filter: none;
   outline: none;
   border-radius: 0;
-  padding: 15px 0;
-  align-self: flex-start;
+  padding: 0;
 }
 
 .message.assistant .message-header {
